@@ -3,6 +3,7 @@
 // use of global is best.
 
 // Global CONSTANTS, of the form kXXXX
+#define kNMOTORS      6
 #define kM1OFFSET 87275
 #define kM2OFFSET 49410
 #define kM3OFFSET 87387
@@ -11,7 +12,7 @@
 #define kM5OFFSET     0
 #define kM6OFFSET     0
 
-global gFMOTOR(7);
+global gFMOTOR(10);
 
 // Countdown timer definitions are of the form TIMERXXY where XX is
 // the PLC number, e.g. PLC06 -> XX = 06 and Y is the timer number

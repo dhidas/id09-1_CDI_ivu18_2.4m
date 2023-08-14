@@ -3,14 +3,19 @@
 
 Open PLC 6
 
-// when homing motor a which motor must follow it
+
+// when homing motor a which motor must follow it?
 // The array is made to match physical motor number (it does not start at zero)
-gFMOTOR(1) = 3
-gFMOTOR(2) = 4
-gFMOTOR(3) = 1
-gFMOTOR(4) = 2
-gFMOTOR(5) = 6
-gFMOTOR(6) = 5
+local lFMOTOR(7);
+lFMOTOR(1) = 3
+lFMOTOR(2) = 4
+lFMOTOR(3) = 1
+lFMOTOR(4) = 2
+lFMOTOR(5) = 6
+lFMOTOR(6) = 5
+
+local L_HomingMotor
+local L_FollowingMotor
 
 P_HomingAmpError = 0
 P_HomingTimeout = 0
@@ -21,68 +26,73 @@ if (P_StopAllStatus != 0) {
   return
 }
 
-// Start in a known state
-Motor[1].MasterCtrl=0
-Motor[2].MasterCtrl=0
-Motor[3].MasterCtrl=0
-Motor[4].MasterCtrl=0
 
 // Clear HomeComplete status
-Motor[1].HomeComplete = 0
-Motor[2].HomeComplete = 0
-Motor[3].HomeComplete = 0
-Motor[4].HomeComplete = 0
+L_HomingMotor = 1
+while (L_HomingMotor <= kNMOTORS) {
+  Ldata.motor = L_HomingMotor
+  CMD"home j/"
+  Motor[L_HomingMotor].MasterCtrl=0
+  L_HomingMotor = L_HomingMotor + 1
+}
 
 
-CMD"#1,2,3,4j/"
+CMD"#*j/"
 TIMER060 = 200
 while (TIMER060 > 0) {}
-if (Motor[1].AmpEna + Motor[1].AmpEna + Motor[1].AmpEna + Motor[1].AmpEna != 4) {
+if (Motor[1].AmpEna + Motor[2].AmpEna + Motor[3].AmpEna + Motor[4].AmpEna != 4) {
   // Some problem enabling amps.  report, kill, and return
-  CMD"#1,2,3,4k"
+  CMD"#*k"
   P_HomingAmpError = 1
   GOTO 666
 }
 
 
-P_MotorHomingNumber = 1
-while (P_MotorHomingNumber < 7) {
-  P_MotorHomingNumber = P_MotorHomingNumber + 1
-}
+L_HomingMotor = 1
+while (L_HomingMotor <= kNMOTORS - 2) {
 
-// Home motor 1 with motor 3 following
-Motor[3].MasterCtrl=1
-
-if (Motor[1].PlusLimit == 1) {
-  CMD"#1j-"
-  TIMER060 = 5000
-  while (Motor[1].PlusLimit == 1 && TIMER060 > 0) {}
-  if (TIMER060 <= 0) {
-    // Timeout homing.  report and abort
-    P_HomingTimeout = 1
+  // Home motor 1 with motor 3 following
+  L_FollowingMotor = lFMOTOR(L_HomingMotor)
+  Motor[L_FollowingMotor].MasterCtrl=1
+  
+  if (Motor[L_HomingMotor].PlusLimit == 1 || Motor[L_HomingMotor].MinusLimit == 1) {
+    Ldata.motor = L_HomingMotor
+    if (Motor[L_HomingMotor].PlusLimit == 1) {
+      CMD"j-"
+    } else {
+      CMD"j+"
+    }
+    TIMER060 = 5000
+    while (Motor[L_HomingMotor].PlusLimit == 1 && TIMER060 > 0) {}
+    if (TIMER060 >= 0) {
+      // Timeout homing.  report and abort
+      P_HomingTimeout = 1
       GOTO 666
-      
+    }
+    TIMER060 = 100
+    while (TIMER060 > 0) {}
+    Ldata.motor = L_HomingMotor
+    CMD"j/"
   }
-  TIMER060 = 100
-  while (TIMER060 < 0) {}
-  CMD"#1j/"
+  Ldata.motor = L_HomingMotor
+  CMD"home"
+  while (Motor[L_HomingMotor].HomeInProgress == 0) { }  // Wait for start
+  while (Motor[L_HomingMotor].DesVelZero == 0) { }      // Wait for end
+
+  L_FollowingMotor = lFMOTOR(L_HomingMotor)
+  Motor[L_FollowingMotor].MasterCtrl=0
+  L_HomingMotor = L_HomingMotor + 1
 }
-CMD"#1hm"
-TIMER060 = 100
-while (TIMER060 < 0) {}
-while (Motor[1].HomeComplete != 1 && Motor[1].InPos != 1) {}
-TIMER060 = 300
-while (TIMER060 < 0) {}
-
-
 
 
 // End in a known state.  This is the default error and exit path as well
 N666:
-Motor[1].MasterCtrl=0
-Motor[2].MasterCtrl=0
-Motor[3].MasterCtrl=0
-Motor[4].MasterCtrl=0
+// Clear HomeComplete status
+L_HomingMotor = 1
+while (L_HomingMotor <= kNMOTORS) {
+  Motor[L_HomingMotor].MasterCtrl=0
+  L_HomingMotor = L_HomingMotor + 1
+}
 disable plc 6
 Close
 
