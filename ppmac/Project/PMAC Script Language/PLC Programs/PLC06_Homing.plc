@@ -14,9 +14,11 @@ lFMOTOR(4) = 2
 lFMOTOR(5) = 6
 lFMOTOR(6) = 5
 
+// For the current homing motor number and the number of th emotor following it
 local L_HomingMotor
 local L_FollowingMotor
 
+// Clear any errors before starting
 P_HomingAmpError = 0
 P_HomingTimeout = 0
 
@@ -37,6 +39,7 @@ while (L_HomingMotor <= kNMOTORS) {
 }
 
 
+// Enable all motors and check they enable
 CMD"#*j/"
 TIMER060 = 200
 while (TIMER060 > 0) {}
@@ -48,13 +51,15 @@ if (Motor[1].AmpEna + Motor[2].AmpEna + Motor[3].AmpEna + Motor[4].AmpEna != 4) 
 }
 
 
+// Loop over all motors homing one at a time
 L_HomingMotor = 1
 while (L_HomingMotor <= kNMOTORS - 2) {
 
-  // Home motor 1 with motor 3 following
+  // Home motor with motor lFMOTOR following it
   L_FollowingMotor = lFMOTOR(L_HomingMotor)
   Motor[L_FollowingMotor].MasterCtrl=1
   
+  // If this motor is on a limit, back off the limit a bit
   if (Motor[L_HomingMotor].PlusLimit == 1 || Motor[L_HomingMotor].MinusLimit == 1) {
     Ldata.motor = L_HomingMotor
     if (Motor[L_HomingMotor].PlusLimit == 1) {
@@ -62,30 +67,36 @@ while (L_HomingMotor <= kNMOTORS - 2) {
     } else {
       CMD"j+"
     }
+    TIMER060 = 200
+    while (TIMER060 > 0) {}
+
+    // Either the motor backs off the limit or we timeout after a reasonable amount of time
     TIMER060 = 5000
-    while (Motor[L_HomingMotor].PlusLimit == 1 && TIMER060 > 0) {}
+    while (Motor[L_HomingMotor].PlusLimit + Motor[L_HomingMotor].MinusLimit != 0 && TIMER060 > 0) {}
     if (TIMER060 >= 0) {
       // Timeout homing.  report and abort
       P_HomingTimeout = 1
       GOTO 666
     }
-    TIMER060 = 100
-    while (TIMER060 > 0) {}
     Ldata.motor = L_HomingMotor
     CMD"j/"
   }
+
+  // Home this motor and wait for the post-home move to complete
   Ldata.motor = L_HomingMotor
   CMD"home"
   while (Motor[L_HomingMotor].HomeInProgress == 0) { }  // Wait for start
   while (Motor[L_HomingMotor].DesVelZero == 0) { }      // Wait for end
 
+  // Reset following motor to not follow anymore
   L_FollowingMotor = lFMOTOR(L_HomingMotor)
   Motor[L_FollowingMotor].MasterCtrl=0
   L_HomingMotor = L_HomingMotor + 1
 }
 
 
-// End in a known state.  This is the default error and exit path as well
+// End in a known state.  This is the default error path and exit path as well.
+// I'm not a fna of goto, but here we are.
 N666:
 // Clear HomeComplete status
 L_HomingMotor = 1
