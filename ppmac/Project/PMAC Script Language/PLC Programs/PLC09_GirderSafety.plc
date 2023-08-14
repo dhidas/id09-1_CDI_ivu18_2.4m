@@ -1,0 +1,24 @@
+// This PLC should contain any stops related to girder safety from the
+// controls point of view.  This includes a StopAll variable that can
+// be set from epics, or internally if needed
+
+
+Open PLC 9
+
+// StopAll.  0 is the all clear, anything else and we stopall
+if (P_StopAllStatus != 0) {
+  CMD"#*k"
+}
+if (P_StopAllRequest == 1) {
+  P_StopAllStatus = 1
+  P_StopAllRequest = -1
+  CMD"#*k"
+}
+if (P_StopAllRequest == 0) {
+  P_StopAllStatus = 0
+  P_StopAllRequest = -1
+}
+
+
+
+Close

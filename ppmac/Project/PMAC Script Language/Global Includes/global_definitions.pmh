@@ -1,0 +1,43 @@
+// Global variable definitions.  Things which need to be known by 
+// epics should be in the form of #define statements, otherwise
+// use of global is best.
+
+// Global CONSTANTS, of the form kXXXX
+#define kM1OFFSET 87275
+#define kM2OFFSET 49410
+#define kM3OFFSET 87387
+#define kM4OFFSET 50048
+#define kM4OFFSET 50048
+#define kM5OFFSET     0
+#define kM6OFFSET     0
+
+global gFMOTOR(7);
+
+// Countdown timer definitions are of the form TIMERXXY where XX is
+// the PLC number, e.g. PLC06 -> XX = 06 and Y is the timer number
+// within that PLC (since some PLCs may use multiple timers).  These
+// timers translate to the Sys.CdTimer as Sys.CdTimer[XXY].  These
+// timers are meant to be used only in a single PLC.  Global timers
+// should be specified as GTIMERY where Y is 0-9
+
+// Global timers
+#define GTIMER0  Sys.CdTimer[0]
+
+// Local Timers
+#define TIMER060 Sys.CdTimer[60]
+#define TIMER061 Sys.CdTimer[61]
+
+
+// PVariable definitions
+// PLC 01 - Startup
+
+// PLC 06 - Homing
+#define P_HomeRequest         P600
+#define P_HomingInProgress    P601
+#define P_MotorHomingNumber   P602
+#define P_HomingAmpError      P698
+#define P_HomingTimeout       P699
+
+// PLC 09 - Girder Safety
+#define P_StopAllStatus       P900
+#define P_StopAllRequest      P901

@@ -1,0 +1,57 @@
+//ACC-65E pointers to i/o structure elements
+//Card 2
+//inputs
+PTR Input01->Acc65E[2].DataReg[0].0.1;
+PTR Input02->Acc65E[2].DataReg[0].1.1;
+PTR Input03->Acc65E[2].DataReg[0].2.1;
+PTR Input04->Acc65E[2].DataReg[0].3.1;
+PTR Input05->Acc65E[2].DataReg[0].4.1;
+PTR Input06->Acc65E[2].DataReg[0].5.1;
+PTR Input07->Acc65E[2].DataReg[0].6.1;
+PTR Input08->Acc65E[2].DataReg[0].7.1;
+
+PTR Input09->Acc65E[2].DataReg[1].0.1;
+PTR Input10->Acc65E[2].DataReg[1].1.1;
+PTR Input11->Acc65E[2].DataReg[1].2.1;
+PTR Input12->Acc65E[2].DataReg[1].3.1;
+PTR Input13->Acc65E[2].DataReg[1].4.1;
+PTR Input14->Acc65E[2].DataReg[1].5.1;
+PTR Input15->Acc65E[2].DataReg[1].6.1;
+PTR Input16->Acc65E[2].DataReg[1].7.1;
+
+PTR Input17->Acc65E[2].DataReg[2].0.1;
+PTR Input18->Acc65E[2].DataReg[2].1.1;
+PTR Input19->Acc65E[2].DataReg[2].2.1;
+PTR Input20->Acc65E[2].DataReg[2].3.1;
+PTR Input21->Acc65E[2].DataReg[2].4.1;
+PTR Input22->Acc65E[2].DataReg[2].5.1;
+PTR Input23->Acc65E[2].DataReg[2].6.1;
+PTR Input24->Acc65E[2].DataReg[2].7.1;
+
+//outputs
+PTR Output01->Acc65E[2].DataReg[3].0.1;
+PTR Output02->Acc65E[2].DataReg[3].1.1;
+PTR Output03->Acc65E[2].DataReg[3].2.1;
+PTR Output04->Acc65E[2].DataReg[3].3.1;
+PTR Output05->Acc65E[2].DataReg[3].4.1;
+PTR Output06->Acc65E[2].DataReg[3].5.1;
+PTR Output07->Acc65E[2].DataReg[3].6.1;
+PTR Output08->Acc65E[2].DataReg[3].7.1;
+
+PTR Output09->Acc65E[2].DataReg[4].0.1;
+PTR Output10->Acc65E[2].DataReg[4].1.1;
+PTR Output11->Acc65E[2].DataReg[4].2.1;
+PTR Output12->Acc65E[2].DataReg[4].3.1;
+PTR Output13->Acc65E[2].DataReg[4].4.1;
+PTR Output14->Acc65E[2].DataReg[4].5.1;
+PTR Output15->Acc65E[2].DataReg[4].6.1;
+PTR Output16->Acc65E[2].DataReg[4].7.1;
+
+PTR Output17->Acc65E[2].DataReg[5].0.1;
+PTR Output18->Acc65E[2].DataReg[5].1.1;
+PTR Output19->Acc65E[2].DataReg[5].2.1;
+PTR Output20->Acc65E[2].DataReg[5].3.1;
+PTR Output21->Acc65E[2].DataReg[5].4.1;
+PTR Output22->Acc65E[2].DataReg[5].5.1;
+PTR Output23->Acc65E[2].DataReg[5].6.1;
+PTR Output24->Acc65E[2].DataReg[5].7.1;

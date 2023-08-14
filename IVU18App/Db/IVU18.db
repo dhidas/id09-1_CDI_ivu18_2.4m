@@ -1,0 +1,17 @@
+record(ai, "Test") {
+  field(DESC, "Steps per mm")
+  field(EGU,  "step/mm")
+  field(VAL,  "1000")
+  #info(autosaveFields_pass0, "VAL")
+  #info(autosaveFields, "VAL")
+}
+
+
+record(ai, "$(SYS){$(DEV)}P8197") {
+  field(DTYP, "stream")
+  field(DESC, "Motor1 Pos")
+  field(SCAN, "1 second")
+  field(EGU, "um")
+  field(INP, "@pmac.proto getVar(P8197) $(PORT)")
+  field(PREC, "3")
+}

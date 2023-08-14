@@ -1,0 +1,16 @@
+Open PLC 1
+
+// Startup P-Variable settings
+
+// PLC09
+P_StopAllRequest = 0
+P_StopAllStatus = 0
+P_HomingAmpError = 0
+P_HomingTimeout = 0
+
+
+// Enable PLCs as needed
+enable PLC 9
+
+disable PLC 1
+Close

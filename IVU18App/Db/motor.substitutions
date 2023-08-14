@@ -1,0 +1,13 @@
+file "db/motor.db"
+{
+pattern
+{P,                M,                   MOTOR,  PORT,  ADDR,  DESC,                        DTYP,      MRES,           EGU,  PREC,  ALIAS }
+{"XF:27IDF-OP:1",  "{OPT:1-Ax:A1}Mtr",  "M0",   "P0",  1,     "Optics Table Axis A1",      asynMotor, "0.0001",       "mm", 4,     ""    }
+{"XF:27IDF-OP:1",  "{OPT:1-Ax:Z0}Mtr",  "M0",   "P0",  2,     "Optics Table Axis Z0",      asynMotor, "0.0001",       "mm", 4,     ""    }
+{"XF:27IDF-OP:1",  "{SHLD:1-Ax:X}Mtr",  "M0",   "P0",  3,     "Shielding Table X",         asynMotor, "1.95313e-05",  "mm", 4,     ""    }
+{"XF:27IDF-OP:1",  "{MC:3-Ax:4}Mtr",    "M0",   "P0",  4,     "Axis 4",                    asynMotor, "0.0001",       "mm", 4,     ""    }
+{"XF:27IDF-OP:1",  "{MC:3-Ax:5}Mtr",    "M0",   "P0",  5,     "Axis 5",                    asynMotor, "0.0001",       "mm", 4,     ""    }
+{"XF:27IDF-OP:1",  "{SHLD:1-Ax:Vx}Mtr", "M0",   "P0",  6,     "Shielding Table Visual X",  asynMotor, "9.76563e-06",  "mm", 4,     ""    }
+{"XF:27IDF-OP:1",  "{MC:3-Ax:7}Mtr",    "M0",   "P0",  7,     "Axis 7",                    asynMotor, "0.0001",       "mm", 4,     ""    }
+{"XF:27IDF-OP:1",  "{MC:3-Ax:8}Mtr",    "M0",   "P0",  8,     "Axis 8",                    asynMotor, "0.0001",       "mm", 4,     ""    }
+}
