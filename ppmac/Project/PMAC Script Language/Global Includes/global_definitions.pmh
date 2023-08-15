@@ -3,6 +3,13 @@
 // use of global is best.
 
 // Global CONSTANTS, of the form kXXXX
+
+// Everyone has to have their slice of the pie
+#define kPI 3.141592653589793
+#define kDegToRad (kPI/180)
+#define kRadToDeg (180/kPI)
+
+// Home offsets (possible use other method for bissc abs)
 #define kNMOTORS      6
 #define kM1OFFSET 87275
 #define kM2OFFSET 49410
@@ -11,6 +18,26 @@
 #define kM4OFFSET 50048
 #define kM5OFFSET     0
 #define kM6OFFSET     0
+
+// Encoder count conversions
+#define kEncCtsPerMm        4098.361
+#define kEncCtsPerUm        4.098361
+#define kRotEncCtsPerRad    180
+#define kRotEncCtsPerURad   0.180
+
+// Absolute hard-coded limits in case all else fails
+#define kMAXGAP   40200
+#define kMINGAP    4530
+#define kMAXELEV   5000
+#define kMAXTILT    500
+#define kMAXTAPER   500
+
+// Different modes for motion
+#define kMoveModeGapElev        0               ; Normal gap and elevation mode
+#define kMoveModeFollowingDS    1               ; US following DS mode (for both gap and elev)
+#define kMoveModeFollowingUS    2               ; DS following US mode (for both gap and elev)
+#define kMoveModeIndividual     3               ; Fully individual mode
+
 
 global gFMOTOR(10);
 

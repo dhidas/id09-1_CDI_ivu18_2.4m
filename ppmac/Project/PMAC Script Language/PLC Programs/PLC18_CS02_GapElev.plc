@@ -1,0 +1,31 @@
+// This PLC is for position reporting to EPICS for the gap in the normal mode
+
+open PLC 18
+
+local M1Pos
+local M2Pos
+local M3Pos
+local M4Pos
+
+Ldata.coord = 2
+
+M1Pos = Motor[1].ActPos - Motor[1].HomePos
+M2Pos = Motor[2].ActPos - Motor[2].HomePos
+M3Pos = Motor[3].ActPos - Motor[3].HomePos
+M4Pos = Motor[4].ActPos - Motor[4].HomePos
+
+// The Q variables here are to align with pmacAsynCoord
+Coord[2].Q[81] = (M1Pos + M2Pos) / 2 / kEncCtsPerUm
+Coord[2].Q[82] = (M1Pos - M2Pos) / kEncCtsPerUm
+Coord[2].Q[83] = (M3Pos + M4Pos) / 2 / kEncCtsPerUm
+Coord[2].Q[84] = (M3Pos - M4Pos) / kEncCtsPerUm
+
+// For some reason this does not work as advertised
+PREAD
+Q87 = D1
+Q88 = D2
+
+
+close
+
+

@@ -43,6 +43,15 @@ pmacDisableLimitsCheck("Brick", 4, 0)
 #dbLoadTemplate("ivu18.substitutions")
 
 
+# Create CS (ControllerPort, Addr, CSNumber, CSRef, Prog)
+# Gap: Coordinate System 2 | PROG 2
+pmacAsynCoordCreate("BRICK1port", 0, 2, 0, 2)
+
+# Configure CS (PortName, DriverName, CSRef, NAxes)
+#drvAsynMotorConfigure("BrickCS2", "pmacAsynCoord", 0, 4)
+
+
+
 ## Load record instances
 #dbLoadTemplate "db/user.substitutions"
 dbLoadRecords("db/IVU18.db", "SYS=$(sys),DEV=$(dev),PORT=BRICK1port")
@@ -50,10 +59,10 @@ dbLoadRecords("db/IVU18.db", "SYS=$(sys),DEV=$(dev),PORT=BRICK1port")
 
 
 #{P,  M,  MOTOR,  PORT,  ADDR,  DESC,  DTYP,  MRES,  EGU,  PREC,  ALIAS  }
-dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:TU}-Mtr,MOTOR=P0,MOTOR=Brick,PORT=BRICK1port,ADDR=1,DESC=asd,DTYP=asynMotor,MRES=.00024399997950400172,EGU=mm,PREC=3,VELO=0.5")
-dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:TD}-Mtr,MOTOR=P0,MOTOR=Brick,PORT=BRICK1port,ADDR=2,DESC=asd,DTYP=asynMotor,MRES=.00024399997950400172,EGU=mm,PREC=3,VELO=0.5")
-dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:BU}-Mtr,MOTOR=P0,MOTOR=Brick,PORT=BRICK1port,ADDR=3,DESC=asd,DTYP=asynMotor,MRES=.00024399997950400172,EGU=mm,PREC=3,VELO=0.5")
-dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:BD}-Mtr,MOTOR=P0,MOTOR=Brick,PORT=BRICK1port,ADDR=4,DESC=asd,DTYP=asynMotor,MRES=.00024399997950400172,EGU=mm,PREC=3,VELO=0.5")
+dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:GU}-Mtr,MOTOR=P0,MOTOR=Brick,PORT=BRICK1port,ADDR=1,DESC=asd,DTYP=asynMotor,MRES=.24399997950400172,EGU=um,PREC=1,VELO=0.5")
+dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:GD}-Mtr,MOTOR=P0,MOTOR=Brick,PORT=BRICK1port,ADDR=2,DESC=asd,DTYP=asynMotor,MRES=.24399997950400172,EGU=um,PREC=1,VELO=0.5")
+dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:EU}-Mtr,MOTOR=P0,MOTOR=Brick,PORT=BRICK1port,ADDR=3,DESC=asd,DTYP=asynMotor,MRES=.24399997950400172,EGU=um,PREC=1,VELO=0.5")
+dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:ED}-Mtr,MOTOR=P0,MOTOR=Brick,PORT=BRICK1port,ADDR=4,DESC=asd,DTYP=asynMotor,MRES=.24399997950400172,EGU=um,PREC=1,VELO=0.5")
 dbLoadRecords("db/ppmacStatus.db", "SYS=$(sys),PMAC=$(dev),NAXES=8,PORT=BRICK1port,PLC=5,VERSION=0")
 dbLoadRecords("db/ppmacStatusAxis.db", "SYS=$(sys),DEV={$(dev)-Ax:1},AXIS=1,PORT=BRICK1port")
 dbLoadRecords("db/ppmacStatusAxis.db", "SYS=$(sys),DEV={$(dev)-Ax:2},AXIS=2,PORT=BRICK1port")

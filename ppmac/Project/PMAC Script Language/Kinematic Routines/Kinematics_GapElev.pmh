@@ -1,0 +1,20 @@
+Coord[2].SegMoveTime = 2
+
+&2 Open Forward
+
+//C6 = L1
+KinPosAxisA = ((KinPosMotor1 + KinPosMotor2) / 2) / kEncCtsPerUm
+KinPosAxisB =  (KinPosMotor1 - KinPosMotor2)      / kEncCtsPerUm
+KinPosAxisC = ((KinPosMotor3 + KinPosMotor4) / 2) / kEncCtsPerUm
+KinPosAxisU =  (KinPosMotor3 - KinPosMotor4)      / kEncCtsPerUm
+
+close
+
+&2 Open Inverse
+
+KinPosMotor1 = (KinPosAxisA + KinPosAxisB / 4) * kEncCtsPerUm
+KinPosMotor2 = (KinPosAxisA - KinPosAxisB / 4) * kEncCtsPerUm
+KinPosMotor3 = (KinPosAxisC + KinPosAxisU / 2) * kEncCtsPerUm
+KinPosMotor4 = (KinPosAxisC - KinPosAxisU / 2) * kEncCtsPerUm
+
+close

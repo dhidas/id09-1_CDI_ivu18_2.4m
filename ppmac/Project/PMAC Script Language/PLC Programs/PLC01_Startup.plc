@@ -11,6 +11,7 @@ P_HomingTimeout = 0
 
 // Enable PLCs as needed
 enable PLC 9
+enable PLC 18
 
 disable PLC 1
 Close
