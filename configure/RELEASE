@@ -29,7 +29,7 @@
 #SNCSEQ = $(MODULES)/seq-ver
 
 # EPICS_BASE should appear last so earlier modules can override stuff:
-EPICS_BASE = /usr/lib/epics
+#EPICS_BASE = /usr/lib/epics
 
 # Set RULES here if you want to use build rules from somewhere
 # other than EPICS_BASE:
@@ -47,4 +47,3 @@ AUTOSAVE=$(EPICS_BASE)
 
 # RecSync support
 RECCASTER=$(EPICS_BASE)
-PMAC = /home/dhidas/pmac/pmac-2-5-20

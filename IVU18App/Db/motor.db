@@ -14,8 +14,8 @@ record(motor,"$(P)$(M)")
 	field(PREC, $(PREC="0"))        # Precision 
 
 	field(VBAS, $(VBAS="0.01"))	# EGU/sec
-	field(VELO, $(VELO="0.1"))	# EGU/sec
-	field(VMAX, $(VMAX="0.5"))	# EGU/sec	
+	field(VELO, $(VELO="500"))	# EGU/sec
+	field(VMAX, $(VMAX="2000"))	# EGU/sec	
 	field(ACCL, $(ACCL="0.1"))	# seconds
 	field(BDST, $(BDST="0"))	# backlash dist
 	field(BVEL, $(BVEL="0.1"))	# EGU/sec
