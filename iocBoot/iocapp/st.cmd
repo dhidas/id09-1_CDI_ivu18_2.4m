@@ -35,10 +35,10 @@ pmacCreateController("Brick", "BRICK1port", 0, 4, 100, 1000)
 # Configure Model 3 Axes Driver (Controler Port, Axis Count)
 pmacCreateAxes("Brick", 4)
 #
-pmacDisableLimitsCheck("Brick", 1, 0)
-pmacDisableLimitsCheck("Brick", 2, 0)
-pmacDisableLimitsCheck("Brick", 3, 0)
-pmacDisableLimitsCheck("Brick", 4, 0)
+pmacDisableLimitsCheck("Brick", 1, 1)
+pmacDisableLimitsCheck("Brick", 2, 1)
+pmacDisableLimitsCheck("Brick", 3, 1)
+pmacDisableLimitsCheck("Brick", 4, 1)
 #
 #dbLoadTemplate("ivu18.substitutions")
 
@@ -67,10 +67,10 @@ dbLoadRecords("db/IVU18.db", "SYS=$(sys),DEV=$(dev),PORT=BRICK1port")
 
 
 #{P,  M,  MOTOR,  PORT,  ADDR,  DESC,  DTYP,  MRES,  EGU,  PREC,  ALIAS  }
-dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:GU}-Mtr,MOTOR=Brick,PORT=BRICK1port,ADDR=1,DESC=asd,DTYP=asynMotor,MRES=.24399997950400172,EGU=um,PREC=1")
-dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:GD}-Mtr,MOTOR=Brick,PORT=BRICK1port,ADDR=2,DESC=asd,DTYP=asynMotor,MRES=.24399997950400172,EGU=um,PREC=1")
-dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:EU}-Mtr,MOTOR=Brick,PORT=BRICK1port,ADDR=3,DESC=asd,DTYP=asynMotor,MRES=.24399997950400172,EGU=um,PREC=1")
-dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:ED}-Mtr,MOTOR=Brick,PORT=BRICK1port,ADDR=4,DESC=asd,DTYP=asynMotor,MRES=.24399997950400172,EGU=um,PREC=1")
+dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:GU}Mtr,MOTOR=Brick,PORT=BRICK1port,ADDR=1,DESC=asd,DTYP=asynMotor,MRES=.24399997950400172,EGU=um,PREC=1")
+dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:GD}Mtr,MOTOR=Brick,PORT=BRICK1port,ADDR=2,DESC=asd,DTYP=asynMotor,MRES=.24399997950400172,EGU=um,PREC=1")
+dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:EU}Mtr,MOTOR=Brick,PORT=BRICK1port,ADDR=3,DESC=asd,DTYP=asynMotor,MRES=.24399997950400172,EGU=um,PREC=1")
+dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:ED}Mtr,MOTOR=Brick,PORT=BRICK1port,ADDR=4,DESC=asd,DTYP=asynMotor,MRES=.24399997950400172,EGU=um,PREC=1")
 dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-CS2:Gap}-Mtr,MOTOR=BrickCS2,PORT=BRICK1port,ADDR=1,DESC=asd,DTYP=asynMotor,MRES=0.001,EGU=um,PREC=2")
 dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-CS2:Taper}-Mtr,MOTOR=BrickCS2,PORT=BRICK1port,ADDR=2,DESC=asd,DTYP=asynMotor,MRES=0.001,EGU=um,PREC=2")
 dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-CS2:Elev}-Mtr,MOTOR=BrickCS2,PORT=BRICK1port,ADDR=3,DESC=asd,DTYP=asynMotor,MRES=0.001,EGU=um,PREC=2")
@@ -80,6 +80,10 @@ dbLoadRecords("db/ppmacStatusAxis.db", "SYS=$(sys),DEV={$(dev)-Ax:1},AXIS=1,PORT
 dbLoadRecords("db/ppmacStatusAxis.db", "SYS=$(sys),DEV={$(dev)-Ax:2},AXIS=2,PORT=BRICK1port")
 dbLoadRecords("db/ppmacStatusAxis.db", "SYS=$(sys),DEV={$(dev)-Ax:3},AXIS=3,PORT=BRICK1port")
 dbLoadRecords("db/ppmacStatusAxis.db", "SYS=$(sys),DEV={$(dev)-Ax:4},AXIS=4,PORT=BRICK1port")
+dbLoadRecords("db/ppmac_motorstatus.db", "SYS=$(sys),DEV={$(dev)-Ax:GU},MOTOR=Brick,PORT=BRICK1port,AXIS=1,DESC=Gap Upstream")
+dbLoadRecords("db/ppmac_motorstatus.db", "SYS=$(sys),DEV={$(dev)-Ax:GD},MOTOR=Brick,PORT=BRICK1port,AXIS=2,DESC=Gap Downstream")
+dbLoadRecords("db/ppmac_motorstatus.db", "SYS=$(sys),DEV={$(dev)-Ax:EU},MOTOR=Brick,PORT=BRICK1port,AXIS=3,DESC=Elevation Upstream")
+dbLoadRecords("db/ppmac_motorstatus.db", "SYS=$(sys),DEV={$(dev)-Ax:ED},MOTOR=Brick,PORT=BRICK1port,AXIS=4,DESC=Elevation Downstream")
 
 dbLoadRecords("db/asynRecord.db","P=$(sys),R={$(dev)}Asyn,ADDR=1,PORT=BRICK1port,IMAX=128,OMAX=128")
 
@@ -91,3 +95,5 @@ iocInit
 
 ## Start any sequence programs
 #seq sncExample, "user=dhidas"
+
+dbl > records.txt

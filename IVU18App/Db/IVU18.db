@@ -15,3 +15,78 @@ record(ai, "$(SYS){$(DEV)}P8197") {
   field(INP, "@pmac.proto getVar(P8197) $(PORT)")
   field(PREC, "3")
 }
+
+
+
+record(bi, "$(SYS){$(DEV)-Ax:GU}Sw:PLim-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Open Limit Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(Motor[1].PlusLimit) $(PORT)")
+  field(ZNAM, "LimSw inactive")
+  field(ONAM, "LimSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-Ax:GU}Sw:MLim-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Close Limit Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(Motor[1].MinusLimit) $(PORT)")
+  field(ZNAM, "LimSw inactive")
+  field(ONAM, "LimSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-Ax:GD}Sw:PLim-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Open Limit Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(Motor[2].PlusLimit) $(PORT)")
+  field(ZNAM, "LimSw inactive")
+  field(ONAM, "LimSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-Ax:GD}Sw:MLim-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Close Limit Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(Motor[2].MinusLimit) $(PORT)")
+  field(ZNAM, "LimSw inactive")
+  field(ONAM, "LimSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-Ax:EU}Sw:PLim-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Elevation Upper Limit Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(Motor[3].PlusLimit) $(PORT)")
+  field(ZNAM, "LimSw inactive")
+  field(ONAM, "LimSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-Ax:EU}Sw:MLim-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Elevation Lower Limit Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(Motor[3].MinusLimit) $(PORT)")
+  field(ZNAM, "LimSw inactive")
+  field(ONAM, "LimSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-Ax:ED}Sw:PLim-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Elevation Upper Limit Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(Motor[4].PlusLimit) $(PORT)")
+  field(ZNAM, "LimSw inactive")
+  field(ONAM, "LimSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-Ax:ED}Sw:MLim-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Elevation Lower Limit Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(Motor[4].MinusLimit) $(PORT)")
+  field(ZNAM, "LimSw inactive")
+  field(ONAM, "LimSw active")
+  field(OSV, "MAJOR")
+}

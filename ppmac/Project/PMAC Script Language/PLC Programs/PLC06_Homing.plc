@@ -1,4 +1,4 @@
-
+// Gate3[0].Chan[0].HomeFlag
 
 
 Open PLC 6
@@ -6,13 +6,17 @@ Open PLC 6
 
 // when homing motor a which motor must follow it?
 // The array is made to match physical motor number (it does not start at zero)
-local lFMOTOR(7);
-lFMOTOR(1) = 3
-lFMOTOR(2) = 4
-lFMOTOR(3) = 1
-lFMOTOR(4) = 2
-lFMOTOR(5) = 6
-lFMOTOR(6) = 5
+local L_FMOTOR(7);
+L_FMOTOR(1) = 3
+L_FMOTOR(2) = 4
+L_FMOTOR(3) = 1
+L_FMOTOR(4) = 2
+L_FMOTOR(5) = 6
+L_FMOTOR(6) = 5
+
+// Used to get the home flag status
+local L_Channel
+local L_Gate
 
 // For the current homing motor number and the number of th emotor following it
 local L_HomingMotor
@@ -55,25 +59,29 @@ if (Motor[1].AmpEna + Motor[2].AmpEna + Motor[3].AmpEna + Motor[4].AmpEna != 4) 
 L_HomingMotor = 1
 while (L_HomingMotor <= kNMOTORS - 2) {
 
-  // Home motor with motor lFMOTOR following it
-  L_FollowingMotor = lFMOTOR(L_HomingMotor)
+  // Must get the gate and channel correct for this motor
+  L_Gate = int((L_HomingMotor - 1) / 4)
+  L_Channel = int((L_HomingMotor - 1) % 4)
+
+  // Home motor with motor L_FMOTOR following it
+  L_FollowingMotor = L_FMOTOR(L_HomingMotor)
   Motor[L_FollowingMotor].MasterCtrl=1
   
-  // If this motor is on a limit, back off the limit a bit
-  if (Motor[L_HomingMotor].PlusLimit == 1 || Motor[L_HomingMotor].MinusLimit == 1) {
+  // If this motor is on a limit, or home, back off the limit a bit
+  if (Motor[L_HomingMotor].PlusLimit == 1 || Motor[L_HomingMotor].MinusLimit == 1 || Gate3[L_Gate].Chan[L_Channel].HomeFlag == 1) {
     Ldata.motor = L_HomingMotor
-    if (Motor[L_HomingMotor].PlusLimit == 1) {
-      CMD"j-"
-    } else {
+    if (Motor[L_HomingMotor].MinusLimit == 1 || Gate3[L_Gate].Chan[L_Channel].HomeFlag == 1) {
       CMD"j+"
+    } else {
+      CMD"j-"
     }
     TIMER060 = 200
     while (TIMER060 > 0) {}
 
     // Either the motor backs off the limit or we timeout after a reasonable amount of time
     TIMER060 = 5000
-    while (Motor[L_HomingMotor].PlusLimit + Motor[L_HomingMotor].MinusLimit != 0 && TIMER060 > 0) {}
-    if (TIMER060 >= 0) {
+    while (Motor[L_HomingMotor].PlusLimit + Motor[L_HomingMotor].MinusLimit + Gate3[L_Gate].Chan[L_Channel].HomeFlag != 0 && TIMER060 > 0) {}
+    if (TIMER060 <= 0) {
       // Timeout homing.  report and abort
       P_HomingTimeout = 1
       GOTO 666
@@ -81,6 +89,8 @@ while (L_HomingMotor <= kNMOTORS - 2) {
     Ldata.motor = L_HomingMotor
     CMD"j/"
   }
+  TIMER060 = 500
+  while (TIMER060 > 0) {}
 
   // Home this motor and wait for the post-home move to complete
   Ldata.motor = L_HomingMotor
@@ -89,7 +99,7 @@ while (L_HomingMotor <= kNMOTORS - 2) {
   while (Motor[L_HomingMotor].DesVelZero == 0) { }      // Wait for end
 
   // Reset following motor to not follow anymore
-  L_FollowingMotor = lFMOTOR(L_HomingMotor)
+  L_FollowingMotor = L_FMOTOR(L_HomingMotor)
   Motor[L_FollowingMotor].MasterCtrl=0
   L_HomingMotor = L_HomingMotor + 1
 }
