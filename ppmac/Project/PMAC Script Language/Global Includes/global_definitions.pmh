@@ -32,11 +32,21 @@
 #define kMAXTILT    500
 #define kMAXTAPER   500
 
-// Different modes for motion
-#define kMoveModeGapElev        0               ; Normal gap and elevation mode
-#define kMoveModeFollowingDS    1               ; US following DS mode (for both gap and elev)
-#define kMoveModeFollowingUS    2               ; DS following US mode (for both gap and elev)
-#define kMoveModeIndividual     3               ; Fully individual mode
+// Unbelievable, but I cannot put comments after define statements in ppmac
+// even if I use a terminator which is very very stupid.  So here we are
+// and I'll put the comments above it...
+// Different modes for motion:
+//     Gap and eleation mode combined 4-motor motion
+//     Gap and elevation mode separate motions
+//     DS following US mode (for both gap and elev)
+//     US following DS mode (for both gap and elev)
+//     Fully individual mode
+//
+#define kMoveModeGapEleComb     0
+#define kMoveModeGapEleSep      1
+#define kMoveModeFollowingUS    2
+#define kMoveModeFollowingDS    3
+#define kMoveModeIndividual     4
 
 
 global gFMOTOR(10);
@@ -54,6 +64,7 @@ global gFMOTOR(10);
 // Local Timers
 #define TIMER060 Sys.CdTimer[60]
 #define TIMER061 Sys.CdTimer[61]
+#define TIMER070 Sys.CdTimer[70]
 
 
 
@@ -67,12 +78,35 @@ global gFMOTOR(10);
 // PVariable definitions
 // PLC 01 - Startup
 
+// PLC 02 - Movement in progress monitor
+#define P_MovementInProgress  P200
+
+// PLC 03 - Mode Change
+#define P_MoveMode          P300
+#define P_MoveModeReq       P301
+
 // PLC 06 - Homing
 #define P_HomeRequest         P600
 #define P_HomingInProgress    P601
 #define P_MotorHomingNumber   P602
 #define P_HomingAmpError      P698
 #define P_HomingTimeout       P699
+
+// PLC 08 - Move Request
+#define P_StopAllStatus     P800
+#define P_InterlockState    P801
+#define P_OpenGapExecuting  P802
+#define P_BrakeTimeout      P803
+#define P_MoveAborted       P804
+#define P_GapSetpoint       P805
+#define P_ElevSetpoint      P806
+#define P_TaperSetpoint     P807
+#define P_TiltSetpoint      P808
+#define P_GapMoveRequest    P809
+#define P_GapSpeed_um       P810
+#define P_GapEleMoveRequest P811
+#define P_EleMoveRequest    P812
+#define P_StopAllRequest    P813
 
 // PLC 09 - Girder Safety
 #define P_StopAllStatus       P900

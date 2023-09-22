@@ -1,6 +1,19 @@
 Open PLC 1
 
+
 // Startup P-Variable settings
+
+// PLC02
+
+
+// PLC03
+P_MoveMode = -1
+P_MoveModeReq = 0
+
+// PLC06
+
+// PLC08
+
 
 // PLC09
 P_StopAllRequest = 0
@@ -8,9 +21,10 @@ P_StopAllStatus = 0
 P_HomingAmpError = 0
 P_HomingTimeout = 0
 
-
 // Enable PLCs as needed
-enable PLC 9
+enable PLC  3
+enable PLC  8
+enable PLC  9
 enable PLC 18
 
 disable PLC 1
