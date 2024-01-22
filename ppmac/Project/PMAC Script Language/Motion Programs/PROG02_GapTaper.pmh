@@ -1,0 +1,17 @@
+// This program is intended to change the gap and taper only
+
+Open PROG 2
+
+LINEAR
+ABS
+
+TA300
+TS100
+
+FRAX(A,B)
+F(100)
+
+A(Q71)B(Q72)
+dwell0
+
+close

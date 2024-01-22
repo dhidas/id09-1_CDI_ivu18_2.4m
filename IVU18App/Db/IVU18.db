@@ -90,3 +90,82 @@ record(bi, "$(SYS){$(DEV)-Ax:ED}Sw:MLim-Sts") {
   field(ONAM, "LimSw active")
   field(OSV, "MAJOR")
 }
+
+
+
+
+record(ao, "$(SYS){$(DEV)-CS2:Gap}-Mtr-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Motor position setpoint")
+  field(EGU, "um")
+  field(PREC, "2")
+  field(DRVL, "-500")
+  field(DRVH, "500")
+  field(OUT, "@pmac.proto setVar(P805) $(PORT)")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
+record(bo, "$(SYS){$(DEV)-CS2:Gap}-Mtr-Go") {
+  field(DESC, "Gap motor go")
+  field(FLNK, "$(SYS){$(DEV)-CS2:Gap}-MvReq-Cmd.PROC")
+}
+
+record(ao, "$(SYS){$(DEV)-CS2:Gap}-Mtr-SP-Go") {
+  field(DESC, "Motor position setpoint")
+  field(EGU, "um")
+  field(PREC, "2")
+  field(DRVL, "-500")
+  field(DRVH, "500")
+  field(OUT, "$(SYS){$(DEV)-CS2:Gap}-Mtr-SP PP")
+  field(FLNK, "$(SYS){$(DEV)-CS2:Gap}-MvReq-Cmd.PROC")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
+
+
+
+
+
+
+
+
+
+record(mbbi, "$(SYS){$(DEV)}GirderMode-RB") {
+  field(DESC, "Girder axis state")
+  field(SCAN, "2 second")
+  field(DTYP, "stream")
+  field(INP, "@pmac.proto getIntVar(P300) $(PORT)")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(FRVL, "4")
+  field(FRVL, "4")
+  field(FVVL, "5")
+  field(ZRST, "All Together")
+  field(ONST, "Gap Ele Separate")
+  field(TWST, "Following US")
+  field(THST, "Following DS")
+  field(FRST, "Individual")
+  field(FVST, "FlyScan")
+}
+
+record(mbbo, "$(SYS){$(DEV)}GirderMode-SP") {
+  field(DESC, "Girder axis requested state")
+  field(SCAN, "Passive")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(FRVL, "4")
+  field(FVVL, "5")
+  field(ZRST, "All Together")
+  field(ONST, "Gap Ele Separate")
+  field(TWST, "Following US")
+  field(THST, "Following DS")
+  field(FRST, "Individual")
+  field(FVST, "FlyScan")
+  field(DTYP, "stream")
+  field(OUT,  "@pmac.proto setIntVar(P301) $(PORT)")
+  field(FLNK, "$(SYS){$(DEV)}GirderMode-RB")
+}
