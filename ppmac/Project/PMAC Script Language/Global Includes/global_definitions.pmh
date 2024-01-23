@@ -45,8 +45,8 @@
 //     US following DS mode (for both gap and elev)
 //     Fully individual mode
 //
-#define kMoveModeGapEleComb     0
-#define kMoveModeGapEleSep      1
+#define kMoveModeGapEleSep      0
+#define kMoveModeGapEleComb     1
 #define kMoveModeFollowingUS    2
 #define kMoveModeFollowingDS    3
 #define kMoveModeIndividual     4
@@ -67,9 +67,6 @@ global gFMOTOR(10);
 
 // Local Timers
 #define TIMER060 Sys.CdTimer[60]
-#define TIMER061 Sys.CdTimer[61]
-#define TIMER070 Sys.CdTimer[70]
-#define TIMER080 Sys.CdTimer[70]
 
 
 

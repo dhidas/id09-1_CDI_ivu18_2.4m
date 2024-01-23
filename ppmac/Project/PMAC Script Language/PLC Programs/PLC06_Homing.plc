@@ -45,8 +45,7 @@ while (L_HomingMotor <= kNMOTORS) {
 
 // Enable all motors and check they enable
 CMD"#*j/"
-TIMER060 = 200
-while (TIMER060 > 0) {}
+call Timer(0.200)
 if (Motor[1].AmpEna + Motor[2].AmpEna + Motor[3].AmpEna + Motor[4].AmpEna != 4) {
   // Some problem enabling amps.  report, kill, and return
   CMD"#*k"
@@ -75,8 +74,7 @@ while (L_HomingMotor <= kNMOTORS - 2) {
     } else {
       CMD"j-"
     }
-    TIMER060 = 200
-    while (TIMER060 > 0) {}
+    call Timer(0.200)
 
     // Either the motor backs off the limit or we timeout after a reasonable amount of time
     TIMER060 = 5000
@@ -89,8 +87,7 @@ while (L_HomingMotor <= kNMOTORS - 2) {
     Ldata.motor = L_HomingMotor
     CMD"j/"
   }
-  TIMER060 = 500
-  while (TIMER060 > 0) {}
+  call Timer(0.500)
 
   // Home this motor and wait for the post-home move to complete
   Ldata.motor = L_HomingMotor

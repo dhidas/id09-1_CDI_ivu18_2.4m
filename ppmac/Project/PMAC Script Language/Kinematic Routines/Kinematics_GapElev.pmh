@@ -1,20 +1,70 @@
 Coord[2].SegMoveTime = 2
 
+// Axes are:
+//   A - Gap
+//   B - Taper
+//   C - Elevation
+//   U - Tilt
+//
+// Motors are:
+//   1 - Gap Upstream
+//   2 - Gap Downstream
+//   3 - Elevation Upstream
+//   4 - Elevation Downstream
+//
+// Definitions:
+//   Taper: Gap Downstream minus Gap Upstream)
+//   Tilt:  Elevation Downstream minus Elevation Upstream
+
+
 &2 Open Forward
 
 //C6 = L1
 KinPosAxisA = ((KinPosMotor1 + KinPosMotor2) / 2) / kEncCtsPerUm
-KinPosAxisB =  (KinPosMotor1 - KinPosMotor2)      / kEncCtsPerUm
+KinPosAxisB =  (KinPosMotor2 - KinPosMotor1)      / kEncCtsPerUm
 KinPosAxisC = ((KinPosMotor3 + KinPosMotor4) / 2) / kEncCtsPerUm
-KinPosAxisU =  (KinPosMotor3 - KinPosMotor4)      / kEncCtsPerUm
+KinPosAxisU =  (KinPosMotor4 - KinPosMotor3)      / kEncCtsPerUm
 
 close
 
 &2 Open Inverse
 
-KinPosMotor1 = (KinPosAxisA + KinPosAxisB / 4) * kEncCtsPerUm
-KinPosMotor2 = (KinPosAxisA - KinPosAxisB / 4) * kEncCtsPerUm
-KinPosMotor3 = (KinPosAxisC + KinPosAxisU / 2) * kEncCtsPerUm
-KinPosMotor4 = (KinPosAxisC - KinPosAxisU / 2) * kEncCtsPerUm
+KinPosMotor1 = (KinPosAxisA - KinPosAxisB / 2) * kEncCtsPerUm
+KinPosMotor2 = (KinPosAxisA + KinPosAxisB / 2) * kEncCtsPerUm
+KinPosMotor3 = (KinPosAxisC - KinPosAxisU / 2) * kEncCtsPerUm
+KinPosMotor4 = (KinPosAxisC + KinPosAxisU / 2) * kEncCtsPerUm
 
 close
+
+
+
+
+
+&3 open forward
+KinPosAxisA = ((KinPosMotor1 + KinPosMotor2) / 2) / kEncCtsPerUm
+KinPosAxisB = (KinPosMotor2 - KinPosMotor1) / kEncCtsPerUm
+KinPosAxisC = ((KinPosMotor3 + KinPosMotor4) / 2) / kEncCtsPerUm
+KinPosAxisU = (KinPosMotor4 - KinPosMotor3) / kEncCtsPerUm
+close
+
+&3 open inverse
+KinPosMotor1 = (KinPosAxisA - KinPosAxisB / 2) * kEncCtsPerUm
+KinPosMotor2 = (KinPosAxisA + KinPosAxisB / 2) * kEncCtsPerUm
+KinPosMotor3 = (KinPosAxisC - KinPosAxisU / 2) * kEncCtsPerUm
+KinPosMotor4 = (KinPosAxisC + KinPosAxisU / 2) * kEncCtsPerUm
+close
+
+open prog 3
+LINEAR
+ABS
+
+TA300
+TS100
+FRAX(A, B, C, U)
+F(100)
+
+A(Q71)B(Q72)C(Q73)U(Q74)
+dwell 0
+close
+
+

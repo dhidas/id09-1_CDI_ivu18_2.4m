@@ -122,7 +122,38 @@ record(ao, "$(SYS){$(DEV)-CS2:Gap}-Mtr-SP-Go") {
   info(autosaveFields, "VAL")
 }
 
+record(ao, "$(SYS){$(DEV)-CS2:Gap}-MvReq-Cmd") {
+  field(DESC, "Trigers PLC to start gap movement")
+  field(SCAN, "Passive")
+  field(DTYP, "stream")
+  field(VAL, "1")
+  field(OUT, "@pmac.proto setVar(P809) $(PORT)")
+}
 
+
+record(ao, "$(SYS){$(DEV)-CS2:Taper}-Mtr-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Taper setpoint")
+  field(EGU, "um")
+  field(PREC, "2")
+  field(DRVL, "-500")
+  field(DRVH, "500")
+  field(OUT, "@pmac.proto setVar(P807) $(PORT)")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
+
+record(ao, "$(SYS){$(DEV)-CS2:Taper}-Mtr-SP-Go") {
+  field(DESC, "Motor position setpoint")
+  field(EGU, "um")
+  field(PREC, "2")
+  field(DRVL, "-500")
+  field(DRVH, "500")
+  field(OUT, "$(SYS){$(DEV)-CS2:Taper}-Mtr-SP PP")
+  field(FLNK, "$(SYS){$(DEV)-CS2:Gap}-MvReq-Cmd.PROC")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
 
 
 
@@ -142,8 +173,8 @@ record(mbbi, "$(SYS){$(DEV)}GirderMode-RB") {
   field(FRVL, "4")
   field(FRVL, "4")
   field(FVVL, "5")
-  field(ZRST, "All Together")
-  field(ONST, "Gap Ele Separate")
+  field(ZRST, "Gap Elevation Separate")
+  field(ONST, "All Together")
   field(TWST, "Following US")
   field(THST, "Following DS")
   field(FRST, "Individual")
@@ -159,8 +190,8 @@ record(mbbo, "$(SYS){$(DEV)}GirderMode-SP") {
   field(THVL, "3")
   field(FRVL, "4")
   field(FVVL, "5")
-  field(ZRST, "All Together")
-  field(ONST, "Gap Ele Separate")
+  field(ZRST, "Gap Elevation Separate")
+  field(ONST, "All Together")
   field(TWST, "Following US")
   field(THST, "Following DS")
   field(FRST, "Individual")
@@ -168,4 +199,7 @@ record(mbbo, "$(SYS){$(DEV)}GirderMode-SP") {
   field(DTYP, "stream")
   field(OUT,  "@pmac.proto setIntVar(P301) $(PORT)")
   field(FLNK, "$(SYS){$(DEV)}GirderMode-RB")
+  field(PINI, "YES")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
 }

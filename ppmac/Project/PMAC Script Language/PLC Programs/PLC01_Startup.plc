@@ -1,6 +1,7 @@
 Open PLC 1
 
 
+
 // Startup P-Variable settings
 
 // PLC02
@@ -8,7 +9,7 @@ Open PLC 1
 
 // PLC03
 P_MoveMode = -1
-P_MoveModeReq = 0
+P_MoveModeReq = kMoveModeGapEleSep
 
 // PLC06
 

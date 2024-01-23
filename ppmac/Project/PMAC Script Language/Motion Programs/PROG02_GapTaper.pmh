@@ -12,6 +12,6 @@ FRAX(A,B)
 F(100)
 
 A(Q71)B(Q72)
-dwell0
+dwell 0
 
 close
