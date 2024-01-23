@@ -4,6 +4,9 @@
 
 // Global CONSTANTS, of the form kXXXX
 
+#define kTRUE  1
+#define kFALSE 0
+
 // Everyone has to have their slice of the pie
 #define kPI 3.141592653589793
 #define kDegToRad (kPI/180)
@@ -66,6 +69,7 @@ global gFMOTOR(10);
 #define TIMER060 Sys.CdTimer[60]
 #define TIMER061 Sys.CdTimer[61]
 #define TIMER070 Sys.CdTimer[70]
+#define TIMER080 Sys.CdTimer[70]
 
 
 

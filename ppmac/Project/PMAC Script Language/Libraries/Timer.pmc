@@ -1,0 +1,11 @@
+// This is a generic timer used probably everywhere in PPMAC land
+// One can use this in a PLC like this:
+//   call Timer(0.25)
+
+open subprog Timer(duration)
+
+local EndTime = Sys.Time + duration;
+while (Sys.Time < EndTime) {
+  // Just hang out and wait
+}
+close
