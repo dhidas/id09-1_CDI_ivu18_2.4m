@@ -17,8 +17,8 @@ This means that for positive taper the downstream gap is larger than the upstrea
 
 ## Coordinate Systems (CS)
 It is assumed that typical usage will be gap and taper motion (without changing elevation or tilt).
-* CS2 & PROG02 is used for gap+taper motion.
-* CS3 & PROG03 is used for elevation+tilt motion.
-* CS4 & PROG04 is used for combined motion gap+taper+elevation+tilt.
+* CS2 & PROG02 is used for Gap + Taper motion.
+* CS3 & PROG03 is used for Elevation + Tilt motion.
+* CS4 & PROG04 is used for combined motion Gap + Taper + Elevation + Tilt.
 
 Position reporting for all coordinate systems is done in PLC18 to avoid duplicate code.
