@@ -52,13 +52,15 @@ pmacDisableLimitsCheck("Brick", 4, 1)
 
 # Create CS (CSPortName, ControllerPort, CSNumber, ProgramNumber)
 pmacCreateCS("BrickCS2", "Brick", 2, 2)
+pmacCreateCS("BrickCS3", "Brick", 3, 3)
 # Configure Model 3 CS Axes Driver (CSPortName, CSAxisCount)
-pmacCreateCSAxes("BrickCS2", 4)
+pmacCreateCSAxes("BrickCS2", 2)
+pmacCreateCSAxes("BrickCS3", 4)
 
 pmacSetCoordStepsPerUnit("BrickCS2", 1, 1000)
 pmacSetCoordStepsPerUnit("BrickCS2", 2, 1000)
-pmacSetCoordStepsPerUnit("BrickCS2", 3, 1000)
-pmacSetCoordStepsPerUnit("BrickCS2", 4, 1000)
+pmacSetCoordStepsPerUnit("BrickCS3", 3, 1000)
+pmacSetCoordStepsPerUnit("BrickCS3", 4, 1000)
 
 ## Load record instances
 #dbLoadTemplate "db/user.substitutions"
@@ -73,8 +75,8 @@ dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:EU}Mtr,MOTOR=Brick,PORT=BRIC
 dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:ED}Mtr,MOTOR=Brick,PORT=BRICK1port,ADDR=4,DESC=asd,DTYP=asynMotor,MRES=.24399997950400172,EGU=um,PREC=1")
 dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-CS2:Gap}-Mtr,MOTOR=BrickCS2,PORT=BRICK1port,ADDR=1,DESC=asd,DTYP=asynMotor,MRES=0.001,EGU=um,PREC=2")
 dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-CS2:Taper}-Mtr,MOTOR=BrickCS2,PORT=BRICK1port,ADDR=2,DESC=asd,DTYP=asynMotor,MRES=0.001,EGU=um,PREC=2")
-dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-CS2:Elev}-Mtr,MOTOR=BrickCS2,PORT=BRICK1port,ADDR=3,DESC=asd,DTYP=asynMotor,MRES=0.001,EGU=um,PREC=2")
-dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-CS2:Tilt}-Mtr,MOTOR=BrickCS2,PORT=BRICK1port,ADDR=4,DESC=asd,DTYP=asynMotor,MRES=0.001,EGU=um,PREC=2")
+dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-CS3:Elev}-Mtr,MOTOR=BrickCS3,PORT=BRICK1port,ADDR=3,DESC=asd,DTYP=asynMotor,MRES=0.001,EGU=um,PREC=2")
+dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-CS3:Tilt}-Mtr,MOTOR=BrickCS3,PORT=BRICK1port,ADDR=4,DESC=asd,DTYP=asynMotor,MRES=0.001,EGU=um,PREC=2")
 dbLoadRecords("db/ppmacStatus.db", "SYS=$(sys),PMAC=$(dev),NAXES=8,PORT=BRICK1port,PLC=5,VERSION=0")
 dbLoadRecords("db/ppmacStatusAxis.db", "SYS=$(sys),DEV={$(dev)-Ax:1},AXIS=1,PORT=BRICK1port")
 dbLoadRecords("db/ppmacStatusAxis.db", "SYS=$(sys),DEV={$(dev)-Ax:2},AXIS=2,PORT=BRICK1port")

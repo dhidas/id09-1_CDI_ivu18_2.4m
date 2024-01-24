@@ -1,0 +1,34 @@
+// 
+// PLC 2 - PLC_MovementInProgress
+//
+// Checks if there is movement on any of the motors / or coordinate systems
+// and sets:
+//  P_MovementInProgress (P200)
+//
+
+Open PLC 2
+
+local L_CSRunning = 0
+local L_MotorMoving = 0
+
+// Check there is no program running or active
+L_CSRunning += Coord[2].ProgRunning + Coord[3].ProgRunning + Coord[4].ProgRunning
+L_CSRunning += Coord[2].ProgActive + Coord[3].ProgActive + Coord[4].ProgActive
+
+// Check if a motor has non-zero desired velocity.
+// May need to adjust Sys.ZeroVelSetPoint for this to work correctly.
+L_MotorMoving += 1 - Motor[1].DesVelZero
+L_MotorMoving += 1 - Motor[2].DesVelZero
+L_MotorMoving += 1 - Motor[3].DesVelZero
+L_MotorMoving += 1 - Motor[4].DesVelZero
+
+// If a coordinate system is running/active or a motor is moving set MIP
+if (L_CSRunning != 0 || L_MotorMoving != 0) {
+  P_MovementInProgress = kTRUE
+} else {
+  P_MovementInProgress = kFALSE
+}
+
+
+
+Close

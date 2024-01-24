@@ -41,3 +41,9 @@ This PLC monitors the AmpEnable status for each motor and trusts the CS and moto
 * green - Motors and Drives Enabled
 * yellow/orange flashing - ID in motion
 * red - FAULT
+
+### PLC08 - Move Request
+This PLC considers Gap, Taper, Elevation, and Tilt move requests in the normal slow operation mode.  In this mode the amps will disable and brakes will engage after a user defined timeout (PLCXX).  Note that it is also possible to energize the motors (closed loop) and make move requests directly from the .VAL field of the epics motor record (useful for fast step-scanning).
+
+### PLC09 - Girder Safety
+This PLC will check soft limits for gap, elevation, taper, tilt.

@@ -1,0 +1,15 @@
+
+open prog 4
+LINEAR
+ABS
+
+TA300
+TS100
+FRAX(A, B, C, U)
+F(P_GapSpeed_um)
+
+A(Q71)B(Q72)C(Q73)U(Q74)
+dwell 0
+close
+
+

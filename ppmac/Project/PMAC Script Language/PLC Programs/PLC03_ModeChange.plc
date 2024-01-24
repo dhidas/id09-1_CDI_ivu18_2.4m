@@ -1,0 +1,66 @@
+// This PLC is used to change between possible move modes
+
+Open PLC 3
+
+// Ignore change request while moving
+if (P_MovementInProgress == kFALSE && P_OpenGapExecuting == kFALSE && P_MoveModeReq != P_MoveMode) {
+
+  P_GapElevMoveRequest = 0          // Cancel any move request
+  P_GapMoveRequest = 0              // Cancel any move request
+  P_ElevMoveRequest = 0              // Cancel any move request
+
+  CMD"#*K"                          // Kill all motors for good measure
+
+  CMD"&2 #1->0 #2->0 #3->0 #4->0 #5->0 #6->0"   // Remove motors from all CS
+  CMD"&3 #1->0 #2->0 #3->0 #4->0 #5->0 #6->0"
+  CMD"&4 #1->0 #2->0 #3->0 #4->0 #5->0 #6->0"
+
+  Motor[1].MasterCtrl=0             // Cancel all motor following
+  Motor[2].MasterCtrl=0
+  Motor[3].MasterCtrl=0
+  Motor[4].MasterCtrl=0
+
+  // MoveMode change
+  switch (P_MoveModeReq) {
+    case kMoveModeGapEleSep:
+      CMD"&2 #1->I #2->I"
+      CMD"&3 #3->I #4->I"
+      CMD"#*K"
+      break;
+
+    case kMoveModeGapEleComb:
+      CMD"&4 #1->I #2->I #3->I #4->I"   // Put motors in proper CS
+      CMD"#*K"
+      break;
+
+    case kMoveModeFollowingUS:
+      Motor[2].MasterCtrl=1
+      Motor[4].MasterCtrl=1
+      CMD"#*K"
+      break;
+    case kMoveModeFollowingDS:
+      Motor[1].MasterCtrl=1             // Set upstream motors to follow downstream 
+      Motor[3].MasterCtrl=1
+      break;
+    case kMoveModeIndividual:
+      CMD"#*K"
+      break;
+    case kMoveModeFlyScan:
+      // Not implemented yet, do nothing
+      CMD"#*K"
+      GOTO 333
+      break;
+
+    default:
+      // This is definitely a mistake
+      GOTO 333
+      break;
+  }
+
+  P_MoveMode = P_MoveModeReq
+}
+
+
+N333:
+P_MoveModeReq = P_MoveMode
+Close

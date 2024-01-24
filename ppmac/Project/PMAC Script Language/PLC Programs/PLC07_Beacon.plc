@@ -1,0 +1,50 @@
+// This PLC is to deal with the lights
+// The sign says:
+//    green = Motors and Drives Enabled
+//    orange flashing = ID in motion
+//    red = FAULT
+
+
+Open PLC 7
+
+local L_AmpEna = 0
+local L_CSRunning = 0
+local L_MotorMoving = 0
+local L_OLight = 0
+
+// Let's update about every half second to make life easy
+call Timer(0.500)
+
+// Check Amp enable bits
+L_AmpEna += Motor[1].AmpEna
+L_AmpEna += Motor[2].AmpEna
+L_AmpEna += Motor[3].AmpEna
+L_AmpEna += Motor[4].AmpEna
+
+
+if (L_AmpEna != 0) {
+  // Turn on green light
+  outBEACONGREEN = kON
+} else {
+  // turn off green light
+  outBEACONGREEN = kOFF
+}
+
+
+if (P_MovementInProgress == kTRUE) {
+  // toggle orange light
+  outBEACONYELLOW = (outBEACONYELLOW + 1) % 2
+} else {
+  // turn off orange light
+  outBEACONYELLOW = kOFF
+}
+
+
+// Check for fault here and turn red light on if needed
+if (P_StopAllStatus == kTRUE) {
+  outBEACONRED = kON
+} else {
+  outBEACONRED = kOFF
+}
+
+Close

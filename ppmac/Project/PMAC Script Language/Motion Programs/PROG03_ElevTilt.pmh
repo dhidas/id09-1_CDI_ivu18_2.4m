@@ -1,6 +1,6 @@
 // This program is intended to change the gap and taper only
 
-Open PROG 2
+Open PROG 3
 
 LINEAR
 ABS
@@ -8,11 +8,10 @@ ABS
 TA300
 TS100
 
-FRAX(A,B)
-F(P_GapSpeed_um)
+FRAX(C,U)
+F(P_ElevSpeed_um)
 
-A(Q71)B(Q72)
+C(Q73)U(Q74)
 dwell 0
 
 close
-

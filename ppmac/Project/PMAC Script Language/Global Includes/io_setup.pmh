@@ -55,3 +55,5 @@ PTR IO1Out21->Acc65E[2].DataReg[5].4.1;
 PTR IO1Out22->Acc65E[2].DataReg[5].5.1;
 PTR IO1Out23->Acc65E[2].DataReg[5].6.1;
 PTR IO1Out24->Acc65E[2].DataReg[5].7.1;
+
+M100->Acc65E[2].DataReg[4].4.1;

@@ -1,0 +1,72 @@
+// This PLC is for waiting and executing move requests from epics.
+// This is done with a PLC to ensure system is in the correct configuration
+// and to manage the breaks.  The CS motor.VAL field may be used for fast
+// step scanning if the breaks are released manually.
+
+Open PLC 8
+
+switch (P_MoveMode) {
+  case kMoveModeGapEleSep:
+
+    // Check we are not in stop-all, interlock, or gap opening flag states
+    if (P_StopAllStatus == kFALSE && P_InterlockState == kFALSE && P_OpenGapExecuting == kFALSE) {
+      if (P_GapMoveRequest == kTRUE) {
+        if (Coord[2].ProgRunning == kTRUE || Coord[2].ProgActive == kTRUE) {
+          Ldata.coord = 2
+          ABORT
+          call Timer(0.100)
+        }
+
+        // If brakes are engaged release them
+
+        // Write setpoints to CS Q variables (same Qs are used by epics ppmac driver)
+        Coord[2].Q[71] = P_GapSetpoint
+        Coord[2].Q[72] = P_TaperSetpoint
+        //Coord[2].Q[73] = P_ElevSetpoint
+        //Coord[2].Q[74] = P_TiltSetpoint
+
+        // Put motors in closed loop, Coordinate system 2, run program 2
+        jog/1..2
+        call AmpEnableDelay()
+        start 2:2
+
+        P_GapMoveRequest = kFALSE
+      }
+
+      if (P_ElevMoveRequest == kTRUE) {
+        if (Coord[3].ProgRunning == kTRUE || Coord[3].ProgActive == kTRUE) {
+          Ldata.coord = 3
+          ABORT
+          call Timer(0.100)
+        }
+
+        // If brakes are engaged release them
+
+        // Write setpoints to CS Q variables (same Qs are used by epics ppmac driver)
+        //Coord[2].Q[71] = P_GapSetpoint
+        //Coord[2].Q[72] = P_TaperSetpoint
+        Coord[3].Q[73] = P_ElevSetpoint
+        Coord[3].Q[74] = P_TiltSetpoint
+
+        // Put motors in closed loop, Coordinate system 3, run program 3
+        jog/3..4
+        call AmpEnableDelay()
+        start 3:3
+
+        P_ElevMoveRequest = kFALSE
+      }
+
+    }
+    break;
+  case kMoveModeGapEleComb:
+    break;
+  default:
+    // Ignore move requests when in any other mode
+    break;
+}
+
+
+
+
+
+Close

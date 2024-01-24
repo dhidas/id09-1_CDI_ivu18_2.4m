@@ -1,4 +1,6 @@
 Coord[2].SegMoveTime = 2
+Coord[3].SegMoveTime = 2
+Coord[4].SegMoveTime = 2
 
 // Axes are:
 //   A - Gap
@@ -19,11 +21,8 @@ Coord[2].SegMoveTime = 2
 
 &2 Open Forward
 
-//C6 = L1
 KinPosAxisA = ((KinPosMotor1 + KinPosMotor2) / 2) / kEncCtsPerUm
 KinPosAxisB =  (KinPosMotor2 - KinPosMotor1)      / kEncCtsPerUm
-KinPosAxisC = ((KinPosMotor3 + KinPosMotor4) / 2) / kEncCtsPerUm
-KinPosAxisU =  (KinPosMotor4 - KinPosMotor3)      / kEncCtsPerUm
 
 close
 
@@ -31,8 +30,6 @@ close
 
 KinPosMotor1 = (KinPosAxisA - KinPosAxisB / 2) * kEncCtsPerUm
 KinPosMotor2 = (KinPosAxisA + KinPosAxisB / 2) * kEncCtsPerUm
-KinPosMotor3 = (KinPosAxisC - KinPosAxisU / 2) * kEncCtsPerUm
-KinPosMotor4 = (KinPosAxisC + KinPosAxisU / 2) * kEncCtsPerUm
 
 close
 
@@ -41,30 +38,29 @@ close
 
 
 &3 open forward
-KinPosAxisA = ((KinPosMotor1 + KinPosMotor2) / 2) / kEncCtsPerUm
-KinPosAxisB = (KinPosMotor2 - KinPosMotor1) / kEncCtsPerUm
 KinPosAxisC = ((KinPosMotor3 + KinPosMotor4) / 2) / kEncCtsPerUm
-KinPosAxisU = (KinPosMotor4 - KinPosMotor3) / kEncCtsPerUm
+KinPosAxisU =  (KinPosMotor4 - KinPosMotor3)      / kEncCtsPerUm
 close
 
 &3 open inverse
+KinPosMotor3 = (KinPosAxisC - KinPosAxisU / 2) * kEncCtsPerUm
+KinPosMotor4 = (KinPosAxisC + KinPosAxisU / 2) * kEncCtsPerUm
+close
+
+
+
+
+&4 open forward
+KinPosAxisA = ((KinPosMotor1 + KinPosMotor2) / 2) / kEncCtsPerUm
+KinPosAxisB =  (KinPosMotor2 - KinPosMotor1)      / kEncCtsPerUm
+KinPosAxisC = ((KinPosMotor3 + KinPosMotor4) / 2) / kEncCtsPerUm
+KinPosAxisU =  (KinPosMotor4 - KinPosMotor3)      / kEncCtsPerUm
+close
+
+&4 open inverse
 KinPosMotor1 = (KinPosAxisA - KinPosAxisB / 2) * kEncCtsPerUm
 KinPosMotor2 = (KinPosAxisA + KinPosAxisB / 2) * kEncCtsPerUm
 KinPosMotor3 = (KinPosAxisC - KinPosAxisU / 2) * kEncCtsPerUm
 KinPosMotor4 = (KinPosAxisC + KinPosAxisU / 2) * kEncCtsPerUm
 close
-
-open prog 3
-LINEAR
-ABS
-
-TA300
-TS100
-FRAX(A, B, C, U)
-F(100)
-
-A(Q71)B(Q72)C(Q73)U(Q74)
-dwell 0
-close
-
 

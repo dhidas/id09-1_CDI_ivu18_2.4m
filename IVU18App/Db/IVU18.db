@@ -93,6 +93,46 @@ record(bi, "$(SYS){$(DEV)-Ax:ED}Sw:MLim-Sts") {
 
 
 
+record(ai, "$(SYS){$(DEV)}GapSpeed-RB") {
+  field(DTYP, "stream")
+  field(SCAN, "1 second")
+  field(EGU,  "um/s")
+  field(INP, "@pmac.proto getVar(P810) $(PORT)")
+}
+
+record(ao, "$(SYS){$(DEV)}GapSpeed-SP") {
+  field(DTYP, "stream")
+  field(EGU,  "um/s")
+  field(VAL,  "500")
+  field(DRVL, "1")
+  field(DRVH, "500")
+  field(OUT, "@pmac.proto setVar(P810) $(PORT)")
+  field(PINI, "YES")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
+
+record(ai, "$(SYS){$(DEV)}ElevSpeed-RB") {
+  field(DTYP, "stream")
+  field(SCAN, "1 second")
+  field(EGU,  "um/s")
+  field(INP, "@pmac.proto getVar(P814) $(PORT)")
+}
+
+record(ao, "$(SYS){$(DEV)}ElevSpeed-SP") {
+  field(DTYP, "stream")
+  field(EGU,  "um/s")
+  field(VAL,  "500")
+  field(DRVL, "1")
+  field(DRVH, "500")
+  field(OUT, "@pmac.proto setVar(P814) $(PORT)")
+  field(PINI, "YES")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
+
+
+
 
 record(ao, "$(SYS){$(DEV)-CS2:Gap}-Mtr-SP") {
   field(DTYP, "stream")
@@ -157,6 +197,66 @@ record(ao, "$(SYS){$(DEV)-CS2:Taper}-Mtr-SP-Go") {
 
 
 
+record(ao, "$(SYS){$(DEV)-CS3:Elev}-Mtr-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Motor position setpoint")
+  field(EGU, "um")
+  field(PREC, "2")
+  field(DRVL, "-500")
+  field(DRVH, "500")
+  field(OUT, "@pmac.proto setVar(P806) $(PORT)")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
+record(bo, "$(SYS){$(DEV)-CS3:Elev}-Mtr-Go") {
+  field(DESC, "Elev motor go")
+  field(FLNK, "$(SYS){$(DEV)-CS3:Elev}-MvReq-Cmd.PROC")
+}
+
+record(ao, "$(SYS){$(DEV)-CS3:Elev}-Mtr-SP-Go") {
+  field(DESC, "Motor position setpoint")
+  field(EGU, "um")
+  field(PREC, "2")
+  field(DRVL, "-500")
+  field(DRVH, "500")
+  field(OUT, "$(SYS){$(DEV)-CS3:Elev}-Mtr-SP PP")
+  field(FLNK, "$(SYS){$(DEV)-CS3:Elev}-MvReq-Cmd.PROC")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
+
+record(ao, "$(SYS){$(DEV)-CS3:Elev}-MvReq-Cmd") {
+  field(DESC, "Trigers PLC to start gap movement")
+  field(SCAN, "Passive")
+  field(DTYP, "stream")
+  field(VAL, "1")
+  field(OUT, "@pmac.proto setVar(P812) $(PORT)")
+}
+
+
+record(ao, "$(SYS){$(DEV)-CS3:Tilt}-Mtr-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Tilt setpoint")
+  field(EGU, "um")
+  field(PREC, "2")
+  field(DRVL, "-500")
+  field(DRVH, "500")
+  field(OUT, "@pmac.proto setVar(P808) $(PORT)")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
+
+record(ao, "$(SYS){$(DEV)-CS3:Tilt}-Mtr-SP-Go") {
+  field(DESC, "Motor position setpoint")
+  field(EGU, "um")
+  field(PREC, "2")
+  field(DRVL, "-500")
+  field(DRVH, "500")
+  field(OUT, "$(SYS){$(DEV)-CS3:Tilt}-Mtr-SP PP")
+  field(FLNK, "$(SYS){$(DEV)-CS3:Elev}-MvReq-Cmd.PROC")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
 
 
 

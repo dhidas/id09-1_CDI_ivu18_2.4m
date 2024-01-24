@@ -97,20 +97,21 @@ global gFMOTOR(10);
 #define P_HomingTimeout       P699
 
 // PLC 08 - Move Request
-#define P_StopAllStatus     P800
-#define P_InterlockState    P801
-#define P_OpenGapExecuting  P802
-#define P_BrakeTimeout      P803
-#define P_MoveAborted       P804
-#define P_GapSetpoint       P805
-#define P_ElevSetpoint      P806
-#define P_TaperSetpoint     P807
-#define P_TiltSetpoint      P808
-#define P_GapMoveRequest    P809
-#define P_GapSpeed_um       P810
-#define P_GapEleMoveRequest P811
-#define P_EleMoveRequest    P812
-#define P_StopAllRequest    P813
+#define P_StopAllStatus       P800
+#define P_InterlockState      P801
+#define P_OpenGapExecuting    P802
+#define P_BrakeTimeout        P803
+#define P_MoveAborted         P804
+#define P_GapSetpoint         P805
+#define P_ElevSetpoint        P806
+#define P_TaperSetpoint       P807
+#define P_TiltSetpoint        P808
+#define P_GapMoveRequest      P809
+#define P_GapSpeed_um         P810
+#define P_GapElevMoveRequest  P811
+#define P_ElevMoveRequest     P812
+#define P_StopAllRequest      P813
+#define P_ElevSpeed_um        P814
 
 // PLC 09 - Girder Safety
 #define P_StopAllStatus       P900
@@ -127,7 +128,17 @@ global gFMOTOR(10);
 
 
 // IO shorthands
-#define ioBEACONRED     IO1Out13
-#define ioBEACONYELLOW  IO1Out14
-#define ioBEACONGREEN   IO1Out15
-#define ioBEACONSPARE   IO1Out16
+#define outBEACONRED     IO1Out13
+#define outBEACONYELLOW  IO1Out14
+#define outBEACONGREEN   IO1Out15
+#define outBEACONSPARE   IO1Out16
+
+#define inTILTU          IO1In13
+#define inTILTD          IO1In15
+#define inLIMITDISABLE   IO1In17
+#define inSERVO4READY    IO1In21
+#define inSERVO3READY    IO1In22
+#define inSERVO2READY    IO1In23
+#define inSERVO1READY    IO1In24
+
+
