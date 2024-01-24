@@ -6,6 +6,8 @@
 
 #define kTRUE  1
 #define kFALSE 0
+#define kON    1
+#define kOFF   0
 
 // Everyone has to have their slice of the pie
 #define kPI 3.141592653589793
@@ -113,3 +115,19 @@ global gFMOTOR(10);
 // PLC 09 - Girder Safety
 #define P_StopAllStatus       P900
 #define P_StopAllRequest      P901
+
+
+
+
+
+
+
+
+
+
+
+// IO shorthands
+#define ioBEACONRED     IO1Out13
+#define ioBEACONYELLOW  IO1Out14
+#define ioBEACONGREEN   IO1Out15
+#define ioBEACONSPARE   IO1Out16
