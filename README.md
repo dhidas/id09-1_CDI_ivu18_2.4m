@@ -15,5 +15,10 @@ The definition of user coordinates follows the following definition:
 
 This means that for positive taper the downstream gap is larger than the upstream gap.  For positive tilt the downstream side is higher than the upstream side.
 
-## Coordinate Systems
-It is assumed that typical usage will be gap and taper motion (without changing elevation or tilt).  PROG02 is used for gap+taper motion.  PROG03 is used for elevation+tilt motion.  PROG04 is used for combined motion gap+taper+elevation+tilt.  These will use coordinate systems &2, &3, and &4 respectively.  Position reporting for all coordinate systems is done in PLC18 to avoid duplicate code.
+## Coordinate Systems (CS)
+It is assumed that typical usage will be gap and taper motion (without changing elevation or tilt).
+* CS2 & PROG02 is used for gap+taper motion.
+* CS3 & PROG03 is used for elevation+tilt motion.
+* CS4 & PROG04 is used for combined motion gap+taper+elevation+tilt.
+
+Position reporting for all coordinate systems is done in PLC18 to avoid duplicate code.
