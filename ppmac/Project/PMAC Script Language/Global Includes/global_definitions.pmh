@@ -127,18 +127,4 @@ global gFMOTOR(10);
 
 
 
-// IO shorthands
-#define outBEACONRED     IO1Out13
-#define outBEACONYELLOW  IO1Out14
-#define outBEACONGREEN   IO1Out15
-#define outBEACONSPARE   IO1Out16
-
-#define inTILTU          IO1In13
-#define inTILTD          IO1In15
-#define inLIMITDISABLE   IO1In17
-#define inSERVO4READY    IO1In21
-#define inSERVO3READY    IO1In22
-#define inSERVO2READY    IO1In23
-#define inSERVO1READY    IO1In24
-
 
