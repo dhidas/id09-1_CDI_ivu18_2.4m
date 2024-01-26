@@ -1,0 +1,10 @@
+file "db/ivu18_motorstatus.template"
+{
+pattern
+{AXIS, AXISNAME}
+{"1", "GU"}
+{"2", "GD"}
+{"3", "EU"}
+{"4", "ED"}
+}
+

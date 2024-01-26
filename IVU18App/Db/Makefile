@@ -10,6 +10,8 @@ DB += motor.db
 DB += ppmacStatus.db
 DB += ppmacStatusAxis.db
 DB += ppmac_motorstatus.db
+DB += ivu18_motorstatus.template
+DB += ivu18_motorstatus.substitutions
 #DB += $(PMAC)/db/pmacStatus.template ivu18.substitutions
 
 DBD_INSTALLS += $(PMAC)/dbd/drvAsynPowerPMACPort.dbd

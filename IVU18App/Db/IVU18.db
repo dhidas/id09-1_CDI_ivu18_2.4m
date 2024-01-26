@@ -303,3 +303,44 @@ record(mbbo, "$(SYS){$(DEV)}GirderMode-SP") {
   info(autosaveFields_pass0, "VAL")
   info(autosaveFields, "VAL")
 }
+
+
+
+
+record(bi, "$(SYS){$(DEV)-Ax:GU}Sw:ServoReady-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Servo Ready")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M24) $(PORT)")
+  field(ZNAM, "NOT READY")
+  field(ONAM, "READY")
+}
+record(bi, "$(SYS){$(DEV)-Ax:GD}Sw:ServoReady-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Servo Ready")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M23) $(PORT)")
+  field(ZNAM, "NOT READY")
+  field(ONAM, "READY")
+}
+record(bi, "$(SYS){$(DEV)-Ax:EU}Sw:ServoReady-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Servo Ready")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M22) $(PORT)")
+  field(ZNAM, "NOT READY")
+  field(ONAM, "READY")
+}
+record(bi, "$(SYS){$(DEV)-Ax:ED}Sw:ServoReady-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Servo Ready")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M24) $(PORT)")
+  field(ZNAM, "NOT READY")
+  field(ONAM, "READY")
+}
+
+
+
+
+

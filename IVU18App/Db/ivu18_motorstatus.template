@@ -1,0 +1,19 @@
+
+record(bi, "$(SYS){$(DEV)-Ax:$(AXISNAME)}Sw:AmpEna-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Amp Enable Status $(AXISNAME)")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(Motor[$(AXIS)].AmpEna) $(PORT)")
+  field(ZNAM, "Amp Disabled")
+  field(ONAM, "Amp Enabled")
+}
+
+record(bi, "$(SYS){$(DEV)-Ax:$(AXISNAME)}Sw:AmpFlt-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Amp Fault Status $(AXISNAME)")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(Motor[$(AXIS)].AmpFault) $(PORT)")
+  field(ZNAM, "OK")
+  field(ONAM, "Amp Fault")
+  field(OSV, "MAJOR")
+}

@@ -68,6 +68,8 @@ dbLoadRecords("db/IVU18.db", "SYS=$(sys),DEV=$(dev),PORT=BRICK1port")
 #dbLoadRecords("db/ivu18.db", "SYS=$(sys),DEV=$(dev)")
 
 
+dbLoadTemplate("db/ivu18_motorstatus.substitutions", "SYS=$(sys),DEV=$(dev),PORT=BRICK1port")
+
 #{P,  M,  MOTOR,  PORT,  ADDR,  DESC,  DTYP,  MRES,  EGU,  PREC,  ALIAS  }
 dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:GU}Mtr,MOTOR=Brick,PORT=BRICK1port,ADDR=1,DESC=asd,DTYP=asynMotor,MRES=.24399997950400172,EGU=um,PREC=1")
 dbLoadRecords("db/motor.db", "P=$(sys),M={$(dev)-Ax:GD}Mtr,MOTOR=Brick,PORT=BRICK1port,ADDR=2,DESC=asd,DTYP=asynMotor,MRES=.24399997950400172,EGU=um,PREC=1")
