@@ -335,12 +335,156 @@ record(bi, "$(SYS){$(DEV)-Ax:ED}Sw:ServoReady-Sts") {
   field(DTYP, "stream")
   field(DESC, "Servo Ready")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(M24) $(PORT)")
+  field(INP, "@pmac.proto getIntVar(M21) $(PORT)")
   field(ZNAM, "NOT READY")
   field(ONAM, "READY")
 }
 
 
+record(bi, "$(SYS){$(DEV)-Ax:GU}Sw:PKill-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Open Kill Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M1) $(PORT)")
+  field(ZNAM, "KillSw inactive")
+  field(ONAM, "KillSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-Ax:GU}Sw:MKill-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Close Kill Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M2) $(PORT)")
+  field(ZNAM, "KillSw inactive")
+  field(ONAM, "KillSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-Ax:GD}Sw:PKill-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Open Kill Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M3) $(PORT)")
+  field(ZNAM, "KillSw inactive")
+  field(ONAM, "KillSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-Ax:GD}Sw:MKill-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Close Kill Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M4) $(PORT)")
+  field(ZNAM, "KillSw inactive")
+  field(ONAM, "KillSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-Ax:EU}Sw:PKill-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Elevation Upper Kill Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M5) $(PORT)")
+  field(ZNAM, "KillSw inactive")
+  field(ONAM, "KillSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-Ax:EU}Sw:MKill-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Elevation Lower Kill Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M6) $(PORT)")
+  field(ZNAM, "KillSw inactive")
+  field(ONAM, "KillSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-Ax:ED}Sw:PKill-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Elevation Upper Kill Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M7) $(PORT)")
+  field(ZNAM, "KillSw inactive")
+  field(ONAM, "KillSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-Ax:ED}Sw:MKill-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Elevation Lower Kill Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M8) $(PORT)")
+  field(ZNAM, "KillSw inactive")
+  field(ONAM, "KillSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-CS2:Taper}Sw:PKill-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Taper Positive Kill Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M9) $(PORT)")
+  field(ZNAM, "KillSw inactive")
+  field(ONAM, "KillSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-CS2:Taper}Sw:MKill-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Taper Minus Kill Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M10) $(PORT)")
+  field(ZNAM, "KillSw inactive")
+  field(ONAM, "KillSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)}Sw:UEStop-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Upstream E-Stop Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M11) $(PORT)")
+  field(ZNAM, "E-Stop inactive")
+  field(ONAM, "E-Stop active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)}Sw:DEStop-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Downstream E-Stop Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M12) $(PORT)")
+  field(ZNAM, "E-Stop inactive")
+  field(ONAM, "E-Stop active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-CS2:Taper}Sw:PLim-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Taper Positive Limit Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M13) $(PORT)")
+  field(ZNAM, "KillSw inactive")
+  field(ONAM, "KillSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-CS2:Taper}Sw:MLim-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Taper Minus Limit Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M15) $(PORT)")
+  field(ZNAM, "KillSw inactive")
+  field(ONAM, "KillSw active")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)}Sw:KillDisable-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Kill Disable Key Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M16) $(PORT)")
+  field(ZNAM, "Kill switches active (normal)")
+  field(ONAM, "Kill switches deactivated (be careful)")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)}Sw:LimDisable-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Limit Disable Key Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(M17) $(PORT)")
+  field(ZNAM, "Limit switches active (normal)")
+  field(ONAM, "Limit switches deactivated (be careful)")
+  field(OSV, "MAJOR")
+}
 
 
 
