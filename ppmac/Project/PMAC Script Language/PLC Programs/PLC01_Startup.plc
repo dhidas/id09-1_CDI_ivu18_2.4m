@@ -2,7 +2,7 @@ Open PLC 1
 
 
 // Fake positions for test setup
-//Motor[1].HomeOffset=kM1OFFSET + 15000
+CMD"#1..4hmz"
 
 
 // Startup P-Variable settings

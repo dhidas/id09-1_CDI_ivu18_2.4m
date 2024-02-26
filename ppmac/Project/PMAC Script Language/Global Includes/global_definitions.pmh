@@ -32,11 +32,17 @@
 
 // Absolute hard-coded limits in case all else fails
 // kBUFFERUM is used to buffer soft-limit interlocks
-#define kMAXGAP   40200
-#define kMINGAP    4530
+//#define kMAXGAP   40200
+//#define kMINGAP    4530
+//#define kMAXELEV   5000
+//#define kMAXTILT    500
+//#define kMAXTAPER   500
+//#define kBUFFERUM    50
+#define kMAXGAP   10000
+#define kMINGAP  -10000
 #define kMAXELEV   5000
-#define kMAXTILT    500
-#define kMAXTAPER   500
+#define kMAXTILT   1000
+#define kMAXTAPER  1000
 #define kBUFFERUM    50
 
 // Unbelievable, but I cannot put comments after define statements in ppmac

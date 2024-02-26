@@ -49,4 +49,3 @@ This PLC considers Gap, Taper, Elevation, and Tilt move requests in the normal s
 This PLC will check soft limits for gap, elevation, taper, tilt.  Soft limits are defined in P-variables accessible from epics.  There are also hard-coded absolute limits as an extra safety measure.  These cannot be modified by epics.  If a gap/taper error is the P_GapError variable is marked, elevation/tilt error will mark P_ElevError, motors are killed (#1 and #2 for gap/taper, #3 and #4 for elevation/tilt errors).  These errors are latching and must be cleared if detected.  The typical course shoud this occur would be to adjust the soft-limit, clear the error, return to a good state, readjust the soft-limit.  There is a hard-coded "buffer" in kBUFFERUM included so that one may go to the limiting value without overshoot causing trouble.
 
 
-Motor[1].HomeOffset=87275
