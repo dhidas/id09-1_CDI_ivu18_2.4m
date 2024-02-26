@@ -488,3 +488,24 @@ record(bi, "$(SYS){$(DEV)}Sw:LimDisable-Sts") {
 
 
 
+
+
+
+
+record(bi, "$(SYS){$(DEV)}StopAll-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "StopAll status")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P900) $(PORT)")
+  field(ZNAM, "No Eror")
+  field(ONAM, "All Motion Stopped")
+  field(OSV, "MAJOR")
+}
+record(bo, "$(SYS){$(DEV)}StopAll-Req") {
+  field(DTYP, "stream")
+  field(VAL, "0")
+  field(DESC, "Stop all or request reset")
+  field(ZNAM, "Request Reset")
+  field(ONAM, "Request StopAll")
+  field(OUT, "@pmac.proto setIntVar(P901) $(PORT)")
+}

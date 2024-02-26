@@ -46,4 +46,7 @@ This PLC monitors the AmpEnable status for each motor and trusts the CS and moto
 This PLC considers Gap, Taper, Elevation, and Tilt move requests in the normal slow operation mode.  In this mode the amps will disable and brakes will engage after a user defined timeout (PLCXX).  Note that it is also possible to energize the motors (closed loop) and make move requests directly from the .VAL field of the epics motor record (useful for fast step-scanning).
 
 ### PLC09 - Girder Safety
-This PLC will check soft limits for gap, elevation, taper, tilt.
+This PLC will check soft limits for gap, elevation, taper, tilt.  Soft limits are defined in P-variables accessible from epics.  There are also hard-coded absolute limits as an extra safety measure.  These cannot be modified by epics.  If a gap/taper error is the P_GapError variable is marked, elevation/tilt error will mark P_ElevError, motors are killed (#1 and #2 for gap/taper, #3 and #4 for elevation/tilt errors).  These errors are latching and must be cleared if detected.  The typical course shoud this occur would be to adjust the soft-limit, clear the error, return to a good state, readjust the soft-limit.  There is a hard-coded "buffer" in kBUFFERUM included so that one may go to the limiting value without overshoot causing trouble.
+
+
+Motor[1].HomeOffset=87275

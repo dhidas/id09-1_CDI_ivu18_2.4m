@@ -15,7 +15,7 @@
 #define kRadToDeg (180/kPI)
 
 // Home offsets (possible use other method for bissc abs)
-#define kNMOTORS      6
+#define kNMOTORS      4
 #define kM1OFFSET 87275
 #define kM2OFFSET 49410
 #define kM3OFFSET 87387
@@ -31,11 +31,13 @@
 #define kRotEncCtsPerURad   0.180
 
 // Absolute hard-coded limits in case all else fails
+// kBUFFERUM is used to buffer soft-limit interlocks
 #define kMAXGAP   40200
 #define kMINGAP    4530
 #define kMAXELEV   5000
 #define kMAXTILT    500
 #define kMAXTAPER   500
+#define kBUFFERUM    50
 
 // Unbelievable, but I cannot put comments after define statements in ppmac
 // even if I use a terminator which is very very stupid.  So here we are
@@ -97,7 +99,6 @@ global gFMOTOR(10);
 #define P_HomingTimeout       P699
 
 // PLC 08 - Move Request
-#define P_StopAllStatus       P800
 #define P_InterlockState      P801
 #define P_OpenGapExecuting    P802
 #define P_BrakeTimeout        P803
@@ -110,12 +111,19 @@ global gFMOTOR(10);
 #define P_GapSpeed_um         P810
 #define P_GapElevMoveRequest  P811
 #define P_ElevMoveRequest     P812
-#define P_StopAllRequest      P813
 #define P_ElevSpeed_um        P814
 
 // PLC 09 - Girder Safety
 #define P_StopAllStatus       P900
 #define P_StopAllRequest      P901
+#define P_MinGap              P902
+#define P_MaxGap              P903
+#define P_MinTaper            P904
+#define P_MaxTaper            P905
+#define P_MaxElev             P907
+#define P_MaxTilt             P909
+#define P_GapError            P998
+#define P_ElevError           P999
 
 
 

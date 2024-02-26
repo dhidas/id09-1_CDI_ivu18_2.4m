@@ -15,6 +15,10 @@ M4Pos = Motor[4].ActPos - Motor[4].HomePos
 
 // The Q variables here are to align with pmacAsynCoord
 // This is done for CS 2, 3, 4 all the same
+// Q81 - Gap
+// Q82 - Taper
+// Q83 - Elevation
+// Q84 - Tilt
 Coord[2].Q[81] = (M1Pos + M2Pos) / 2 / kEncCtsPerUm
 Coord[2].Q[82] = (M2Pos - M1Pos) / kEncCtsPerUm
 Coord[2].Q[83] = (M3Pos + M4Pos) / 2 / kEncCtsPerUm

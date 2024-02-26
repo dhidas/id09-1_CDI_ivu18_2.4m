@@ -5,6 +5,7 @@
 
 Open PLC 9
 
+
 // StopAll.  0 is the all clear, anything else and we stopall
 if (P_StopAllStatus != 0) {
   CMD"#*k"
@@ -17,6 +18,56 @@ if (P_StopAllRequest == 1) {
 if (P_StopAllRequest == 0) {
   P_StopAllStatus = 0
   P_StopAllRequest = -1
+}
+
+
+
+// Check position, taper, elevation soft limits
+local M1Pos
+local M2Pos
+local M3Pos
+local M4Pos
+local GAP
+local TAPER
+local ELEVATION
+local TILT
+
+M1Pos = Motor[1].ActPos - Motor[1].HomePos
+M2Pos = Motor[2].ActPos - Motor[2].HomePos
+M3Pos = Motor[3].ActPos - Motor[3].HomePos
+M4Pos = Motor[4].ActPos - Motor[4].HomePos
+
+GAP       = (M1Pos + M2Pos) / 2 / kEncCtsPerUm
+TAPER     = (M2Pos - M1Pos) / kEncCtsPerUm
+ELEVATION = (M3Pos + M4Pos) / 2 / kEncCtsPerUm
+TILT      = (M4Pos - M3Pos) / kEncCtsPerUm
+
+if (P_GapError == kTRUE) {
+    CMD"#1,2k"
+} else {
+  // Buffered soft-limits, non-buffered hard limits (if you get there you are OUT, call an expert).
+  if (GAP < P_MinGap - kBUFFERUM || GAP > P_MaxGap + kBUFFERUM || GAP < kMINGAP || GAP > kMAXGAP) {
+    CMD"#*k"
+    P_GapError = kTRUE
+  }
+  if (TAPER < P_MinTaper - kBUFFERUM || TAPER > P_MaxTaper + kBUFFERUM || ABS(TAPER) > kMAXTAPER) {
+    CMD"#*k"
+    P_GapError = kTRUE
+  }
+}
+
+if (P_ElevError == kTRUE) {
+    CMD"#3,4k"
+} else {
+  // Buffered soft-limits, non-buffered hard limits (if you get there you are OUT, call an expert).
+  if (ABS(ELEVATION) > P_MaxElev + kBUFFERUM || ABS(ELEVATION) > kMAXELEV) {
+    CMD"#*k"
+    P_ElevError = kTRUE
+  }
+  if (ABS(TILT) > P_MaxTilt + kBUFFERUM || ABS(TILT) > kMAXTILT) {
+    CMD"#*k"
+    P_ElevError = kTRUE
+  }
 }
 
 

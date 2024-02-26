@@ -1,6 +1,9 @@
 Open PLC 1
 
 
+// Fake positions for test setup
+//Motor[1].HomeOffset=kM1OFFSET + 15000
+
 
 // Startup P-Variable settings
 
@@ -12,15 +15,22 @@ P_MoveMode = -1
 P_MoveModeReq = kMoveModeGapEleSep
 
 // PLC06
+P_HomingAmpError = 0
+P_HomingTimeout = 0
 
 // PLC08
 
 
 // PLC09
-P_StopAllRequest = 0
-P_StopAllStatus = 0
-P_HomingAmpError = 0
-P_HomingTimeout = 0
+P_StopAllRequest  = 0
+P_StopAllStatus   = 0
+// These are only default settings and will be overwritten by EPICS auto-save
+P_MinGap          =  -10000 // 4500
+P_MaxGap          =   10000 //25000
+P_MinTaper        =  -1000 //  -50
+P_MaxTaper        =   1000 // 500
+P_MaxElev         =   5000 //  500
+P_MaxTilt         =   1000 // 500
 
 // Enable PLCs as needed
 enable PLC  2
