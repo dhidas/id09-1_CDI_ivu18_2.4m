@@ -50,21 +50,34 @@ if (P_GapError == kTRUE) {
     CMD"#*k"
     P_GapError = kTRUE
   }
-  if (TAPER < P_MinTaper - kBUFFERUM || TAPER > P_MaxTaper + kBUFFERUM || ABS(TAPER) > kMAXTAPER) {
+  if (TAPER < P_MinTaper - kBUFFERUM || TAPER > P_MaxTaper + kBUFFERUM || TAPER > kMAXTAPER || TAPER < kMINTAPER) {
     CMD"#*k"
     P_GapError = kTRUE
   }
+
+  // Check Taper limit switches if limit disable is not true
+  if (inLIMITDISABLE == kFALSE && (inTAPERPLIM == kTRUE || inTAPERMLIM == kTRUE)) {
+    CMD"#*k"
+    P_GapError = kTRUE
+  }
+
+  // Check Taper kill switches if kill disable is not true
+  if (inKILLDISABLE == kFALSE && (inTAPERPKILL == kTRUE || inTAPERMKILL == kTRUE)) {
+    CMD"#*k"
+    P_GapError = kTRUE
+  }
+
 }
 
 if (P_ElevError == kTRUE) {
     CMD"#3,4k"
 } else {
   // Buffered soft-limits, non-buffered hard limits (if you get there you are OUT, call an expert).
-  if (ABS(ELEVATION) > P_MaxElev + kBUFFERUM || ABS(ELEVATION) > kMAXELEV) {
+  if (ELEVATION > P_MaxElev + kBUFFERUM || ELEVATION < P_MinElev - kBUFFERUM || ELEVATION > kMAXELEV || ELEVATION < kMINELEV) {
     CMD"#*k"
     P_ElevError = kTRUE
   }
-  if (ABS(TILT) > P_MaxTilt + kBUFFERUM || ABS(TILT) > kMAXTILT) {
+  if (TILT > P_MaxTilt + kBUFFERUM || TILT < P_MinTilt - kBUFFERUM || TILT > kMAXTILT || TILT < kMINTILT) {
     CMD"#*k"
     P_ElevError = kTRUE
   }

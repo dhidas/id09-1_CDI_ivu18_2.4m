@@ -504,3 +504,17 @@ Gate3[3].ServoClockDiv=3
 sys.WpKey=$0
 
 
+
+// HardwareCard ACC-84E[0].hwsetup For control of Serial Encoder
+// See the "Power PMAC Users Manual" 
+//   Section: "Setting Up Serial Encoders" for details on setup
+sys.WpKey=$AAAAAAAA
+Acc84E[0].SerialEncCtrl = $63030b          
+Acc84E[0].Chan[0].SerialEncCmd = $21149a
+Acc84E[0].Chan[1].SerialEncCmd = $21149a
+Acc84E[0].Chan[2].SerialEncCmd = $21149a
+Acc84E[0].Chan[3].SerialEncCmd = $21149a
+
+
+
+

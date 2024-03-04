@@ -307,6 +307,306 @@ record(mbbo, "$(SYS){$(DEV)}GirderMode-SP") {
 
 
 
+record(ai, "$(SYS){$(DEV)-CS2:Gap}MinGap-RB") {
+  field(DTYP, "stream")
+  field(DESC, "Maximum Gap")
+  field(SCAN, "5 second")
+  field(EGU, "um")
+  field(INP, "@pmac.proto getVar(P902) $(PORT)")
+  field(FLNK, "$(SYS){$(DEV)-CS2:Gap}MinGap-Pass")
+  field(PINI, "RUNNING")
+  field(PREC, "0")
+}
+record(ao, "$(SYS){$(DEV)-CS2:Gap}MinGap-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Maximum Gap")
+  field(SCAN, "Passive")
+  field(FLNK, "$(SYS){$(DEV)-CS2:Gap}MinGap-RB")
+  field(EGU, "um")
+  field(OUT, "@pmac.proto setVar(P902) $(PORT)")
+  field(PREC, "0")
+  field(PINI, "YES")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
+record(transform, "$(SYS){$(DEV)-CS2:Gap}MinGap-Pass") {
+  field(SCAN, "Passive")
+  field(INPA, "$(SYS){$(DEV)-CS2:Gap}MinGap-RB")
+  field(OUTA, "$(SYS){$(DEV)-CS2:Gap}-Mtr-SP.DRVH")
+  field(CLCA, "A")
+  field(CLCB, "A")
+  field(CLCC, "A")
+  field(OUTB, "$(SYS){$(DEV)-CS2:Gap}-Mtr-SP-Go.DRVH")
+  field(OUTC, "$(SYS){$(DEV)-CS2:Gap}-Mtr.HLM")
+}
+record(ai, "$(SYS){$(DEV)-CS2:Gap}MaxGap-RB") {
+  field(DTYP, "stream")
+  field(DESC, "Maximum Gap")
+  field(SCAN, "5 second")
+  field(EGU, "um")
+  field(INP, "@pmac.proto getVar(P903) $(PORT)")
+  field(FLNK, "$(SYS){$(DEV)-CS2:Gap}MaxGap-Pass")
+  field(PINI, "RUNNING")
+  field(PREC, "0")
+}
+record(ao, "$(SYS){$(DEV)-CS2:Gap}MaxGap-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Maximum Gap")
+  field(SCAN, "Passive")
+  field(FLNK, "$(SYS){$(DEV)-CS2:Gap}MaxGap-RB")
+  field(EGU, "um")
+  field(OUT, "@pmac.proto setVar(P903) $(PORT)")
+  field(PREC, "0")
+  field(PINI, "YES")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
+record(transform, "$(SYS){$(DEV)-CS2:Gap}MaxGap-Pass") {
+  field(SCAN, "Passive")
+  field(INPA, "$(SYS){$(DEV)-CS2:Gap}MaxGap-RB")
+  field(OUTA, "$(SYS){$(DEV)-CS2:Gap}-Mtr-SP.DRVH")
+  field(CLCA, "A")
+  field(CLCB, "A")
+  field(CLCC, "A")
+  field(OUTB, "$(SYS){$(DEV)-CS2:Gap}-Mtr-SP-Go.DRVH")
+  field(OUTC, "$(SYS){$(DEV)-CS2:Gap}-Mtr.HLM")
+}
+
+record(ai, "$(SYS){$(DEV)-CS2:Taper}MinTaper-RB") {
+  field(DTYP, "stream")
+  field(DESC, "Maximum Taper")
+  field(SCAN, "5 second")
+  field(EGU, "um")
+  field(INP, "@pmac.proto getVar(P904) $(PORT)")
+  field(FLNK, "$(SYS){$(DEV)-CS2:Taper}MinTaper-Pass")
+  field(PINI, "RUNNING")
+  field(PREC, "0")
+}
+record(ao, "$(SYS){$(DEV)-CS2:Taper}MinTaper-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Maximum Taper")
+  field(SCAN, "Passive")
+  field(FLNK, "$(SYS){$(DEV)-CS2:Taper}MinTaper-RB")
+  field(EGU, "um")
+  field(OUT, "@pmac.proto setVar(P904) $(PORT)")
+  field(PREC, "0")
+  field(PINI, "YES")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
+record(transform, "$(SYS){$(DEV)-CS2:Taper}MinTaper-Pass") {
+  field(SCAN, "Passive")
+  field(INPA, "$(SYS){$(DEV)-CS2:Taper}MinTaper-RB")
+  field(OUTA, "$(SYS){$(DEV)-CS2:Taper}-Mtr-SP.DRVH")
+  field(CLCA, "A")
+  field(CLCB, "A")
+  field(CLCC, "A")
+  field(OUTB, "$(SYS){$(DEV)-CS2:Taper}-Mtr-SP-Go.DRVH")
+  field(OUTC, "$(SYS){$(DEV)-CS2:Taper}-Mtr.HLM")
+}
+record(ai, "$(SYS){$(DEV)-CS2:Taper}MaxTaper-RB") {
+  field(DTYP, "stream")
+  field(DESC, "Maximum Taper")
+  field(SCAN, "5 second")
+  field(EGU, "um")
+  field(INP, "@pmac.proto getVar(P905) $(PORT)")
+  field(FLNK, "$(SYS){$(DEV)-CS2:Taper}MaxTaper-Pass")
+  field(PINI, "RUNNING")
+  field(PREC, "0")
+}
+record(ao, "$(SYS){$(DEV)-CS2:Taper}MaxTaper-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Maximum Taper")
+  field(SCAN, "Passive")
+  field(FLNK, "$(SYS){$(DEV)-CS2:Taper}MaxTaper-RB")
+  field(EGU, "um")
+  field(OUT, "@pmac.proto setVar(P905) $(PORT)")
+  field(PREC, "0")
+  field(PINI, "YES")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
+record(transform, "$(SYS){$(DEV)-CS2:Taper}MaxTaper-Pass") {
+  field(SCAN, "Passive")
+  field(INPA, "$(SYS){$(DEV)-CS2:Taper}MaxTaper-RB")
+  field(OUTA, "$(SYS){$(DEV)-CS2:Taper}-Mtr-SP.DRVH")
+  field(CLCA, "A")
+  field(CLCB, "A")
+  field(CLCC, "A")
+  field(OUTB, "$(SYS){$(DEV)-CS2:Taper}-Mtr-SP-Go.DRVH")
+  field(OUTC, "$(SYS){$(DEV)-CS2:Taper}-Mtr.HLM")
+}
+
+record(ai, "$(SYS){$(DEV)-CS3:Elev}MinElev-RB") {
+  field(DTYP, "stream")
+  field(DESC, "Minimum Elev")
+  field(SCAN, "5 second")
+  field(EGU, "um")
+  field(INP, "@pmac.proto getVar(P906) $(PORT)")
+  field(FLNK, "$(SYS){$(DEV)-CS3:Elev}MinElev-Pass")
+  field(PINI, "RUNNING")
+  field(PREC, "0")
+}
+record(ao, "$(SYS){$(DEV)-CS3:Elev}MinElev-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Minimum Elev")
+  field(SCAN, "Passive")
+  field(FLNK, "$(SYS){$(DEV)-CS3:Elev}MinElev-RB")
+  field(EGU, "um")
+  field(OUT, "@pmac.proto setVar(P906) $(PORT)")
+  field(PREC, "0")
+  field(PINI, "YES")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
+record(transform, "$(SYS){$(DEV)-CS3:Elev}MinElev-Pass") {
+  field(SCAN, "Passive")
+  field(INPA, "$(SYS){$(DEV)-CS3:Elev}MinElev-RB")
+  field(OUTA, "$(SYS){$(DEV)-CS3:Elev}-Mtr-SP.DRVH")
+  field(CLCA, "A")
+  field(CLCB, "A")
+  field(CLCC, "A")
+  field(OUTB, "$(SYS){$(DEV)-CS3:Elev}-Mtr-SP-Go.DRVH")
+  field(OUTC, "$(SYS){$(DEV)-CS3:Elev}-Mtr.HLM")
+}
+record(ai, "$(SYS){$(DEV)-CS3:Elev}MaxElev-RB") {
+  field(DTYP, "stream")
+  field(DESC, "Maximum Elev")
+  field(SCAN, "5 second")
+  field(EGU, "um")
+  field(INP, "@pmac.proto getVar(P907) $(PORT)")
+  field(FLNK, "$(SYS){$(DEV)-CS3:Elev}MaxElev-Pass")
+  field(PINI, "RUNNING")
+  field(PREC, "0")
+}
+record(ao, "$(SYS){$(DEV)-CS3:Elev}MaxElev-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Maximum Elev")
+  field(SCAN, "Passive")
+  field(FLNK, "$(SYS){$(DEV)-CS3:Elev}MaxElev-RB")
+  field(EGU, "um")
+  field(OUT, "@pmac.proto setVar(P907) $(PORT)")
+  field(PREC, "0")
+  field(PINI, "YES")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
+record(transform, "$(SYS){$(DEV)-CS3:Elev}MaxElev-Pass") {
+  field(SCAN, "Passive")
+  field(INPA, "$(SYS){$(DEV)-CS3:Elev}MaxElev-RB")
+  field(OUTA, "$(SYS){$(DEV)-CS3:Elev}-Mtr-SP.DRVH")
+  field(CLCA, "A")
+  field(CLCB, "A")
+  field(CLCC, "A")
+  field(OUTB, "$(SYS){$(DEV)-CS3:Elev}-Mtr-SP-Go.DRVH")
+  field(OUTC, "$(SYS){$(DEV)-CS3:Elev}-Mtr.HLM")
+}
+
+record(ai, "$(SYS){$(DEV)-CS3:Tilt}MinTilt-RB") {
+  field(DTYP, "stream")
+  field(DESC, "Minimum Tilt")
+  field(SCAN, "5 second")
+  field(EGU, "um")
+  field(INP, "@pmac.proto getVar(P908) $(PORT)")
+  field(FLNK, "$(SYS){$(DEV)-CS3:Tilt}MinTilt-Pass")
+  field(PINI, "RUNNING")
+  field(PREC, "0")
+}
+record(ao, "$(SYS){$(DEV)-CS3:Tilt}MinTilt-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Minimum Tilt")
+  field(SCAN, "Passive")
+  field(FLNK, "$(SYS){$(DEV)-CS3:Tilt}MinTilt-RB")
+  field(EGU, "um")
+  field(OUT, "@pmac.proto setVar(P908) $(PORT)")
+  field(PREC, "0")
+  field(PINI, "YES")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
+record(transform, "$(SYS){$(DEV)-CS3:Tilt}MinTilt-Pass") {
+  field(SCAN, "Passive")
+  field(INPA, "$(SYS){$(DEV)-CS3:Tilt}MinTilt-RB")
+  field(OUTA, "$(SYS){$(DEV)-CS3:Tilt}-Mtr-SP.DRVH")
+  field(CLCA, "A")
+  field(CLCB, "A")
+  field(CLCC, "A")
+  field(OUTB, "$(SYS){$(DEV)-CS3:Tilt}-Mtr-SP-Go.DRVH")
+  field(OUTC, "$(SYS){$(DEV)-CS3:Tilt}-Mtr.HLM")
+}
+record(ai, "$(SYS){$(DEV)-CS3:Tilt}MaxTilt-RB") {
+  field(DTYP, "stream")
+  field(DESC, "Maximum Tilt")
+  field(SCAN, "5 second")
+  field(EGU, "um")
+  field(INP, "@pmac.proto getVar(P909) $(PORT)")
+  field(FLNK, "$(SYS){$(DEV)-CS3:Tilt}MaxTilt-Pass")
+  field(PINI, "RUNNING")
+  field(PREC, "0")
+}
+record(ao, "$(SYS){$(DEV)-CS3:Tilt}MaxTilt-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Maximum Tilt")
+  field(SCAN, "Passive")
+  field(FLNK, "$(SYS){$(DEV)-CS3:Tilt}MaxTilt-RB")
+  field(EGU, "um")
+  field(OUT, "@pmac.proto setVar(P909) $(PORT)")
+  field(PREC, "0")
+  field(PINI, "YES")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
+record(transform, "$(SYS){$(DEV)-CS3:Tilt}MaxTilt-Pass") {
+  field(SCAN, "Passive")
+  field(INPA, "$(SYS){$(DEV)-CS3:Tilt}MaxTilt-RB")
+  field(OUTA, "$(SYS){$(DEV)-CS3:Tilt}-Mtr-SP.DRVH")
+  field(CLCA, "A")
+  field(CLCB, "A")
+  field(CLCC, "A")
+  field(OUTB, "$(SYS){$(DEV)-CS3:Tilt}-Mtr-SP-Go.DRVH")
+  field(OUTC, "$(SYS){$(DEV)-CS3:Tilt}-Mtr.HLM")
+}
+
+
+record(bi, "$(SYS){$(DEV)}GapError-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Gap Error status")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P998) $(PORT)")
+  field(ZNAM, "No Eror")
+  field(ONAM, "Gap error")
+  field(OSV, "MAJOR")
+}
+record(bo, "$(SYS){$(DEV)}GapError-Reset") {
+  field(DTYP, "stream")
+  field(VAL, "0")
+  field(DESC, "Reset gap error")
+  field(OUT, "@pmac.proto setIntVar(P998) $(PORT)")
+}
+
+record(bi, "$(SYS){$(DEV)}ElevError-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Elevation Error status")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P999) $(PORT)")
+  field(ZNAM, "No Eror")
+  field(ONAM, "Elevation error")
+  field(OSV, "MAJOR")
+}
+record(bo, "$(SYS){$(DEV)}ElevError-Reset") {
+  field(DTYP, "stream")
+  field(VAL, "0")
+  field(DESC, "Reset elevation error")
+  field(OUT, "@pmac.proto setIntVar(P999) $(PORT)")
+}
+
+
+
+
+
+
+
+
 record(bi, "$(SYS){$(DEV)-Ax:GU}Sw:ServoReady-Sts") {
   field(DTYP, "stream")
   field(DESC, "Servo Ready")
@@ -472,8 +772,8 @@ record(bi, "$(SYS){$(DEV)}Sw:KillDisable-Sts") {
   field(DESC, "Kill Disable Key Switch")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(M16) $(PORT)")
-  field(ZNAM, "Kill switches active (normal)")
-  field(ONAM, "Kill switches deactivated (be careful)")
+  field(ZNAM, "Kills active (normal)")
+  field(ONAM, "WARNING: deactivated")
   field(OSV, "MAJOR")
 }
 record(bi, "$(SYS){$(DEV)}Sw:LimDisable-Sts") {
@@ -481,8 +781,8 @@ record(bi, "$(SYS){$(DEV)}Sw:LimDisable-Sts") {
   field(DESC, "Limit Disable Key Switch")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(M17) $(PORT)")
-  field(ZNAM, "Limit switches active (normal)")
-  field(ONAM, "Limit switches deactivated (be careful)")
+  field(ZNAM, "Limits active (normal)")
+  field(ONAM, "WARNING: deactivated")
   field(OSV, "MAJOR")
 }
 

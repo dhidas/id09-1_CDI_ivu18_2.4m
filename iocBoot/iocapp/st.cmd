@@ -90,14 +90,33 @@ dbLoadRecords("db/ppmac_motorstatus.db", "SYS=$(sys),DEV={$(dev)-Ax:EU},MOTOR=Br
 dbLoadRecords("db/ppmac_motorstatus.db", "SYS=$(sys),DEV={$(dev)-Ax:ED},MOTOR=Brick,PORT=BRICK1port,AXIS=4,DESC=Elevation Downstream")
 
 dbLoadRecords("db/asynRecord.db","P=$(sys),R={$(dev)}Asyn,ADDR=1,PORT=BRICK1port,IMAX=128,OMAX=128")
-
-
-
+dbLoadRecords("db/save_restoreStatus.db", "P=SR:CT{IOC:IVU:C09}")
 
 cd "${TOP}/iocBoot/${IOC}"
+
+echo hi
+echo ${PWD}
+set_savefile_path("as","/save")
+set_requestfile_path("as","/req")
+set_pass0_restoreFile("ioc_settings.sav")
+set_pass1_restoreFile("ioc_waveforms.sav")
+
+#Just to get put logging to work - should be changed to "default.acf" for operations
+# asSetFilename("/cf-update/acf/default.acf")
+
+
 iocInit
 
-## Start any sequence programs
-#seq sncExample, "user=dhidas"
+makeAutosaveFileFromDbInfo("as/req/ioc_settings.req", "autosaveFields_pass0")
+makeAutosaveFileFromDbInfo("as/req/ioc_waveforms.req", "autosaveFields_pass1")
+create_monitor_set("ioc_settings.req", 5, "")
+create_monitor_set("ioc_waveforms.req", 60, "")
+
+
+#caPutLogInit("ioclog.cs.nsls2.local:7004", 1)
+
+
+
 
 dbl > records.txt
+#system "cp records.dbl /cf-update/$(HOSTNAME).$(IOCNAME).dbl"

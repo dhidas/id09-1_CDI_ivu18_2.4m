@@ -48,4 +48,33 @@ This PLC considers Gap, Taper, Elevation, and Tilt move requests in the normal s
 ### PLC09 - Girder Safety
 This PLC will check soft limits for gap, elevation, taper, tilt.  Soft limits are defined in P-variables accessible from epics.  There are also hard-coded absolute limits as an extra safety measure.  These cannot be modified by epics.  If a gap/taper error is the P_GapError variable is marked, elevation/tilt error will mark P_ElevError, motors are killed (#1 and #2 for gap/taper, #3 and #4 for elevation/tilt errors).  These errors are latching and must be cleared if detected.  The typical course shoud this occur would be to adjust the soft-limit, clear the error, return to a good state, readjust the soft-limit.  There is a hard-coded "buffer" in kBUFFERUM included so that one may go to the limiting value without overshoot causing trouble.
 
+This PLC also checks the Taper limit and kill switches.  These are treated differently from regular axis limit and kills since they do not beloing to one of the 4 input axes flags.  When one of these is encountered motion for #1 and #2 stops.  If the limit or kill disable is active motion for the corresponding switch will be allowed (i.e. one cannot simply back off a limit switch as with a normal axis).
 
+
+
+## PPMAC Config files
+### Global Includes/gates.pmh
+Gates (cards) defined here.  BiSS-C global and channel control are defined here.  If you need to change the number of bits you must change it here as well as in the encoder conversion table and any motor settings related to it.
+
+### Global Includes/EncoderTable.pmh
+Encoder conversion table.  Linear absolute biss-c and rotary inputs defined here.  Default motor following also defined here (makes more sense to do it after all motor definitions).
+
+
+## TODO
+* Modify pEnc and pEnc2 on all motors to allow biss-c linear for position and rotary for velocity.
+* Update motor following for actual system (change from IVFC system) in EncoderTable.pmh.
+* Remove Motor #9 from Motor_1 file
+* Consider changing enc loss from (in all motors):
+
+  Motor[1].EncLossBit=28
+  Motor[1].EncLossLevel=1
+  Motor[1].EncLossLimit=0
+  Motor[1].pEncLoss=Acc24E3[0].Chan[0].Status.a
+  to
+  Acc84E[0].Chan[0].SerialEncDataB.a
+  Motor[1].EncLossBit=31
+  Motor[1].EncLossLevel=1
+  Motor[1].EncLossLimit=4
+
+* Figure out evquivalent of "Motor[1].pEncCtrl=Acc24E3[0].Chan[0].InCtrl.a" for Acc84E (biss-c)
+* Check all parameter defaults in PLC01.  Reset for IVU from IVFS values.

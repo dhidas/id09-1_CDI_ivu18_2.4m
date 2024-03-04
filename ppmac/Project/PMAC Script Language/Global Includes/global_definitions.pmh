@@ -34,14 +34,20 @@
 // kBUFFERUM is used to buffer soft-limit interlocks
 //#define kMAXGAP   40200
 //#define kMINGAP    4530
+//#define kMINELEV  -5000
 //#define kMAXELEV   5000
+//#define kMINTILT   -500
 //#define kMAXTILT    500
+//#define kMINTAPER  -500
 //#define kMAXTAPER   500
 //#define kBUFFERUM    50
 #define kMAXGAP   10000
 #define kMINGAP  -10000
+#define kMINELEV  -5000
 #define kMAXELEV   5000
+#define kMINTILT  -1000
 #define kMAXTILT   1000
+#define kMINTAPER -1000
 #define kMAXTAPER  1000
 #define kBUFFERUM    50
 
@@ -126,7 +132,9 @@ global gFMOTOR(10);
 #define P_MaxGap              P903
 #define P_MinTaper            P904
 #define P_MaxTaper            P905
+#define P_MinElev             P906
 #define P_MaxElev             P907
+#define P_MinTilt             P908
 #define P_MaxTilt             P909
 #define P_GapError            P998
 #define P_ElevError           P999

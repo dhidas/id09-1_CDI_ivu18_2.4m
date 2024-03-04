@@ -33,8 +33,8 @@ Motor[1].CurrentNullPeriod=0
 Motor[1].DacBias=0
 Motor[1].DacShift=0
 Motor[1].DtOverRotorTc=0
-Motor[1].EncLossBit=0
-Motor[1].EncLossLevel=0
+Motor[1].EncLossBit=28
+Motor[1].EncLossLevel=1
 Motor[1].EncLossLimit=0
 Motor[1].EncType=5
 Motor[1].ExtraMotors=0
@@ -86,10 +86,10 @@ Motor[1].Pd2=0
 Motor[1].Pd3=0
 Motor[1].Pd4=0
 Motor[1].pDac=Acc24E3[0].Chan[0].Pwm[3].a
-Motor[1].pEnc=EncTable[25].a				//position	1 or 25
-Motor[1].pEnc2=EncTable[25].a				//velocity	1 or 25
+Motor[1].pEnc=EncTable[5].a
+Motor[1].pEnc2=EncTable[5].a
 Motor[1].pEncCtrl=Acc24E3[0].Chan[0].InCtrl.a
-Motor[1].pEncLoss=0
+Motor[1].pEncLoss=Acc24E3[0].Chan[0].Status.a
 Motor[1].pEncStatus=Acc24E3[0].Chan[0].Status.a
 Motor[1].PhaseCtrl=0
 Motor[1].PhaseEncLeftShift=0
@@ -101,7 +101,7 @@ Motor[1].PhaseOffset=-512
 Motor[1].PhasePosSf=0.008
 Motor[1].PhaseSplineCtrl=0
 Motor[1].pLimits=Acc24E3[0].Chan[0].Status.a
-Motor[1].pMasterEnc=Motor[3].pEnc  // Motor 1 will follow motor 3 if following
+Motor[1].pMasterEnc=EncTable[0].a
 Motor[1].pMotorNode=Sys.pushm
 Motor[1].Pn0=0
 Motor[1].Pn1=0
@@ -193,4 +193,19 @@ Motor[1].SlipGain=0
 Motor[1].SoftLimitOffset=0
 Motor[1].Stime=0
 Motor[1].WarnFeLimit=1000
+
+
+
+
+//Motor #9 - Renishaw Encoder only
+Motor[9].Ctrl=sys.ServoCtrl
+Motor[9].servoCtrl=1
+Motor[9].posSf=1
+Motor[9].Pos2SF=1
+Motor[9].pLimits=0
+Motor[9].pEnc = EncTable[1].a
+Motor[9].pEnc2 = EncTable[1].a
+Motor[9].FatalFeLimit=0
+Motor[9].WarnFeLimit=0
+
 

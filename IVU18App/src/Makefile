@@ -42,8 +42,13 @@ IVU18_DBD += devSoftMotor.dbd
 IVU18_DBD += pmacAsynMotor.dbd
 IVU18_DBD += pmacAsynMotorPort.dbd
 IVU18_DBD += pmacAsynIPPort.dbd
+IVU18_DBD += asSupport.dbd
 IVU18_DBD += busySupport.dbd
 IVU18_DBD += calcSupport.dbd
+IVU18_DBD += system.dbd
+IVU18_DBD += devIocStats.dbd
+IVU18_DBD += caPutLog.dbd
+IVU18_DBD += ether_ip.dbd
 IVU18_DBD += stream.dbd
 IVU18_DBD += reccaster.dbd
 
@@ -62,8 +67,11 @@ IVU18_LIBS += motor
 IVU18_LIBS += pmacAsynMotor
 IVU18_LIBS += powerPmacAsynPort
 IVU18_LIBS += asyn
-IVU21_LIBS += autosave
+IVU18_LIBS += autosave
 IVU18_LIBS += stream
+IVU18_LIBS += devIocStats
+IVU18_LIBS += caPutLog
+IVU18_LIBS += ether_ip
 IVU18_LIBS += reccaster
 
 IVU18_LIBS += $(EPICS_BASE_IOC_LIBS)

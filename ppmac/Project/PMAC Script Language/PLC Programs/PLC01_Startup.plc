@@ -29,8 +29,12 @@ P_MinGap          =  -10000 // 4500
 P_MaxGap          =   10000 //25000
 P_MinTaper        =  -1000 //  -50
 P_MaxTaper        =   1000 // 500
+P_MinElev         =  -5000 // -500
 P_MaxElev         =   5000 //  500
+P_MinTilt         =  -1000 //-500
 P_MaxTilt         =   1000 // 500
+P_GapError = kFALSE
+P_ElevError = kFALSE
 
 // Enable PLCs as needed
 enable PLC  2
