@@ -36,12 +36,16 @@ P_MaxTilt         =   1000 // 500
 P_GapError = kFALSE
 P_ElevError = kFALSE
 
+// PLC 10
+P_PLC10ResetCounts = kTRUE
+
 // Enable PLCs as needed
 enable PLC  2
 enable PLC  3
 enable PLC  7
 enable PLC  8
 enable PLC  9
+enable PLC 10
 enable PLC 18
 
 disable PLC 1

@@ -11,9 +11,9 @@ if (P_MovementInProgress == kFALSE && P_OpenGapExecuting == kFALSE && P_MoveMode
 
   CMD"#*K"                          // Kill all motors for good measure
 
-  CMD"&2 #1->0 #2->0 #3->0 #4->0 #5->0 #6->0"   // Remove motors from all CS
-  CMD"&3 #1->0 #2->0 #3->0 #4->0 #5->0 #6->0"
-  CMD"&4 #1->0 #2->0 #3->0 #4->0 #5->0 #6->0"
+  CMD"&2 #1->0 #2->0 #3->0 #4->0"   // Remove motors from all CS
+  CMD"&3 #1->0 #2->0 #3->0 #4->0"
+  CMD"&4 #1->0 #2->0 #3->0 #4->0"
 
   Motor[1].MasterCtrl=0             // Cancel all motor following
   Motor[2].MasterCtrl=0

@@ -140,11 +140,60 @@ global gFMOTOR(10);
 #define P_ElevError           P999
 
 
+// PLC 10 - BISS encoder errors
+#define P_PLC10Count          P1000
+#define P_PLC10ResetCounts    P1001
 
+#define P_Enc1Warnings        P1002
+#define P_Enc2Warnings        P1003
+#define P_Enc3Warnings        P1004
+#define P_Enc4Warnings        P1005
 
+#define P_Enc1Errors          P1006
+#define P_Enc2Errors          P1007
+#define P_Enc3Errors          P1008
+#define P_Enc4Errors          P1009
 
+#define P_Enc1CRCErrors       P1010
+#define P_Enc2CRCErrors       P1011
+#define P_Enc3CRCErrors       P1012
+#define P_Enc4CRCErrors       P1013
 
+#define P_Enc1Timeouts        P1014
+#define P_Enc2Timeouts        P1015
+#define P_Enc3Timeouts        P1016
+#define P_Enc4Timeouts        P1017
 
+#define P_Enc1ErrorLatch      P1018
+#define P_Enc2ErrorLatch      P1019
+#define P_Enc3ErrorLatch      P1020
+#define P_Enc4ErrorLatch      P1021
+
+// use user for mapping of status bits from encoder data
+u.user:$3000 = Acc84E[0].Chan[0].SerialEncDataB
+u.user:$3004 = Acc84E[0].Chan[1].SerialEncDataB
+u.user:$3008 = Acc84E[0].Chan[2].SerialEncDataB
+u.user:$300C = Acc84E[0].Chan[3].SerialEncDataB
+
+#define LENC1TIMEOUT    u.user:$3000.23.1
+#define LENC2TIMEOUT    u.user:$3004.23.1
+#define LENC3TIMEOUT    u.user:$3008.23.1
+#define LENC4TIMEOUT    u.user:$300C.23.1
+
+#define LENC1CRCERROR   u.user:$3000.22.1
+#define LENC2CRCERROR   u.user:$3004.22.1
+#define LENC3CRCERROR   u.user:$3008.22.1
+#define LENC4CRCERROR   u.user:$300C.22.1
+
+#define LENC1ERROR      u.user:$3000.17.1
+#define LENC2ERROR      u.user:$3004.17.1
+#define LENC3ERROR      u.user:$3008.17.1
+#define LENC4ERROR      u.user:$300C.17.1
+
+#define LENC1WARNING    u.user:$3000.16.1
+#define LENC2WARNING    u.user:$3004.16.1
+#define LENC3WARNING    u.user:$3008.16.1
+#define LENC4WARNING    u.user:$300C.16.1
 
 
 

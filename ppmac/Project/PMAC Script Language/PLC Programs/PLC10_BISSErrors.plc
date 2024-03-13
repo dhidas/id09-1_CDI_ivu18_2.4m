@@ -1,0 +1,99 @@
+// This PLC is to detecto biss errors from the absolute linear encoders
+// These errors are stored in Acc84E[i].Chan[j].SerialEncDataB
+// This is outlined in the 84E Hardware Reference Manual.
+
+Open PLC 10
+
+// reset all counts to zero if requested (at startup or via epics)
+// and reset all latched errors
+if (P_PLC10ResetCounts == kTRUE) {
+  P_Enc1Warnings        = 0
+  P_Enc2Warnings        = 0
+  P_Enc3Warnings        = 0
+  P_Enc4Warnings        = 0
+  P_Enc1Errors          = 0
+  P_Enc2Errors          = 0
+  P_Enc3Errors          = 0
+  P_Enc4Errors          = 0
+  P_Enc1CRCErrors       = 0
+  P_Enc2CRCErrors       = 0
+  P_Enc3CRCErrors       = 0
+  P_Enc4CRCErrors       = 0
+  P_Enc1Timeouts        = 0
+  P_Enc2Timeouts        = 0
+  P_Enc3Timeouts        = 0
+  P_Enc4Timeouts        = 0
+  P_PLC10Count          = 0
+  P_Enc1ErrorLatch      = kFALSE
+  P_Enc2ErrorLatch      = kFALSE
+  P_Enc3ErrorLatch      = kFALSE
+  P_Enc4ErrorLatch      = kFALSE
+  P_PLC10ResetCounts    = kFALSE
+}
+
+// Add to all counts (for seeing in epics)
+P_Enc1Warnings        += (1 - LENC1WARNING)
+P_Enc2Warnings        += (1 - LENC2WARNING)
+P_Enc3Warnings        += (1 - LENC3WARNING)
+P_Enc4Warnings        += (1 - LENC4WARNING)
+P_Enc1Errors          += (1 - LENC1ERROR)
+P_Enc2Errors          += (1 - LENC2ERROR)
+P_Enc3Errors          += (1 - LENC3ERROR)
+P_Enc4Errors          += (1 - LENC4ERROR)
+P_Enc1CRCErrors       += LENC1CRCERROR
+P_Enc2CRCErrors       += LENC2CRCERROR
+P_Enc3CRCErrors       += LENC3CRCERROR
+P_Enc4CRCErrors       += LENC4CRCERROR
+P_Enc1Timeouts        += LENC1TIMEOUT
+P_Enc2Timeouts        += LENC2TIMEOUT
+P_Enc3Timeouts        += LENC3TIMEOUT
+P_Enc4Timeouts        += LENC4TIMEOUT
+P_PLC10Count          += 1
+
+
+
+// Sums of any errors for each LEncoder (lazy so I use 5 for 1-4 indexing)
+local lErrorSums(5)
+
+lErrorSums(1) = LENC1TIMEOUT + LENC1CRCERROR + (1 - LENC1ERROR)
+lErrorSums(2) = LENC2TIMEOUT + LENC2CRCERROR + (1 - LENC2ERROR)
+lErrorSums(3) = LENC3TIMEOUT + LENC3CRCERROR + (1 - LENC3ERROR)
+lErrorSums(4) = LENC4TIMEOUT + LENC4CRCERROR + (1 - LENC4ERROR)
+
+
+if (P_Enc1ErrorLatch == kTRUE) {
+  CMD"#1k"
+} else {
+  if (lErrorSums(1) >= 1) {
+    CMD"#*k"
+    P_Enc1ErrorLatch = kTRUE
+  }
+}
+if (P_Enc2ErrorLatch == kTRUE) {
+  CMD"#2k"
+} else {
+  if (lErrorSums(2) >= 1) {
+    CMD"#*k"
+    P_Enc2ErrorLatch = kTRUE
+  }
+}
+if (P_Enc3ErrorLatch == kTRUE) {
+  CMD"#3k"
+} else {
+  if (lErrorSums(3) >= 1) {
+    CMD"#*k"
+    P_Enc3ErrorLatch = kTRUE
+  }
+}
+if (P_Enc4ErrorLatch == kTRUE) {
+  CMD"#4k"
+} else {
+  if (lErrorSums(4) >= 1) {
+    CMD"#*k"
+    P_Enc4ErrorLatch = kTRUE
+  }
+}
+
+
+
+Close

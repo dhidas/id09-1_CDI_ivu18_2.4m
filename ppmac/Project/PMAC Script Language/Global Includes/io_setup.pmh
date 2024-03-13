@@ -57,6 +57,11 @@
 #define IO1Out24              Acc65E[2].DataReg[5].7.1
 
 
+
+
+
+
+
 // IO M-variable definitions (so I can use with epics)
 M1->inGUPKILL
 M2->inGUMKILL

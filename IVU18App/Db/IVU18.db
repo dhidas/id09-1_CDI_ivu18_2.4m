@@ -789,6 +789,213 @@ record(bi, "$(SYS){$(DEV)}Sw:LimDisable-Sts") {
 
 
 
+record(bo, "$(SYS){$(DEV)}LEncError-Reset") {
+  field(DTYP, "stream")
+  field(VAL, "1")
+  field(DESC, "Reset LEnc errors")
+  field(OUT, "@pmac.proto setIntVar(P1001) $(PORT)")
+}
+record(ai, "$(SYS){$(DEV)}LEncPLCCounts") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder warnings")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1000) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-Ax:GU}LEnc-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder error status")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1018) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-Ax:GD}LEnc-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder error status")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1019) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-Ax:EU}LEnc-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder error status")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1020) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)-Ax:ED}LEnc-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder error status")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1021) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(calc, "$(SYS){$(DEV)}LEncError-Any") {
+  field(DESC, "Or of all lenc errorss")
+  field(INPA, "$(SYS){$(DEV)-Ax:GU}LEnc-Sts CP")
+  field(INPB, "$(SYS){$(DEV)-Ax:GD}LEnc-Sts CP")
+  field(INPC, "$(SYS){$(DEV)-Ax:EU}LEnc-Sts CP")
+  field(INPD, "$(SYS){$(DEV)-Ax:ED}LEnc-Sts CP")
+  field(CALC, "A || B || C || D")
+}
+
+record(ai, "$(SYS){$(DEV)-Ax:GU}LEnc-Warnings") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder warnings")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1002) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(ai, "$(SYS){$(DEV)-Ax:GD}LEnc-Warnings") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder warnings")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1003) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(ai, "$(SYS){$(DEV)-Ax:EU}LEnc-Warnings") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder warnings")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1004) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(ai, "$(SYS){$(DEV)-Ax:ED}LEnc-Warnings") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder warnings")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1005) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(ai, "$(SYS){$(DEV)-Ax:GU}LEnc-Errors") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder Errors")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1006) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(ai, "$(SYS){$(DEV)-Ax:GD}LEnc-Errors") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder Errors")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1007) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(ai, "$(SYS){$(DEV)-Ax:EU}LEnc-Errors") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder Errors")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1008) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(ai, "$(SYS){$(DEV)-Ax:ED}LEnc-Errors") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder Errors")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1009) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(ai, "$(SYS){$(DEV)-Ax:GU}LEnc-CRCErrors") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder CRCErrors")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1010) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(ai, "$(SYS){$(DEV)-Ax:GD}LEnc-CRCErrors") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder CRCErrors")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1011) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(ai, "$(SYS){$(DEV)-Ax:EU}LEnc-CRCErrors") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder CRCErrors")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1012) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(ai, "$(SYS){$(DEV)-Ax:ED}LEnc-CRCErrors") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder CRCErrors")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1013) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(ai, "$(SYS){$(DEV)-Ax:GU}LEnc-Timeouts") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder Timeouts")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1014) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(ai, "$(SYS){$(DEV)-Ax:GD}LEnc-Timeouts") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder Timeouts")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1015) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(ai, "$(SYS){$(DEV)-Ax:EU}LEnc-Timeouts") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder Timeouts")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1016) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(ai, "$(SYS){$(DEV)-Ax:ED}LEnc-Timeouts") {
+  field(DTYP, "stream")
+  field(DESC, "Linear encoder Timeouts")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P1017) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+
+
+
 
 
 
