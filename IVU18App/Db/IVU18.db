@@ -17,6 +17,38 @@ record(ai, "$(SYS){$(DEV)}P8197") {
 }
 
 
+record(bi, "$(SYS){$(DEV)-Ax:GU}Sw:HomeFlag-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Home Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(Gate3[0].Chan[0].HomeFlag) $(PORT)")
+  field(ZNAM, "HomeSw inactive")
+  field(ONAM, "HomeSw active")
+}
+record(bi, "$(SYS){$(DEV)-Ax:GD}Sw:HomeFlag-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Home Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(Gate3[0].Chan[1].HomeFlag) $(PORT)")
+  field(ZNAM, "HomeSw inactive")
+  field(ONAM, "HomeSw active")
+}
+record(bi, "$(SYS){$(DEV)-Ax:EU}Sw:HomeFlag-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Home Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(Gate3[0].Chan[2].HomeFlag) $(PORT)")
+  field(ZNAM, "HomeSw inactive")
+  field(ONAM, "HomeSw active")
+}
+record(bi, "$(SYS){$(DEV)-Ax:ED}Sw:HomeFlag-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Home Switch")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(Gate3[0].Chan[3].HomeFlag) $(PORT)")
+  field(ZNAM, "HomeSw inactive")
+  field(ONAM, "HomeSw active")
+}
 
 record(bi, "$(SYS){$(DEV)-Ax:GU}Sw:PLim-Sts") {
   field(DTYP, "stream")

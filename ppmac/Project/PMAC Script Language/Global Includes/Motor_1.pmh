@@ -208,4 +208,15 @@ Motor[9].pEnc2 = EncTable[1].a
 Motor[9].FatalFeLimit=0
 Motor[9].WarnFeLimit=0
 
+Motor[9].PowerOnMode = $4
+Motor[9].pAbsPos = Acc84E[0].Chan[0].SerialEncDataA.a
+Motor[9].pAbsPos2 = Acc84E[0].Chan[0].SerialEncDataB.a
+Motor[9].AbsPosFormat = $00081A08
+Motor[9].AbsPosSf = 1
+Motor[9].HomeOffset = 3789454
+
+
+
+Motor[9].CaptureMode = 1  // Should be switched to 0 later?  not sure.
+Motor[9].pCaptFlag = Acc24E3[0].Chan[0].Status.a
 
