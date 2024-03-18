@@ -50,7 +50,11 @@ This PLC will check soft limits for gap, elevation, taper, tilt.  Soft limits ar
 
 This PLC also checks the Taper limit and kill switches.  These are treated differently from regular axis limit and kills since they do not beloing to one of the 4 input axes flags.  When one of these is encountered motion for #1 and #2 stops.  If the limit or kill disable is active motion for the corresponding switch will be allowed (i.e. one cannot simply back off a limit switch as with a normal axis).
 
+### PLC10 - BISS Errors
+This PLC monitors and counts all CRC, Timeout, Warning, and Errors for each BiSS-C linear encoder.  These are all reported to epics via p-variables.  The BiSS-C CRC, Timeout, and Error states for each encoder are latching errors.  Initially when one of these errors is encountered a killall signal is sent ("#\*k") killing all motors.  After this, a kill ("#nk)" is continually sent to the motor with the associated encoder problem.  This stops and prevents motion on the motor with encoder errors while allowing motion on other motors.  Obviously coordinated motion with the affected motor will not be possible in this case, but it will allow for individual drive of other motors or use of coordinate systems which do not involve the bad motor/encoder.  If there is some encoder noise causing this to be a common stoppage some filtering can be applied at a later date.
 
+### PLC18 - Position Reporting
+This PLC 
 
 ## PPMAC Config files
 ### Global Includes/gates.pmh
