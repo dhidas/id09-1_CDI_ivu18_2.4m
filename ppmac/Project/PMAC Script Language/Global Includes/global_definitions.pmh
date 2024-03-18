@@ -100,6 +100,7 @@ global gFMOTOR(10);
 #define P_HomeRequest         P600
 #define P_HomingInProgress    P601
 #define P_MotorHomingNumber   P602
+#define P_HomingThisMotor     P603
 #define P_HomingAmpError      P698
 #define P_HomingTimeout       P699
 

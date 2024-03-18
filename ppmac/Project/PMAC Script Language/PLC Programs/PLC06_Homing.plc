@@ -5,11 +5,19 @@ Open PLC 6
 local lMotorHoming
 local lMotorFollowing
 
-// Check if a homing request has been made for a legit motor number (1-4)
-if (P_HomeRequest == 0 || P_HomeRequest < 0 || P_HomeRequest > 4) {
+// Check for true bit for homing request.  Do nothing if no request
+if (P_HomeRequest != kTRUE) {
   // Only check this once a second
   call Timer(1.00)
   return
+}
+
+// Got the request and processing it so now set it back to false
+P_HomeRequest = kFALSE
+
+// Check if a homing request has been made for a legit motor number (1-4)
+if (P_MotorHomingNumber == 0 || P_MotorHomingNumber < 0 || P_MotorHomingNumber > 4) {
+  GOTO 666
 }
 
 // If we are here then a homing request has been made.  Set the homing in progress
@@ -17,8 +25,9 @@ if (P_HomeRequest == 0 || P_HomeRequest < 0 || P_HomeRequest > 4) {
 P_HomingTimeout = kFALSE
 P_HomingAmpError = kFALSE
 P_HomingInProgress = kTRUE
-lMotorHoming = P_HomeRequest
-P_HomeRequest = 0
+lMotorHoming = P_MotorHomingNumber
+P_MotorHomingNumber = 0
+P_HomingThisMotor = lMotorHoming
 CMD"#*k"
 
 // Stop any/all motor following
@@ -111,5 +120,6 @@ Motor[4].MasterCtrl=kFALSE
 
 P_MotorHomingNumber = 0
 P_HomingInProgress = kFALSE
+P_HomingThisMotor = 0
 Close
 

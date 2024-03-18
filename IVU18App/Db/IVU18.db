@@ -17,6 +17,71 @@ record(ai, "$(SYS){$(DEV)}P8197") {
 }
 
 
+record(ao, "$(SYS){$(DEV)}MotorHomeRequest-SP") {
+  field(DTYP, "stream")
+  field(VAL,  "1")
+  field(OUT, "@pmac.proto setVar(P600) $(PORT)")
+  field(PINI, "NO")
+}
+record(mbbo, "$(SYS){$(DEV)}MotorToHome-SP") {
+  field(DESC, "Which motor to home")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(FRVL, "4")
+  field(FVVL, "5")
+  field(ZRST, "None")
+  field(ONST, "GU: Gap Upstream")
+  field(TWST, "GD: Gap Downstream")
+  field(THST, "EU: Elevation Upstream")
+  field(FRST, "ED: Elevation Downstream")
+  field(DTYP, "stream")
+  field(OUT,  "@pmac.proto setIntVar(P602) $(PORT)")
+}
+record(mbbi, "$(SYS){$(DEV)}MotorHomingNow-RB") {
+  field(DESC, "Which motor is homing")
+  field(SCAN, "1 second")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(FRVL, "4")
+  field(FVVL, "5")
+  field(ZRST, "None")
+  field(ONST, "GU: Gap Upstream")
+  field(TWST, "GD: Gap Downstream")
+  field(THST, "EU: Elevation Upstream")
+  field(FRST, "ED: Elevation Downstream")
+  field(DTYP, "stream")
+  field(INP,  "@pmac.proto getIntVar(P603) $(PORT)")
+}
+record(bi, "$(SYS){$(DEV)}HomeInProgress-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Home in progress")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P601) $(PORT)")
+  field(ZNAM, "Idle")
+  field(ONAM, "Homing")
+}
+record(bi, "$(SYS){$(DEV)}HomeAmpError-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Amp enable error")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P698) $(PORT)")
+  field(ZNAM, "No Error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
+record(bi, "$(SYS){$(DEV)}HomeTimeout-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Homeing Timeout")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P699) $(PORT)")
+  field(ZNAM, "No Error")
+  field(ONAM, "Timeout ERROR")
+  field(OSV, "MAJOR")
+}
 record(bi, "$(SYS){$(DEV)-Ax:GU}Sw:HomeFlag-Sts") {
   field(DTYP, "stream")
   field(DESC, "Home Switch")

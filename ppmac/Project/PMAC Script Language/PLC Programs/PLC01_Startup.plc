@@ -18,6 +18,7 @@ P_MoveModeReq = kMoveModeGapEleSep
 P_HomingInProgress = kFALSE
 P_HomeRequest = 0
 P_MotorHomingNumber = 0
+P_HomingThisMotor = 0
 P_HomingAmpError = kFALSE
 P_HomingTimeout = kFALSE
 
@@ -45,6 +46,7 @@ P_PLC10ResetCounts = kTRUE
 // Enable PLCs as needed
 enable PLC  2
 enable PLC  3
+enable PLC  6
 enable PLC  7
 enable PLC  8
 enable PLC  9

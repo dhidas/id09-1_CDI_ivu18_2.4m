@@ -216,7 +216,13 @@ Motor[9].AbsPosSf = 1
 Motor[9].HomeOffset = 3789454
 
 
+//Gate3[i].Chan[j].CaptCtrl
+//Gate3[i].Chan[j].CaptFlagChan
+//Gate3[i].Chan[j].CaptFlagSel
+//Motor[x].HomeVel
 
-Motor[9].CaptureMode = 1  // Should be switched to 0 later?  not sure.
+Motor[9].CaptureMode = 3  // Should be switched to 0 later?  not sure.
 Motor[9].pCaptFlag = Acc24E3[0].Chan[0].Status.a
+Motor[8].CaptFlagBit = 8
+//Gate3[i].Chan[j].CaptCtrl
 
