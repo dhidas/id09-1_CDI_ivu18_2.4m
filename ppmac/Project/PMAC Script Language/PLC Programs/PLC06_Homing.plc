@@ -2,6 +2,9 @@
 
 Open PLC 6
 
+local lMotorHoming
+local lMotorFollowing
+
 // Check if a homing request has been made for a legit motor number (1-4)
 if (P_HomeRequest == 0 || P_HomeRequest < 0 || P_HomeRequest > 4) {
   // Only check this once a second
@@ -12,77 +15,99 @@ if (P_HomeRequest == 0 || P_HomeRequest < 0 || P_HomeRequest > 4) {
 // If we are here then a homing request has been made.  Set the homing in progress
 // bit, kill all motors, record the motor to be homed, and set the request back to zero.
 P_HomingTimeout = kFALSE
+P_HomingAmpError = kFALSE
 P_HomingInProgress = kTRUE
-P_MotorHomingNumber = P_HomeRequest
+lMotorHoming = P_HomeRequest
 P_HomeRequest = 0
 CMD"#*k"
 
 // Stop any/all motor following
-Motor[1].MasterCtrl=0
-Motor[2].MasterCtrl=0
-Motor[3].MasterCtrl=0
-Motor[4].MasterCtrl=0
+Motor[1].MasterCtrl=kFALSE
+Motor[2].MasterCtrl=kFALSE
+Motor[3].MasterCtrl=kFALSE
+Motor[4].MasterCtrl=kFALSE
 
-switch (P_MotorHomingNumber) {
+switch (lMotorHoming) {
   case 1:
-    Motor[2].MasterCtrl=1
-
-    // Enable motors and check AmpEna
-    Ldata.motor = 1
-    CMD"j/"
-    Ldata.motor = 2
-    CMD"j/"
-    call Timer(0.200)
-    if (Motor[1].AmpEna + Motor[2].AmpEna != 2) {
-      CMD"#*k"
-      P_HomingAmpError = 1
-      GOTO 666
-    }
-
-    // Check if this motor is on the home flag or limit, if so move away a bit.  If the motor
-    // does not back off the switch in a reasonable time we timeout and report an error.
-    if (pHomeFlag(1) == kTRUE || Motor[1].PlusLimit == kTRUE) {
-      Ldata.motor = 1
-      CMD"j-"
-      call Timer(0.200)
-    }
-    TIMER060 = 3000
-    while (pHomeFlag(1) + Motor[1].PlusLimit != 0 && TIMER060 > 0) {}
-    if (TIMER060 <= 0) {
-      // Timeout in homing, report and abort
-      P_HomingTimeout = kTRUE
-      CMD"#*k"
-      GOTO 666
-    }
-    call Timer(0.200)
-    Ldata.motor = 1
-    CMD"j/"
-    call Timer(0.200)
-    CMD"home"
-    TIMER060 = 60000
-    while (Motor[1].HomeInProgress == kFALSE && TIMER060 > 0) {}  // Wait for start
-    while (Motor[1].DesVelZero == 0 && TIMER060 > 0) {}           // Wait for end
-    if (TIMER060 <= 0) {
-      // Timeout in homing, report and abort
-      P_HomingTimeout = kTRUE
-      CMD"#*k"
-      GOTO 666
-    }
-
-
-
+    lMotorFollowing = 2
+    break
+  case 2:
+    lMotorFollowing = 1
+    break
+  case 3:
+    lMotorFollowing = 4
+    break
+  case 4:
+    lMotorFollowing = 3
+    break
+  default:
+    GOTO 666
     break
 }
+
+// Set following
+Motor[lMotorFollowing].MasterCtrl = kTRUE
+
+// Enable homer and following
+Ldata.motor = lMotorHoming
+CMD"j/"
+Ldata.motor = lMotorFollowing
+CMD"j/"
+call Timer(0.0200)
+
+// Check that these motors enabled properly.  If not, exit with an error
+if (Motor[lMotorHoming].AmpEna + Motor[lMotorFollowing].AmpEna != 2) {
+  CMD"#*k"
+  P_HomingAmpError = kTRUE
+  GOTO 666
+}
+
+
+// Check if this motor is on the home flag or limit, if so move away a bit.  If the motor
+// does not back off the switch in a reasonable time we timeout and report an error.
+if (pHomeFlag(lMotorHoming) == kTRUE || Motor[lMotorHoming].PlusLimit == kTRUE) {
+  Ldata.motor = lMotorHoming
+  CMD"j-"
+  call Timer(0.200)
+}
+TIMER060 = 3000
+while (pHomeFlag(lMotorHoming) + Motor[lMotorHoming].PlusLimit != 0 && TIMER060 > 0) {}
+if (TIMER060 <= 0) {
+  // Timeout in homing, report and abort
+  P_HomingTimeout = kTRUE
+  CMD"#*k"
+  GOTO 666
+}
+call Timer(0.200)
+Ldata.motor = lMotorHoming
+CMD"j/"
+call Timer(0.200)
+
+// Home the motor.  Use a timeout as a backup.
+Ldata.motor = lMotorHoming
+CMD"home"
+TIMER060 = 60000
+while (Motor[lMotorHoming].HomeInProgress == kFALSE && TIMER060 > 0) {}  // Wait for start
+while (Motor[lMotorHoming].DesVelZero == 0 && TIMER060 > 0) {}           // Wait for end
+if (TIMER060 <= 0) {
+  // Timeout in homing, report and abort
+  P_HomingTimeout = kTRUE
+  CMD"#*k"
+  GOTO 666
+}
+
+
+
 
 
 // Cleanup and exit
 N666:
 
 // Stop any/all motor following
-Motor[1].MasterCtrl=0
-Motor[2].MasterCtrl=0
-Motor[3].MasterCtrl=0
-Motor[4].MasterCtrl=0
+Motor[1].MasterCtrl=kFALSE
+Motor[2].MasterCtrl=kFALSE
+Motor[3].MasterCtrl=kFALSE
+Motor[4].MasterCtrl=kFALSE
 
 P_MotorHomingNumber = 0
 P_HomingInProgress = kFALSE
