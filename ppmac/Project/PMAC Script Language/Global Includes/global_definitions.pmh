@@ -86,13 +86,6 @@ global gFMOTOR(10);
 
 
 
-// Global definitions for substitution
-//#define Mtr1HomeFlag Gate3[0].Chan[0].HomeFlag
-//#define Mtr2HomeFlag Gate3[0].Chan[1].HomeFlag
-//#define Mtr3HomeFlag Gate3[0].Chan[2].HomeFlag
-//#define Mtr4HomeFlag Gate3[0].Chan[3].HomeFlag
-
-
 // PVariable definitions
 // PLC 01 - Startup
 
@@ -174,27 +167,41 @@ u.user:$3000 = Acc84E[0].Chan[0].SerialEncDataB
 u.user:$3004 = Acc84E[0].Chan[1].SerialEncDataB
 u.user:$3008 = Acc84E[0].Chan[2].SerialEncDataB
 u.user:$300C = Acc84E[0].Chan[3].SerialEncDataB
+u.user:$3010 = Gate3[0].Chan[0].HomeFlag
+u.user:$3014 = Gate3[0].Chan[1].HomeFlag
+u.user:$3018 = Gate3[0].Chan[2].HomeFlag
+u.user:$301C = Gate3[0].Chan[3].HomeFlag
 
-#define LENC1TIMEOUT    u.user:$3000.23.1
-#define LENC2TIMEOUT    u.user:$3004.23.1
-#define LENC3TIMEOUT    u.user:$3008.23.1
-#define LENC4TIMEOUT    u.user:$300C.23.1
+ptr pLEncTimeout(5)->*
+pLEncTimeout(1)->u.user:$3000.23.1
+pLEncTimeout(2)->u.user:$3004.23.1
+pLEncTimeout(3)->u.user:$3008.23.1
+pLEncTimeout(4)->u.user:$300C.23.1
 
-#define LENC1CRCERROR   u.user:$3000.22.1
-#define LENC2CRCERROR   u.user:$3004.22.1
-#define LENC3CRCERROR   u.user:$3008.22.1
-#define LENC4CRCERROR   u.user:$300C.22.1
+ptr pLEncCRCError(5)->*
+pLEncCRCError(1)->u.user:$3000.22.1
+pLEncCRCError(2)->u.user:$3004.22.1
+pLEncCRCError(3)->u.user:$3008.22.1
+pLEncCRCError(4)->u.user:$300C.22.1
 
-#define LENC1ERROR      u.user:$3000.17.1
-#define LENC2ERROR      u.user:$3004.17.1
-#define LENC3ERROR      u.user:$3008.17.1
-#define LENC4ERROR      u.user:$300C.17.1
+ptr pLEncError(5)->*
+pLEncError(1)->u.user:$3000.17.1
+pLEncError(2)->u.user:$3004.17.1
+pLEncError(3)->u.user:$3008.17.1
+pLEncError(4)->u.user:$300C.17.1
 
-#define LENC1WARNING    u.user:$3000.16.1
-#define LENC2WARNING    u.user:$3004.16.1
-#define LENC3WARNING    u.user:$3008.16.1
-#define LENC4WARNING    u.user:$300C.16.1
+ptr pLEncWarning(5)->*
+pLEncWarning(1)->u.user:$3000.16.1
+pLEncWarning(2)->u.user:$3004.16.1
+pLEncWarning(3)->u.user:$3008.16.1
+pLEncWarning(4)->u.user:$300C.16.1
 
+
+ptr pHomeFlag(5)->*
+pHomeFlag(1)->u.user:$3010.8.1
+pHomeFlag(2)->u.user:$3014.8.1
+pHomeFlag(3)->u.user:$3018.8.1
+pHomeFlag(4)->u.user:$301C.8.1
 
 
 

@@ -15,8 +15,11 @@ P_MoveMode = -1
 P_MoveModeReq = kMoveModeGapEleSep
 
 // PLC06
-P_HomingAmpError = 0
-P_HomingTimeout = 0
+P_HomingInProgress = kFALSE
+P_HomeRequest = 0
+P_MotorHomingNumber = 0
+P_HomingAmpError = kFALSE
+P_HomingTimeout = kFALSE
 
 // PLC08
 

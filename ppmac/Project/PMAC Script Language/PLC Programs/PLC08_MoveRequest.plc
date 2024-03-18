@@ -9,7 +9,7 @@ switch (P_MoveMode) {
   case kMoveModeGapEleSep:
 
     // Check we are not in stop-all, interlock, or gap opening flag states
-    if (P_StopAllStatus == kFALSE && P_InterlockState == kFALSE && P_OpenGapExecuting == kFALSE) {
+    if (P_StopAllStatus == kFALSE && P_InterlockState == kFALSE && P_OpenGapExecuting == kFALSE && P_HomingInProgress == kFALSE) {
       if (P_GapMoveRequest == kTRUE) {
         if (Coord[2].ProgRunning == kTRUE || Coord[2].ProgActive == kTRUE) {
           Ldata.coord = 2
