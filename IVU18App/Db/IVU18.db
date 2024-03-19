@@ -37,6 +37,8 @@ record(mbbo, "$(SYS){$(DEV)}MotorToHome-SP") {
   field(THST, "EU: Elevation Upstream")
   field(FRST, "ED: Elevation Downstream")
   field(DTYP, "stream")
+  field(VAL,  "0")
+  field(PINI, "NO")
   field(OUT,  "@pmac.proto setIntVar(P602) $(PORT)")
 }
 record(mbbi, "$(SYS){$(DEV)}MotorHomingNow-RB") {
