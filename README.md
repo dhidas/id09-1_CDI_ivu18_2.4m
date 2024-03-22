@@ -54,7 +54,7 @@ This contains subprograms like "Timer" used generally for delay.  A nice feature
 ### Kinematics_GapElev.pmh
 All kinematic routines for the 3 coordinated motion types.
 
-### PROG02_GapTaper.pmh  PROG03_ElevTilt.pmh  PROG04_GapTaperElevTilt.pmh
+### PROG[##]_[name].pmh
 Motion programs for the 3 types of coordinated motion.  These are fairly simple.  Note that these use the ABCU and Q71..74 with the position reporting PLC reporting back to Q81..84 as is needed by the EPICS DeltaTau driver for coordinate systems.
 
 ## PLCs
