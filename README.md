@@ -24,6 +24,34 @@ It is assumed that typical usage will be gap and taper motion (without changing 
 Position reporting for all coordinate systems is done in PLC18 to avoid duplicate code.
 
 
+## Files and what is in them
+### EncoderTable.pmh
+This is all of the encoder conversion table.  It is NOT configured elsewhere.
+
+### Motor_[1-4].pmh
+This contains all of the motor setup for each motor.
+
+### gates.pmh
+All hardware gates (umac cards) are setup here.  This includes the motor controller cards, BiSS-C cards, MACRO card.
+
+### io_setup.pmh
+In this file all of the definitions for IO on the IO cards are given.  This includes definitions for use in the PMAC code as well as (importantly) M-Variable mapping of these IO bits for use via EPICS.
+
+### global_definitions.pmh
+This file gives all of the global definitions used in the PMAC code.  Constants are defined with a leading 'k' always, e.g. kPI.  Motor home offsets are defined here as kM1OFFSET, etc.  They should only be written here.  There are absolute hard-coded gap, elevation, taper, and tilt limits for device safety.  All timers are defined here.  This is different from the call to subprog Timer().
+
+All P-Variable definitions are done in this file.  The definitions are listed in PLC order and although some are used in multiple PLCs they are considered "owned" by the PLC they are listed under.  The numbering of these is also aimed to be "PLC consistant".  P600..699 for example correspond to PLC06.  One must ensure that global P-definitions start outside of the used range.  Some of these P variables are used to pass information to and from EPICS.  All defined P variables are of the form starting with "P_" e.g. P_BrakeTimeout.
+
+Very importantly some user memory mapping is used to in this file to map BiSS bits and HomeFlags from hardware to pointers (there was no clean way to access those particular bits without bitshifts and masks, which makes code messy) and arrays of pointers.  These look like the following:
+'''
+u.user:$3000 = Acc84E[0].Chan[0].SerialEncDataB
+pLEncTimeout(1)->u.user:$3000.23.1
+'''
+
+
+### Timers.pmc
+This contains subprograms like "Timer" used generally for delay.  A nice feature over the old Turbo if you ask me.
+
 
 
 ## PLCs
