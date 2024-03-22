@@ -43,10 +43,10 @@ This file gives all of the global definitions used in the PMAC code.  Constants 
 All P-Variable definitions are done in this file.  The definitions are listed in PLC order and although some are used in multiple PLCs they are considered "owned" by the PLC they are listed under.  The numbering of these is also aimed to be "PLC consistant".  P600..699 for example correspond to PLC06.  One must ensure that global P-definitions start outside of the used range.  Some of these P variables are used to pass information to and from EPICS.  All defined P variables are of the form starting with "P_" e.g. P_BrakeTimeout.
 
 Very importantly some user memory mapping is used to in this file to map BiSS bits and HomeFlags from hardware to pointers (there was no clean way to access those particular bits without bitshifts and masks, which makes code messy) and arrays of pointers.  These look like the following:
-'''
+```
 u.user:$3000 = Acc84E[0].Chan[0].SerialEncDataB
 pLEncTimeout(1)->u.user:$3000.23.1
-'''
+```
 
 
 ### Timers.pmc
