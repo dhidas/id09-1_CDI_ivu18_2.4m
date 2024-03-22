@@ -29,10 +29,10 @@
 #define inSERVO1READY         Acc65E[2].DataReg[2].7.1
 
 //outputs
-#define IO1Out01              Acc65E[2].DataReg[3].0.1
-#define IO1Out02              Acc65E[2].DataReg[3].1.1
-#define IO1Out03              Acc65E[2].DataReg[3].2.1
-#define IO1Out04              Acc65E[2].DataReg[3].3.1
+#define outAMP1CLEAR          Acc65E[2].DataReg[3].0.1
+#define outAMP2CLEAR          Acc65E[2].DataReg[3].1.1
+#define outAMP3CLEAR          Acc65E[2].DataReg[3].2.1
+#define outAMP4CLEAR          Acc65E[2].DataReg[3].3.1
 #define IO1Out05              Acc65E[2].DataReg[3].4.1
 #define IO1Out06              Acc65E[2].DataReg[3].5.1
 #define IO1Out07              Acc65E[2].DataReg[3].6.1
@@ -88,10 +88,10 @@ M22->inSERVO3READY
 M23->inSERVO2READY
 M24->inSERVO1READY
 
-M25->IO1Out01
-M26->IO1Out02
-M27->IO1Out03
-M28->IO1Out04
+M25->outAMP1CLEAR
+M26->outAMP2CLEAR
+M27->outAMP3CLEAR
+M28->outAMP4CLEAR
 M29->IO1Out05
 M30->IO1Out06
 M31->IO1Out07
@@ -114,5 +114,9 @@ M47->IO1Out23
 M48->IO1Out24
 
 
-
+// Amp enables (using old m var defs)
+M114->AMPENA1OUT
+M214->AMPENA2OUT
+M314->AMPENA3OUT
+M414->AMPENA4OUT
 

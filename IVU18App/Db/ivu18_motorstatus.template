@@ -8,6 +8,15 @@ record(bi, "$(SYS){$(DEV)-Ax:$(AXISNAME)}Sw:AmpEna-Sts") {
   field(ONAM, "Amp Enabled")
 }
 
+record(bo, "$(SYS){$(DEV)-Ax:$(AXISNAME)}Sw:AmpEna-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Amp Enable Output $(AXISNAME)")
+  field(SCAN, "Passive")
+  field(OUT, "@pmac.proto setIntVar(M$(AXIS)14) $(PORT)")
+  field(ZNAM, "Amp Disabled")
+  field(ONAM, "Amp Enabled")
+}
+
 record(bi, "$(SYS){$(DEV)-Ax:$(AXISNAME)}Sw:AmpFlt-Sts") {
   field(DTYP, "stream")
   field(DESC, "Amp Fault Status $(AXISNAME)")
@@ -17,3 +26,5 @@ record(bi, "$(SYS){$(DEV)-Ax:$(AXISNAME)}Sw:AmpFlt-Sts") {
   field(ONAM, "Amp Fault")
   field(OSV, "MAJOR")
 }
+
+

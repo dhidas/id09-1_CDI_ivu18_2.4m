@@ -710,7 +710,7 @@ record(bi, "$(SYS){$(DEV)-Ax:GU}Sw:ServoReady-Sts") {
   field(DTYP, "stream")
   field(DESC, "Servo Ready")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(M24) $(PORT)")
+  field(INP,  "@pmac.proto getIntVar(M24) $(PORT)")
   field(ZNAM, "NOT READY")
   field(ONAM, "READY")
 }
@@ -718,7 +718,7 @@ record(bi, "$(SYS){$(DEV)-Ax:GD}Sw:ServoReady-Sts") {
   field(DTYP, "stream")
   field(DESC, "Servo Ready")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(M23) $(PORT)")
+  field(INP,  "@pmac.proto getIntVar(M23) $(PORT)")
   field(ZNAM, "NOT READY")
   field(ONAM, "READY")
 }
@@ -726,7 +726,7 @@ record(bi, "$(SYS){$(DEV)-Ax:EU}Sw:ServoReady-Sts") {
   field(DTYP, "stream")
   field(DESC, "Servo Ready")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(M22) $(PORT)")
+  field(INP,  "@pmac.proto getIntVar(M22) $(PORT)")
   field(ZNAM, "NOT READY")
   field(ONAM, "READY")
 }
@@ -734,9 +734,56 @@ record(bi, "$(SYS){$(DEV)-Ax:ED}Sw:ServoReady-Sts") {
   field(DTYP, "stream")
   field(DESC, "Servo Ready")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(M21) $(PORT)")
+  field(INP,  "@pmac.proto getIntVar(M21) $(PORT)")
   field(ZNAM, "NOT READY")
   field(ONAM, "READY")
+}
+record(bi, "$(SYS){$(DEV)}Sw:KillDisable-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Kill switches disabled")
+  field(SCAN, "1 second")
+  field(INP,  "@pmac.proto getIntVar(M16) $(PORT)")
+  field(ZNAM, "Normal")
+  field(ONAM, "KILLs DISABLED")
+  field(OSV,  "MAJOR")
+}
+
+
+record(bo, "$(SYS){$(DEV)-Ax:GU}Sw:AmpClr-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Amp Clear")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(HIGH, "0.5")
+  field(SCAN, "Passive")
+  field(OUT, "@pmac.proto setIntVar(M25) $(PORT)")
+}
+record(bo, "$(SYS){$(DEV)-Ax:GD}Sw:AmpClr-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Amp Clear")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(HIGH, "0.5")
+  field(SCAN, "Passive")
+  field(OUT, "@pmac.proto setIntVar(M26) $(PORT)")
+}
+record(bo, "$(SYS){$(DEV)-Ax:EU}Sw:AmpClr-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Amp Clear")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(HIGH, "0.5")
+  field(SCAN, "Passive")
+  field(OUT, "@pmac.proto setIntVar(M27) $(PORT)")
+}
+record(bo, "$(SYS){$(DEV)-Ax:ED}Sw:AmpClr-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Amp Clear")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(HIGH, "0.5")
+  field(SCAN, "Passive")
+  field(OUT, "@pmac.proto setIntVar(M28) $(PORT)")
 }
 
 
@@ -898,19 +945,19 @@ record(ai, "$(SYS){$(DEV)}LEncPLCCounts") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder warnings")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1000) $(PORT)")
+  field(INP,  "@pmac.proto getIntVar(P1000) $(PORT)")
   field(ZNAM, "No error")
   field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
+  field(OSV,  "MAJOR")
 }
 record(bi, "$(SYS){$(DEV)-Ax:GU}LEnc-Sts") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder error status")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1018) $(PORT)")
+  field(INP,  "@pmac.proto getIntVar(P1018) $(PORT)")
   field(ZNAM, "No error")
   field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
+  field(OSV,  "MAJOR")
 }
 record(bi, "$(SYS){$(DEV)-Ax:GD}LEnc-Sts") {
   field(DTYP, "stream")
@@ -1114,4 +1161,72 @@ record(bo, "$(SYS){$(DEV)}StopAll-Req") {
   field(ZNAM, "Request Reset")
   field(ONAM, "Request StopAll")
   field(OUT, "@pmac.proto setIntVar(P901) $(PORT)")
+}
+
+
+record(ai, "$(SYS){$(DEV)}BrakeTimer") {
+  field(DTYP, "stream")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getVar(Sys.CdTimer[130]) $(PORT)")
+}
+
+
+record(ai, "$(SYS){$(DEV)}BrakeTimeout-RB") {
+  field(DTYP, "stream")
+  field(SCAN, "1 second")
+  field(EGU,  "s")
+  field(INP, "@pmac.proto getVar(P1301) $(PORT)")
+}
+
+
+record(ao, "$(SYS){$(DEV)}BrakeTimeout-SP") {
+  field(DTYP, "stream")
+  field(EGU,  "s")
+  field(DRVL, "1")
+  field(DRVH, "300")
+  field(PINI, "YES")
+  field(OUT, "@pmac.proto setVar(P1301) $(PORT)")
+  info(autosaveFields_pass0, "VAL")
+  info(autosaveFields, "VAL")
+}
+
+
+record(ao, "$(SYS){$(DEV)}AllBrakesDisengaged-SP") {
+  field(DTYP, "stream")
+  field(DESC, "disengage all brakes")
+  field(OUT,  "@pmac.proto setIntVar(P1500) $(PORT)")
+}
+record(bi, "$(SYS){$(DEV)}AllBrakesDisengaged-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "All Brakes Disabled sts")
+  field(SCAN, ".5 second")
+  field(INP, "@pmac.proto getIntVar(P1501) $(PORT)")
+  field(ZNAM, "Some brakes engaged")
+  field(ONAM, "Brakes disengaged")
+}
+record(ao, "$(SYS){$(DEV)}GapBrakesDisengaged-SP") {
+  field(DTYP, "stream")
+  field(DESC, "disengage gap brakes")
+  field(OUT,  "@pmac.proto setIntVar(P1502) $(PORT)")
+}
+record(bi, "$(SYS){$(DEV)}GapBrakesDisengaged-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Brakes Disabled sts")
+  field(SCAN, ".5 second")
+  field(INP, "@pmac.proto getIntVar(P1503) $(PORT)")
+  field(ZNAM, "Some brakes engaged")
+  field(ONAM, "Brakes disengaged")
+}
+record(ao, "$(SYS){$(DEV)}ElevBrakesDisengaged-SP") {
+  field(DTYP, "stream")
+  field(DESC, "disengage elev brakes")
+  field(OUT,  "@pmac.proto setIntVar(P1504) $(PORT)")
+}
+record(bi, "$(SYS){$(DEV)}ElevBrakesDisengaged-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Brakes Disabled sts")
+  field(SCAN, ".5 second")
+  field(INP, "@pmac.proto getIntVar(P1505) $(PORT)")
+  field(ZNAM, "Some brakes engaged")
+  field(ONAM, "Brakes disengaged")
 }

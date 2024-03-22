@@ -22,14 +22,15 @@ switch (P_MoveMode) {
         // Write setpoints to CS Q variables (same Qs are used by epics ppmac driver)
         Coord[2].Q[71] = P_GapSetpoint
         Coord[2].Q[72] = P_TaperSetpoint
-        //Coord[2].Q[73] = P_ElevSetpoint
-        //Coord[2].Q[74] = P_TiltSetpoint
 
         // Put motors in closed loop, Coordinate system 2, run program 2
         jog/1..2
         call AmpEnableDelay()
         start 2:2
 
+        // Reset Brake timer and move request
+        TIMER130BRAKES = P_BrakeTimeout
+        P_BrakeTimerArmed = 1
         P_GapMoveRequest = kFALSE
       }
 
@@ -43,8 +44,6 @@ switch (P_MoveMode) {
         // If brakes are engaged release them
 
         // Write setpoints to CS Q variables (same Qs are used by epics ppmac driver)
-        //Coord[2].Q[71] = P_GapSetpoint
-        //Coord[2].Q[72] = P_TaperSetpoint
         Coord[3].Q[73] = P_ElevSetpoint
         Coord[3].Q[74] = P_TiltSetpoint
 
@@ -53,12 +52,45 @@ switch (P_MoveMode) {
         call AmpEnableDelay()
         start 3:3
 
+        // Reset Brake timer and move request
+        TIMER130BRAKES = P_BrakeTimeout
+        P_BrakeTimerArmed = 1
         P_ElevMoveRequest = kFALSE
       }
 
     }
     break;
   case kMoveModeGapEleComb:
+
+    // Check we are not in stop-all, interlock, or gap opening flag states
+    if (P_StopAllStatus == kFALSE && P_InterlockState == kFALSE && P_OpenGapExecuting == kFALSE && P_HomingInProgress == kFALSE) {
+      if (P_GapElevMoveRequest == kTRUE) {
+        if (Coord[4].ProgRunning == kTRUE || Coord[4].ProgActive == kTRUE) {
+          Ldata.coord = 4
+          ABORT
+          call Timer(0.100)
+        }
+
+        // If brakes are engaged release them
+
+        // Write setpoints to CS Q variables (same Qs are used by epics ppmac driver)
+        Coord[4].Q[71] = P_GapSetpoint
+        Coord[4].Q[72] = P_TaperSetpoint
+        Coord[4].Q[73] = P_ElevSetpoint
+        Coord[4].Q[74] = P_TiltSetpoint
+
+        // Put motors in closed loop, Coordinate system 2, run program 2
+        jog/1..4
+        call AmpEnableDelay()
+        start 4:4
+
+        // Reset Brake timer and move request
+        TIMER130BRAKES = P_BrakeTimeout
+        P_BrakeTimerArmed = 1
+        P_GapElevMoveRequest = kFALSE
+      }
+
+    }
     break;
   default:
     // Ignore move requests when in any other mode

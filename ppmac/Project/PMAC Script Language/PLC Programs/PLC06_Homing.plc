@@ -79,9 +79,9 @@ if (pHomeFlag(lMotorHoming) == kTRUE || Motor[lMotorHoming].PlusLimit == kTRUE) 
   CMD"j-"
   call Timer(0.200)
 }
-TIMER060 = 3000
-while (pHomeFlag(lMotorHoming) + Motor[lMotorHoming].PlusLimit != 0 && TIMER060 > 0) {}
-if (TIMER060 <= 0) {
+TIMER060HOMING = 3000
+while (pHomeFlag(lMotorHoming) + Motor[lMotorHoming].PlusLimit != 0 && TIMER060HOMING > 0) {}
+if (TIMER060HOMING <= 0) {
   // Timeout in homing, report and abort
   P_HomingTimeout = kTRUE
   CMD"#*k"
@@ -95,10 +95,10 @@ call Timer(0.200)
 // Home the motor.  Use a timeout as a backup.
 Ldata.motor = lMotorHoming
 CMD"home"
-TIMER060 = 60000
-while (Motor[lMotorHoming].HomeInProgress == kFALSE && TIMER060 > 0) {}  // Wait for start
-while (Motor[lMotorHoming].DesVelZero == 0 && TIMER060 > 0) {}           // Wait for end
-if (TIMER060 <= 0) {
+TIMER060HOMING = 60000
+while (Motor[lMotorHoming].HomeInProgress == kFALSE && TIMER060HOMING > 0) {}  // Wait for start
+while (Motor[lMotorHoming].DesVelZero == 0 && TIMER060HOMING > 0) {}           // Wait for end
+if (TIMER060HOMING <= 0) {
   // Timeout in homing, report and abort
   P_HomingTimeout = kTRUE
   CMD"#*k"

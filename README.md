@@ -124,3 +124,4 @@ Encoder conversion table.  Linear absolute biss-c and rotary inputs defined here
 
 * Figure out evquivalent of "Motor[1].pEncCtrl=Acc24E3[0].Chan[0].InCtrl.a" for Acc84E (biss-c)
 * Check all parameter defaults in PLC01.  Reset for IVU from IVFS values.
+* Define somewhere P_InterlockState, P_OpenGapExecuting.

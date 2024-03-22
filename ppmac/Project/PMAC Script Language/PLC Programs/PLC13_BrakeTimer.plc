@@ -1,0 +1,31 @@
+// This PLC to set the brakes if the timer timeouts.  This may or may not
+// be synonymous with amp enable
+
+Open PLC 13
+
+local lCSRunning = 0
+
+// Check there is no program running or active
+lCSRunning += Coord[2].ProgRunning + Coord[3].ProgRunning + Coord[4].ProgRunning
+lCSRunning += Coord[2].ProgActive + Coord[3].ProgActive + Coord[4].ProgActive
+
+if (lCSRunning > 0) {
+  TIMER130BRAKES = P_BrakeTimeout * 1000
+}
+
+if (P_BrakeTimerArmed == kTRUE && lCSRunning == 0 && TIMER130BRAKES <= 0) {
+  CMD"#*k"
+
+  pAmpEnaOut(1) = kOFF
+  pAmpEnaOut(2) = kOFF
+  pAmpEnaOut(3) = kOFF
+  pAmpEnaOut(4) = kOFF
+
+  // unset amp enable here possibly?
+  P_BrakeTimerArmed = kFALSE
+}
+
+// Only check this every 200ms
+call Timer(0.200)
+
+Close

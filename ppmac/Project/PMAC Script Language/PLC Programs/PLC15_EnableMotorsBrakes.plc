@@ -1,0 +1,72 @@
+// PLC for allowing user to release all brakes (amp Ena) in prep for some
+// moves where it is faster to use the .VAL field of the epics driver directly
+// e.g. faster step scans.
+
+
+Open PLC 15
+
+// Check if all is requested
+if (P_AllBrakeReleaseReq == kTRUE) {
+  P_AllBrakeReleaseReq = kFALSE
+  P_GapBrakeReleaseReq = kTRUE
+  P_ElevBrakeReleaseReq = kTRUE
+}
+
+// Gap brakes
+if (P_GapBrakeReleaseReq == kTRUE) {
+  P_GapBrakeReleaseReq = kFALSE
+
+  if (P_StopAllStatus == kFALSE && P_InterlockState == kFALSE && P_OpenGapExecuting == kFALSE && P_HomingInProgress == kFALSE) {
+
+    pAmpEnaOut(1) = kON
+    pAmpEnaOut(2) = kON
+
+    call AmpEnableDelay()
+
+    jog/1..2
+
+    TIMER130BRAKES = P_BrakeTimeout * 1000
+    P_BrakeTimerArmed = kTRUE
+
+  }
+}
+
+// Elevation brakes
+if (P_ElevBrakeReleaseReq == kTRUE) {
+  P_ElevBrakeReleaseReq = kFALSE
+
+  if (P_StopAllStatus == kFALSE && P_InterlockState == kFALSE && P_OpenGapExecuting == kFALSE && P_HomingInProgress == kFALSE) {
+
+    pAmpEnaOut(3) = kON
+    pAmpEnaOut(4) = kON
+
+    call AmpEnableDelay()
+
+    jog/3..4
+
+    TIMER130BRAKES = P_BrakeTimeout * 1000
+    P_BrakeTimerArmed = kTRUE
+
+  }
+}
+
+
+// Check status of brakes
+if (pAmpEnaOut(1) == kON && pAmpEnaOut(2) == kON) {
+  P_GapBrakesReleased = kTRUE
+} else {
+  P_GapBrakesReleased = kFALSE
+}
+if (pAmpEnaOut(3) == kON && pAmpEnaOut(4) == kON) {
+  P_ElevBrakesReleased = kTRUE
+} else {
+  P_ElevBrakesReleased = kFALSE
+}
+if (P_GapBrakesReleased == kTRUE && P_ElevBrakesReleased == kTRUE) {
+  P_AllBrakesReleased = kTRUE
+} else {
+  P_AllBrakesReleased = kFALSE
+}
+
+
+Close

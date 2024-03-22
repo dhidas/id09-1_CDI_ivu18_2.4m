@@ -22,3 +22,15 @@ while (Sys.Time < EndTime) {
   // Just hang out and wait
 }
 close
+
+
+
+// This is an abort delay timer.
+//
+open subprog AbortDelay()
+
+local EndTime = Sys.Time + 0.200;
+while (Sys.Time < EndTime) {
+  // Just hang out and wait
+}
+close

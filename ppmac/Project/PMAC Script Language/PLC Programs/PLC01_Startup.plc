@@ -23,7 +23,8 @@ P_HomingAmpError = kFALSE
 P_HomingTimeout = kFALSE
 
 // PLC08
-
+P_InterlockState = kFALSE
+P_OpenGapExecuting = kFALSE
 
 // PLC09
 P_StopAllRequest  = 0
@@ -43,6 +44,17 @@ P_ElevError = kFALSE
 // PLC 10
 P_PLC10ResetCounts = kTRUE
 
+// PLC 13
+P_BrakeTimerArmed = kFALSE
+P_BrakeTimeout = 2
+
+// PLC 15 - Enable Motors and Brakes
+P_AllBrakesReleased  = kFALSE
+P_GapBrakesReleased  = kFALSE
+P_ElevBrakesReleased = kFALSE
+
+
+
 // Enable PLCs as needed
 enable PLC  2
 enable PLC  3
@@ -51,6 +63,8 @@ enable PLC  7
 enable PLC  8
 enable PLC  9
 enable PLC 10
+enable PLC 13
+enable PLC 15
 enable PLC 18
 
 disable PLC 1
