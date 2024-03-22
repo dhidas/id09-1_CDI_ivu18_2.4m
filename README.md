@@ -25,6 +25,15 @@ Position reporting for all coordinate systems is done in PLC18 to avoid duplicat
 
 
 ## Files and what is in them
+These files live somewhere in the following Project structure.
+```
+Project/PMAC Script Language/Global Includes
+Project/PMAC Script Language/Kinematic Routines
+Project/PMAC Script Language/Libraries
+Project/PMAC Script Language/Motion Programs
+Project/PMAC Script Language/PLC Programs
+```
+
 ### EncoderTable.pmh
 This is all of the encoder conversion table.  It is NOT configured elsewhere.
 
