@@ -3,6 +3,7 @@
    The aim is to open the gap with zero taper either to the limit switch or to
    kMAXGAP.  This is done so at the defined speed of kOpenGapSpeed.  EPICS should
    not have access to this program or associated coordinate system.
+*/
 
 Open PROG 5
 

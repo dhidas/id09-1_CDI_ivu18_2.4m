@@ -21,7 +21,7 @@ if (Motor[1].PlusLimit == kTRUE || Motor[2].PlusLimit == kTRUE) {
   lGapOpenLimitSwitchOr = kFALSE
 }
 
-if (P_OpenGapRequested == kTRUE and P_OpenGapExecuting != kTRUE) {
+if (P_OpenGapRequested == kTRUE && P_OpenGapExecuting != kTRUE) {
   CMD"&*a"
   P_OpenGapExecuting = kTRUE
   P_OpenGapExecutingTimeout = kFALSE
@@ -58,7 +58,7 @@ if (P_OpenGapExecuting == kTRUE) {
     // If motors are not enabled enable them
     if (Motor[1].ClosedLoop != kTRUE || Motor[2].ClosedLoop != kTRUE) {
       jog/1..2
-      AmpEnableDelay()
+      call AmpEnableDelay()
     }
 
     // If we are not open and the program is not running, run it
@@ -75,6 +75,6 @@ if (P_OpenGapExecuting == kTRUE) {
 }
 
 
-N444:
+//N444:
 
 Close
