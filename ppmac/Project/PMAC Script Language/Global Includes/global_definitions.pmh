@@ -94,6 +94,10 @@
 #define P_MoveMode          P300
 #define P_MoveModeReq       P301
 
+// PLC 04 - Open Gap
+#define P_OpenGapRequested    P400
+#define P_OpenGapExecuting    P401
+
 // PLC 06 - Homing
 #define P_HomeRequest         P600
 #define P_HomingInProgress    P601
@@ -104,7 +108,6 @@
 
 // PLC 08 - Move Request
 #define P_InterlockState      P801
-#define P_OpenGapExecuting    P802
 //#define P_MoveAborted         P804
 #define P_GapSetpoint         P805
 #define P_ElevSetpoint        P806
