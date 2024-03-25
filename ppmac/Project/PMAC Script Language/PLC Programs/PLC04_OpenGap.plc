@@ -1,0 +1,12 @@
+/*
+  This PLC is to open the gap all the way to kMAXGAP with zero taper
+  if a signal is detected.
+*/
+
+
+Open PLC 4
+
+if (P_OpenGapRequested == kTRUE)
+
+
+Close
