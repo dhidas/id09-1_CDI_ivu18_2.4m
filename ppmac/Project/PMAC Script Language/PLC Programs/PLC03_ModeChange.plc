@@ -14,6 +14,7 @@ if (P_MovementInProgress == kFALSE && P_OpenGapExecuting == kFALSE && P_MoveMode
   CMD"&2 #1->0 #2->0 #3->0 #4->0"   // Remove motors from all CS
   CMD"&3 #1->0 #2->0 #3->0 #4->0"
   CMD"&4 #1->0 #2->0 #3->0 #4->0"
+  CMD"&5 #1->0 #2->0 #3->0 #4->0"
 
   Motor[1].MasterCtrl=0             // Cancel all motor following
   Motor[2].MasterCtrl=0
@@ -43,6 +44,13 @@ if (P_MovementInProgress == kFALSE && P_OpenGapExecuting == kFALSE && P_MoveMode
       Motor[3].MasterCtrl=1
       break;
     case kMoveModeIndividual:
+      CMD"#*K"
+      break;
+    case kMoveModeOpenGapExecuting:
+      // This mode is only used by the open gap PLC.
+      // It is also configured there and probably should not be called here at all.
+      CMD"&5 #1->I #2->I"
+      CMD"&3 #3->I #4->I"
       CMD"#*K"
       break;
     case kMoveModeFlyScan:

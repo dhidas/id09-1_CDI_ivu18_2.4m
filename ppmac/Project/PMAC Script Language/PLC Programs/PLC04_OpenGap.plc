@@ -1,12 +1,80 @@
 /*
-  This PLC is to open the gap all the way to kMAXGAP with zero taper
-  if a signal is detected.
+  This PLC is to open the gap all the way to a gap limit switch with zero taper
+  if a signal is detected.  The OpenGapRequest will not self clear and must be
+  cleared elsewhere.  Typically this would be a hardware signal, but is currently
+  implemented as a p-variable until it is decided what to do.
 */
 
 
 Open PLC 4
 
-if (P_OpenGapRequested == kTRUE)
+local lGapOpenLimitSwitchOr
+local M1Pos
+local M2Pos
 
+M1Pos = Motor[1].ActPos - Motor[1].HomePos
+M2Pos = Motor[2].ActPos - Motor[2].HomePos
+
+if (Motor[1].PlusLimit == kTRUE || Motor[2].PlusLimit == kTRUE) {
+  lGapOpenLimitSwitchOr = kTRUE
+} else {
+  lGapOpenLimitSwitchOr = kFALSE
+}
+
+if (P_OpenGapRequested == kTRUE and P_OpenGapExecuting != kTRUE) {
+  CMD"&*a"
+  P_OpenGapExecuting = kTRUE
+  P_OpenGapExecutingTimeout = kFALSE
+  TIMER040OPENGAP = kGapOpeningTimeout
+  call AbortDelay()
+
+  // Must put this in the correct mode (typically controlled by another PLC
+  // but now we must block that PLC and do it here)
+
+  // Kill all motors
+  CMD"#*K"
+  CMD"&2 #1->0 #2->0 #3->0 #4->0"   // Remove motors from all CS
+  CMD"&3 #1->0 #2->0 #3->0 #4->0"
+  CMD"&4 #1->0 #2->0 #3->0 #4->0"
+  CMD"&5 #1->0 #2->0 #3->0 #4->0"
+  Motor[1].MasterCtrl=0             // Cancel all motor following
+  Motor[2].MasterCtrl=0
+  Motor[3].MasterCtrl=0
+  Motor[4].MasterCtrl=0
+
+  // Manually set the correct mode
+  CMD"&5 #1->I #2->I"
+  CMD"&3 #3->I #4->I"
+  CMD"#*K"
+
+  // Record the correct mode for consistency
+  P_MoveMode = kMoveModeOpenGapExecuting
+
+}
+
+if (P_OpenGapExecuting == kTRUE) {
+  if (lGapOpenLimitSwitchOr == kFALSE || M1Pos < kMAXGAP || M2Pos < kMAXGAP) {
+
+    // If motors are not enabled enable them
+    if (Motor[1].ClosedLoop != kTRUE || Motor[2].ClosedLoop != kTRUE) {
+      jog/1..2
+      AmpEnableDelay()
+    }
+
+    // If we are not open and the program is not running, run it
+    if (Coord[5].ProgRunning == kFALSE) {
+      start 5:5
+      call Timer(0.200)
+    }
+
+    // If we go beyond the timeout flag it here
+    if (TIMER040OPENGAP <= 0) {
+      P_OpenGapExecutingTimeout = kTRUE
+    }
+  }
+}
+
+
+N444:
 
 Close

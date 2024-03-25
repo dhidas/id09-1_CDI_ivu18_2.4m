@@ -1,0 +1,21 @@
+/*
+   This program is only to be used in the case that an open gap signal is detected.
+   The aim is to open the gap with zero taper either to the limit switch or to
+   kMAXGAP.  This is done so at the defined speed of kOpenGapSpeed.  EPICS should
+   not have access to this program or associated coordinate system.
+
+Open PROG 5
+
+LINEAR
+ABS
+
+TA300
+TS100
+
+FRAX(A,B)
+F(kOpenGapSpeed)
+
+A(kMAXGAP + 50)B(0)
+dwell 0
+
+close

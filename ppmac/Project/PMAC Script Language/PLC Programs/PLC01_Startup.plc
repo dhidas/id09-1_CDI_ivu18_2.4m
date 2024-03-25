@@ -14,6 +14,11 @@ Sys.ZeroVelSetPoint = 10   // For using Motor[x].DesVelZero
 P_MoveMode = -1
 P_MoveModeReq = kMoveModeGapEleSep
 
+// PLC04
+P_OpenGapRequested = kFALSE
+P_OpenGapExecuting = kFALSE
+P_OpenGapExecutingTimeout = kFALSE
+
 // PLC06
 P_HomingInProgress = kFALSE
 P_HomeRequest = 0
@@ -58,6 +63,7 @@ P_ElevBrakesReleased = kFALSE
 // Enable PLCs as needed
 enable PLC  2
 enable PLC  3
+enable PLC  4
 enable PLC  6
 enable PLC  7
 enable PLC  8

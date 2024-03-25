@@ -32,15 +32,17 @@
 
 // Absolute hard-coded limits in case all else fails
 // kBUFFERUM is used to buffer soft-limit interlocks
-//#define kMAXGAP   40200
-//#define kMINGAP    4530
-//#define kMINELEV  -5000
-//#define kMAXELEV   5000
-//#define kMINTILT   -500
-//#define kMAXTILT    500
-//#define kMINTAPER  -500
-//#define kMAXTAPER   500
-//#define kBUFFERUM    50
+#define kOpenGapSpeed         500
+#define kGapOpeningTimeout  60000
+//#define kMAXGAP             40200
+//#define kMINGAP              4530
+//#define kMINELEV            -5000
+//#define kMAXELEV             5000
+//#define kMINTILT             -500
+//#define kMAXTILT              500
+//#define kMINTAPER            -500
+//#define kMAXTAPER             500
+//#define kBUFFERUM              50
 #define kMAXGAP   10000
 #define kMINGAP  -10000
 #define kMINELEV  -5000
@@ -61,12 +63,13 @@
 //     US following DS mode (for both gap and elev)
 //     Fully individual mode
 //
-#define kMoveModeGapEleSep      0
-#define kMoveModeGapEleComb     1
-#define kMoveModeFollowingUS    2
-#define kMoveModeFollowingDS    3
-#define kMoveModeIndividual     4
-#define kMoveModeFlyScan        5
+#define kMoveModeGapEleSep          0
+#define kMoveModeGapEleComb         1
+#define kMoveModeFollowingUS        2
+#define kMoveModeFollowingDS        3
+#define kMoveModeIndividual         4
+#define kMoveModeOpenGapExecuting   5
+#define kMoveModeFlyScan            6
 
 
 // Countdown timer definitions are of the form TIMERXXY where XX is
@@ -79,8 +82,9 @@
 // Timers.  Be careful with use of these as some are used in multiple PLCs
 // but considered mostly "owned" by the PLC number in the timer number,
 // e.g. TIMER060 is the 0th timer in PLC 06 -> 060
-#define TIMER060HOMING Sys.CdTimer[60]
-#define TIMER130BRAKES Sys.CdTimer[130]
+#define TIMER040OPENGAP   Sys.CdTimer[40]
+#define TIMER060HOMING    Sys.CdTimer[60]
+#define TIMER130BRAKES    Sys.CdTimer[130]
 
 
 
@@ -95,8 +99,9 @@
 #define P_MoveModeReq       P301
 
 // PLC 04 - Open Gap
-#define P_OpenGapRequested    P400
-#define P_OpenGapExecuting    P401
+#define P_OpenGapRequested        P400
+#define P_OpenGapExecuting        P401
+#define P_OpenGapExecutingTimeout P402
 
 // PLC 06 - Homing
 #define P_HomeRequest         P600
