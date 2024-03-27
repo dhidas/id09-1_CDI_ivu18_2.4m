@@ -1,6 +1,7 @@
 # id09-1_CDI_ivu18_2.4m
 
-## <span style="color:red">Disclaimer</span>
+## Disclaimer
+This code is an incomplete example which is largely untested.  There is no guarantee of functionality or usability.  It is only meant as an example.  Use at your own risk.
 
 ## Motor Setup
 Motors are configured the following way:
@@ -77,6 +78,9 @@ This PLC monitors the coordinate systems for a running (Coord[x].ProgRunning) an
 
 ### PLC03 - Mode Change
 This PLC controls the "mode" of the IVU.  In the typical mode Gap + Taper control will be separate from Elevation + Tilt control.  Other modes exist, including all combined and following modes where for example the downstream motors will follow the upstream motors (useful for homing for example).  One is not allowed to change modes if the emergency open gap is executing or if there is a movement in progress.  In these cases the request is ignored and one will need to issue another request once the correct conditions have been met.
+
+### PLC04 - Emergency Open Gap
+This PLC is generally meant to be used with a hardware input signal, but for now is implemented looking at a P-variable.  This PLC will check the signal, if it is detected it will stop all motion, change the move mode to kMoveModeOpenGapExecuting and attempt to open the gap with zero taper to either kMAXGAP (plus some offset to go past this) or to one of the limit switches.  Once this action is triggered the P_OpenGapExecuting flag is set to true which should prevent any other motion from the move request PLC.  Once P_OpenGapExecuting is set to true it must be reset manually or by a controller restart.  At the moment there is no override for this functionality.
 
 ### PLC07 - Beacon
 This PLC monitors the AmpEnable status for each motor and trusts the CS and motor moving status calculated in PLC02.  Fault status are checked.  The beacon will illuminate in the following way:
