@@ -372,12 +372,14 @@ record(mbbi, "$(SYS){$(DEV)}GirderMode-RB") {
   field(FRVL, "4")
   field(FRVL, "4")
   field(FVVL, "5")
+  field(SXVL, "5")
   field(ZRST, "Gap Elevation Separate")
   field(ONST, "All Together")
   field(TWST, "Following US")
   field(THST, "Following DS")
   field(FRST, "Individual")
   field(FVST, "FlyScan")
+  field(SXST, "Open Gap Executing")
 }
 
 record(mbbo, "$(SYS){$(DEV)}GirderMode-SP") {
@@ -895,6 +897,15 @@ record(bi, "$(SYS){$(DEV)}Sw:DEStop-Sts") {
   field(ONAM, "E-Stop active")
   field(OSV, "MAJOR")
 }
+record(calc, "$(SYS){$(DEV)}Sw:EStop-Any") {
+  field(DESC, "Or of all E-Stops")
+  field(INPA, "$(SYS){$(DEV)}Sw:UEStop-Sts CP")
+  field(INPB, "$(SYS){$(DEV)}Sw:DEStop-Sts CP")
+  field(CALC, "A || B")
+}
+
+
+
 record(bi, "$(SYS){$(DEV)-CS2:Taper}Sw:PLim-Sts") {
   field(DTYP, "stream")
   field(DESC, "Taper Positive Limit Switch")
@@ -946,9 +957,6 @@ record(ai, "$(SYS){$(DEV)}LEncPLCCounts") {
   field(DESC, "Linear encoder warnings")
   field(SCAN, "1 second")
   field(INP,  "@pmac.proto getIntVar(P1000) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV,  "MAJOR")
 }
 record(bi, "$(SYS){$(DEV)-Ax:GU}LEnc-Sts") {
   field(DTYP, "stream")
@@ -1000,54 +1008,36 @@ record(ai, "$(SYS){$(DEV)-Ax:GU}LEnc-Warnings") {
   field(DESC, "Linear encoder warnings")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1002) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GD}LEnc-Warnings") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder warnings")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1003) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:EU}LEnc-Warnings") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder warnings")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1004) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:ED}LEnc-Warnings") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder warnings")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1005) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GU}LEnc-Errors") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder Errors")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1006) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GD}LEnc-Errors") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder Errors")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1007) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:EU}LEnc-Errors") {
   field(DTYP, "stream")
@@ -1063,81 +1053,54 @@ record(ai, "$(SYS){$(DEV)-Ax:ED}LEnc-Errors") {
   field(DESC, "Linear encoder Errors")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1009) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GU}LEnc-CRCErrors") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder CRCErrors")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1010) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GD}LEnc-CRCErrors") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder CRCErrors")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1011) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:EU}LEnc-CRCErrors") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder CRCErrors")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1012) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:ED}LEnc-CRCErrors") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder CRCErrors")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1013) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GU}LEnc-Timeouts") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder Timeouts")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1014) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GD}LEnc-Timeouts") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder Timeouts")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1015) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:EU}LEnc-Timeouts") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder Timeouts")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1016) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:ED}LEnc-Timeouts") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder Timeouts")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1017) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 
 
@@ -1230,3 +1193,41 @@ record(bi, "$(SYS){$(DEV)}ElevBrakesDisengaged-Sts") {
   field(ZNAM, "Some brakes engaged")
   field(ONAM, "Brakes disengaged")
 }
+
+
+
+
+
+record(bo, "$(SYS){$(DEV)}OpenGap-Request") {
+  field(DTYP, "stream")
+  field(VAL, "1")
+  field(DESC, "Emergency open gap")
+  field(PINI, "NO")
+  field(OUT, "@pmac.proto setIntVar(P400) $(PORT)")
+}
+record(bi, "$(SYS){$(DEV)}OpenGapExecuting-RB") {
+  field(DTYP, "stream")
+  field(DESC, "Open Gap Executing")
+  field(SCAN, "2 second")
+  field(INP, "@pmac.proto getIntVar(P401) $(PORT)")
+  field(ZNAM, "Normal")
+  field(ONAM, "Open Executing")
+  field(OSV, "MAJOR")
+}
+record(bo, "$(SYS){$(DEV)}OpenGapExecuting-Reset") {
+  field(DTYP, "stream")
+  field(VAL, "0")
+  field(DESC, "Reset open gap")
+  field(OUT, "@pmac.proto setIntVar(P401) $(PORT)")
+}
+record(bi, "$(SYS){$(DEV)}OpenGapTimeout-RB") {
+  field(DTYP, "stream")
+  field(DESC, "Open Gap Executing Timeout")
+  field(SCAN, "5 second")
+  field(INP, "@pmac.proto getIntVar(P402) $(PORT)")
+  field(ZNAM, "No timeout")
+  field(ONAM, "Gap Open Timeout")
+  field(OSV, "MAJOR")
+}
+
+

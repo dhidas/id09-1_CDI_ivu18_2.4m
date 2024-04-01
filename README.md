@@ -82,6 +82,11 @@ This PLC controls the "mode" of the IVU.  In the typical mode Gap + Taper contro
 ### PLC04 - Emergency Open Gap
 This PLC is generally meant to be used with a hardware input signal, but for now is implemented looking at a P-variable.  This PLC will check the signal, if it is detected it will stop all motion, change the move mode to kMoveModeOpenGapExecuting and attempt to open the gap with zero taper to either kMAXGAP (plus some offset to go past this) or to one of the limit switches.  Once this action is triggered the P_OpenGapExecuting flag is set to true which should prevent any other motion from the move request PLC.  Once P_OpenGapExecuting is set to true it must be reset manually or by a controller restart.  At the moment there is no override for this functionality.
 
+### PL06 - Homing
+This PLC will home 1 axis at a time.  The corresponding axis will be set to following mode and follow this axis.  In this mode, the home position as read on the linear encoder is read at the position of the home switch.  Once this is found, the offset values for the encoders must be set by hand in the PPMAC code (e.g. "#define kM1OFFSET 123456" in global_definitions.pmh).
+
+During the homing process P_HomingInProgress is set to true and no other motion through PLC08 should be allowed.
+
 ### PLC07 - Beacon
 This PLC monitors the AmpEnable status for each motor and trusts the CS and motor moving status calculated in PLC02.  Fault status are checked.  The beacon will illuminate in the following way:
 * green - Motors and Drives Enabled
@@ -131,3 +136,9 @@ Encoder conversion table.  Linear absolute biss-c and rotary inputs defined here
 * Figure out evquivalent of "Motor[1].pEncCtrl=Acc24E3[0].Chan[0].InCtrl.a" for Acc84E (biss-c)
 * Check all parameter defaults in PLC01.  Reset for IVU from IVFS values.
 * Define somewhere P_InterlockState, P_OpenGapExecuting.
+* Consider using SDIS on the motor records exposed to beamline to avoid them setting the .VAL field of a coordinate system, which may bypass the open PLC.
+* Check amp enables eg:
+```
+Motor[1].pAmpEnable=Acc24E3[0].Chan[0].OutCtrl.a
+Motor[1].pAmpFault=Acc24E3[0].Chan[0].OutCtrl.a
+```

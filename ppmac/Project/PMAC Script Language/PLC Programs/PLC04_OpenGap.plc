@@ -22,6 +22,10 @@ if (Motor[1].PlusLimit == kTRUE || Motor[2].PlusLimit == kTRUE) {
 }
 
 if (P_OpenGapRequested == kTRUE && P_OpenGapExecuting != kTRUE) {
+  // Reset software request (we latch with P_OpenGapExecuting)
+  P_OpenGapRequested = kFALSE
+
+  // Abort all motion, set the P_OpenGapExecuting and reset timeout/timer
   CMD"&*a"
   P_OpenGapExecuting = kTRUE
   P_OpenGapExecutingTimeout = kFALSE
@@ -75,6 +79,10 @@ if (P_OpenGapExecuting == kTRUE) {
 }
 
 
-//N444:
+// Reset timeout if needed (probably someone issued a reset)
+if (P_OpenGapExecutingTimeout == kTRUE && P_OpenGapExecuting == kFALSE) {
+  P_OpenGapExecutingTimeout = kFALSE
+}
+
 
 Close

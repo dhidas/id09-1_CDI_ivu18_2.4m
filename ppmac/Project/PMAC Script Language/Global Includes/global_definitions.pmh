@@ -68,8 +68,8 @@
 #define kMoveModeFollowingUS        2
 #define kMoveModeFollowingDS        3
 #define kMoveModeIndividual         4
-#define kMoveModeOpenGapExecuting   5
-#define kMoveModeFlyScan            6
+#define kMoveModeFlyScan            5
+#define kMoveModeOpenGapExecuting   6
 
 
 // Countdown timer definitions are of the form TIMERXXY where XX is
