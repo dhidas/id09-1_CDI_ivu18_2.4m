@@ -20,19 +20,20 @@ EncTable[0].type=1
 // Motor #1 Linear Encoder
 EncTable[1].CosBias=0
 EncTable[1].CoverSerror=0
-EncTable[1].index1=32-26
-EncTable[1].index2=8
+EncTable[1].index1=6
+EncTable[1].index2=0
 EncTable[1].index3=0
 EncTable[1].index4=0
 EncTable[1].index5=0
 EncTable[1].index6=0
 EncTable[1].MaxDelta=0
 EncTable[1].pEnc=Acc84E[0].chan[0].SerialEncDataA.a
-EncTable[1].pEnc1=Sys.pushm
-EncTable[1].ScaleFactor=1/exp2(32-26)
+EncTable[1].pEnc1=Acc84E[0].chan[0].SerialEncDataB.a
+//EncTable[1].pEnc1=Sys.pushm
+EncTable[1].ScaleFactor=1/exp2(6)
 EncTable[1].SinBias=0
 EncTable[1].TanHalfPhi=0
-EncTable[1].type=1
+EncTable[1].type=2
 
 // Motor #2 Linear Encoder
 EncTable[2].CosBias=0

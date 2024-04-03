@@ -187,63 +187,39 @@
 #define P_ElevBrakesReleased  P1505
 
 
+// PLC 10
+// Warning and error bits may be swapped in manual, need to check.
+// High 1/kTRUE means error (biss inverted here)
+#define LENC1WARNING    INT(1 - ((Acc84E[0].Chan[0].SerialEncDataB >> 16) & $1))
+#define LENC2WARNING    INT(1 - ((Acc84E[0].Chan[1].SerialEncDataB >> 16) & $1))
+#define LENC3WARNING    INT(1 - ((Acc84E[0].Chan[2].SerialEncDataB >> 16) & $1))
+#define LENC4WARNING    INT(1 - ((Acc84E[0].Chan[3].SerialEncDataB >> 16) & $1))
+#define LENC1ERROR      INT(1 - ((Acc84E[0].Chan[0].SerialEncDataB >> 17) & $1))
+#define LENC2ERROR      INT(1 - ((Acc84E[0].Chan[1].SerialEncDataB >> 17) & $1))
+#define LENC3ERROR      INT(1 - ((Acc84E[0].Chan[2].SerialEncDataB >> 17) & $1))
+#define LENC4ERROR      INT(1 - ((Acc84E[0].Chan[3].SerialEncDataB >> 17) & $1))
+#define LENC1TIMEOUT    INT((Acc84E[0].Chan[0].SerialEncDataB >> 23) & $1)
+#define LENC2TIMEOUT    INT((Acc84E[0].Chan[1].SerialEncDataB >> 23) & $1)
+#define LENC3TIMEOUT    INT((Acc84E[0].Chan[2].SerialEncDataB >> 23) & $1)
+#define LENC4TIMEOUT    INT((Acc84E[0].Chan[3].SerialEncDataB >> 23) & $1)
+#define LENC1CRCERROR   INT((Acc84E[0].Chan[0].SerialEncDataB >> 22) & $1)
+#define LENC2CRCERROR   INT((Acc84E[0].Chan[1].SerialEncDataB >> 22) & $1)
+#define LENC3CRCERROR   INT((Acc84E[0].Chan[2].SerialEncDataB >> 22) & $1)
+#define LENC4CRCERROR   INT((Acc84E[0].Chan[3].SerialEncDataB >> 22) & $1)
 
 
-
-
-// use user for mapping of status bits from encoder data
-u.user:$3000 = Acc84E[0].Chan[0].SerialEncDataB
-u.user:$3004 = Acc84E[0].Chan[1].SerialEncDataB
-u.user:$3008 = Acc84E[0].Chan[2].SerialEncDataB
-u.user:$300C = Acc84E[0].Chan[3].SerialEncDataB
-u.user:$3010 = Gate3[0].Chan[0].HomeFlag
-u.user:$3014 = Gate3[0].Chan[1].HomeFlag
-u.user:$3018 = Gate3[0].Chan[2].HomeFlag
-u.user:$301C = Gate3[0].Chan[3].HomeFlag
-u.user:$3020 = Acc24E3[0].Chan[0].OutCtrl.a
-u.user:$3024 = Acc24E3[0].Chan[1].OutCtrl.a
-u.user:$3028 = Acc24E3[0].Chan[2].OutCtrl.a
-u.user:$302C = Acc24E3[0].Chan[3].OutCtrl.a
-
-ptr pLEncTimeout(5)->*
-pLEncTimeout(1)->u.user:$3000.23.1
-pLEncTimeout(2)->u.user:$3004.23.1
-pLEncTimeout(3)->u.user:$3008.23.1
-pLEncTimeout(4)->u.user:$300C.23.1
-
-ptr pLEncCRCError(5)->*
-pLEncCRCError(1)->u.user:$3000.22.1
-pLEncCRCError(2)->u.user:$3004.22.1
-pLEncCRCError(3)->u.user:$3008.22.1
-pLEncCRCError(4)->u.user:$300C.22.1
-
-ptr pLEncError(5)->*
-pLEncError(1)->u.user:$3000.17.1
-pLEncError(2)->u.user:$3004.17.1
-pLEncError(3)->u.user:$3008.17.1
-pLEncError(4)->u.user:$300C.17.1
-
-ptr pLEncWarning(5)->*
-pLEncWarning(1)->u.user:$3000.16.1
-pLEncWarning(2)->u.user:$3004.16.1
-pLEncWarning(3)->u.user:$3008.16.1
-pLEncWarning(4)->u.user:$300C.16.1
+ptr pAmpEnaOut(5)->*
+pAmpEnaOut(1)->Gate3[0].Chan[0].AmpEna
+pAmpEnaOut(2)->Gate3[0].Chan[1].AmpEna
+pAmpEnaOut(3)->Gate3[0].Chan[2].AmpEna
+pAmpEnaOut(4)->Gate3[0].Chan[3].AmpEna
 
 
 ptr pHomeFlag(5)->*
-pHomeFlag(1)->u.user:$3010.8.1
-pHomeFlag(2)->u.user:$3014.8.1
-pHomeFlag(3)->u.user:$3018.8.1
-pHomeFlag(4)->u.user:$301C.8.1
+pHomeFlag(1)->Gate3[0].Chan[0].HomeFlag
+pHomeFlag(2)->Gate3[0].Chan[1].HomeFlag
+pHomeFlag(3)->Gate3[0].Chan[2].HomeFlag
+pHomeFlag(4)->Gate3[0].Chan[3].HomeFlag
 
-ptr pAmpEnaOut(5)->*
-#define AMPENA1OUT u.user:$3020.8.1
-#define AMPENA2OUT u.user:$3024.8.1
-#define AMPENA3OUT u.user:$3028.8.1
-#define AMPENA4OUT u.user:$302C.8.1
-pAmpEnaOut(1)->AMPENA1OUT
-pAmpEnaOut(2)->AMPENA2OUT
-pAmpEnaOut(3)->AMPENA3OUT
-pAmpEnaOut(4)->AMPENA4OUT
 
 

@@ -39,3 +39,8 @@ Coord[4].Q[84] = Coord[2].Q[84]
 close
 
 
+Open PLC 19
+
+P1900 = Motor[9].ActPos - Motor[9].HomePos
+
+Close

@@ -32,32 +32,32 @@ if (P_PLC10ResetCounts == kTRUE) {
 }
 
 // Add to all counts (for seeing in epics)
-P_Enc1Warnings        += (1 - pLEncWarning(1))
-P_Enc2Warnings        += (1 - pLEncWarning(2))
-P_Enc3Warnings        += (1 - pLEncWarning(3))
-P_Enc4Warnings        += (1 - pLEncWarning(4))
-P_Enc1Errors          += (1 - pLEncError(1))
-P_Enc2Errors          += (1 - pLEncError(2))
-P_Enc3Errors          += (1 - pLEncError(3))
-P_Enc4Errors          += (1 - pLEncError(4))
-P_Enc1CRCErrors       += pLEncCRCError(1)
-P_Enc2CRCErrors       += pLEncCRCError(2)
-P_Enc3CRCErrors       += pLEncCRCError(3)
-P_Enc4CRCErrors       += pLEncCRCError(4)
-P_Enc1Timeouts        += pLEncTimeout(1)
-P_Enc2Timeouts        += pLEncTimeout(2)
-P_Enc3Timeouts        += pLEncTimeout(3)
-P_Enc4Timeouts        += pLEncTimeout(4)
+P_Enc1Warnings        += LENC1WARNING
+P_Enc2Warnings        += LENC2WARNING
+P_Enc3Warnings        += LENC3WARNING
+P_Enc4Warnings        += LENC4WARNING
+P_Enc1Errors          += LENC1ERROR
+P_Enc2Errors          += LENC2ERROR
+P_Enc3Errors          += LENC3ERROR
+P_Enc4Errors          += LENC4ERROR
+P_Enc1CRCErrors       += LENC1CRCERROR
+P_Enc2CRCErrors       += LENC2CRCERROR
+P_Enc3CRCErrors       += LENC3CRCERROR
+P_Enc4CRCErrors       += LENC4CRCERROR
+P_Enc1Timeouts        += LENC1TIMEOUT
+P_Enc2Timeouts        += LENC2TIMEOUT
+P_Enc3Timeouts        += LENC3TIMEOUT
+P_Enc4Timeouts        += LENC4TIMEOUT
 P_PLC10Count          += 1
 
 
 
 // Sums of any errors for each LEncoder (lazy so I use 5 for 1-4 indexing)
 local lErrorSums(5)
-lErrorSums(1) = pLEncTimeout(1) + pLEncCRCError(1) + (1 - pLEncError(1))
-lErrorSums(2) = pLEncTimeout(2) + pLEncCRCError(2) + (1 - pLEncError(2))
-lErrorSums(3) = pLEncTimeout(3) + pLEncCRCError(3) + (1 - pLEncError(3))
-lErrorSums(4) = pLEncTimeout(4) + pLEncCRCError(4) + (1 - pLEncError(4))
+lErrorSums(1) = LENC1TIMEOUT + LENC1CRCERROR + LENC1ERROR
+lErrorSums(2) = LENC2TIMEOUT + LENC2CRCERROR + LENC2ERROR
+lErrorSums(3) = LENC3TIMEOUT + LENC3CRCERROR + LENC3ERROR
+lErrorSums(4) = LENC4TIMEOUT + LENC4CRCERROR + LENC4ERROR
 
 
 if (P_Enc1ErrorLatch == kTRUE) {
