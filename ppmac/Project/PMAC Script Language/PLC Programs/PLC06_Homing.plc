@@ -94,6 +94,7 @@ call Timer(0.200)
 
 // Home the motor.  Use a timeout as a backup.
 Ldata.motor = lMotorHoming
+Motor[lMotorHoming].CapturePos = kTRUE
 CMD"home"
 TIMER060HOMING = 60000
 while (Motor[lMotorHoming].HomeInProgress == kFALSE && TIMER060HOMING > 0) {}  // Wait for start

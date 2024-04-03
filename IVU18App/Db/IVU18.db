@@ -116,6 +116,30 @@ record(bi, "$(SYS){$(DEV)-Ax:ED}Sw:HomeFlag-Sts") {
   field(ZNAM, "HomeSw inactive")
   field(ONAM, "HomeSw active")
 }
+record(ai, "$(SYS){$(DEV)-Ax:GU}HomeCapturedPos") {
+  field(DTYP, "stream")
+  field(DESC, "Home Switch Position")
+  field(SCAN, "5 second")
+  field(INP, "@pmac.proto getVar(Motor[1].CapturedPos) $(PORT)")
+}
+record(ai, "$(SYS){$(DEV)-Ax:GD}HomeCapturedPos") {
+  field(DTYP, "stream")
+  field(DESC, "Home Switch Position")
+  field(SCAN, "5 second")
+  field(INP, "@pmac.proto getVar(Motor[2].CapturedPos) $(PORT)")
+}
+record(ai, "$(SYS){$(DEV)-Ax:EU}HomeCapturedPos") {
+  field(DTYP, "stream")
+  field(DESC, "Home Switch Position")
+  field(SCAN, "5 second")
+  field(INP, "@pmac.proto getVar(Motor[3].CapturedPos) $(PORT)")
+}
+record(ai, "$(SYS){$(DEV)-Ax:ED}HomeCapturedPos") {
+  field(DTYP, "stream")
+  field(DESC, "Home Switch Position")
+  field(SCAN, "5 second")
+  field(INP, "@pmac.proto getVar(Motor[4].CapturedPos) $(PORT)")
+}
 
 record(bi, "$(SYS){$(DEV)-Ax:GU}Sw:PLim-Sts") {
   field(DTYP, "stream")
