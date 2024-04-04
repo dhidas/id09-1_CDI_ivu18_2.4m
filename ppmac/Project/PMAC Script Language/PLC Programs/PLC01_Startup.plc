@@ -1,10 +1,6 @@
 Open PLC 1
 
 
-// Fake positions for test setup
-CMD"#1..4hmz"
-
-
 // Startup P-Variable settings
 
 // PLC02
@@ -35,14 +31,14 @@ P_OpenGapExecuting = kFALSE
 P_StopAllRequest  = 0
 P_StopAllStatus   = 0
 // These are only default settings and will be overwritten by EPICS auto-save
-P_MinGap          =  -10000 // 4500
-P_MaxGap          =   10000 //25000
-P_MinTaper        =  -1000 //  -50
-P_MaxTaper        =   1000 // 500
-P_MinElev         =  -5000 // -500
-P_MaxElev         =   5000 //  500
-P_MinTilt         =  -1000 //-500
-P_MaxTilt         =   1000 // 500
+P_MinGap          =  4500
+P_MaxGap          = 25000
+P_MinTaper        =   -50
+P_MaxTaper        =   500
+P_MinElev         =  -500
+P_MaxElev         =   500
+P_MinTilt         =  -500
+P_MaxTilt         =   500
 P_GapError = kFALSE
 P_ElevError = kFALSE
 
