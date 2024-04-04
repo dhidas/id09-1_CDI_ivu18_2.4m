@@ -49,6 +49,8 @@ This is all of the encoder conversion table.  It is NOT configured elsewhere.  C
 ### Motor_[1-4].pmh
 This contains all of the motor setup for each motor.  There is some definition of Motor[9] at the bottom of Motor_1.pmh which is only for testing purposes and one can ignore or test with.
 
+*WARNING*: Currntly motors are setup to use PFM and the need to be switched to +/-10V DAC according to the schematic before testing with a servo amplified.  Also, the tuning must be completely redone for this setup.
+
 ### gates.pmh
 All hardware gates (umac cards) are setup here.  This includes the motor controller cards, BiSS-C cards, MACRO card.
 
