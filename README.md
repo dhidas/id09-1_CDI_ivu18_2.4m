@@ -3,6 +3,12 @@
 ## Disclaimer
 This code is an incomplete example which is largely untested.  There is no guarantee of functionality or usability.  It is only meant as an example.  Use at your own risk.
 
+## CSS
+Some starting CSS files are located in the CSS subfolder.  The starting page for this is main.opi, which should have the correct MACROs so this should be the default entry point.
+
+## EPICS
+The EPICS portion for most IO, coordinate systems, etc exists.  Most things specific to the ID controls will be found in IVU18App/Db/IVU18.db and IVU18App/Db/ivu18_motorstatus.template.  Other files in this folder contain some standard definitions.  The startup script currently runs ouf of the iocBoot/iocapp/ directory.  cd to this directory then run ./st.cmd
+
 ## Motor Setup
 Motors are configured the following way:
 * #1 - Gap Upstream (GU)
@@ -38,10 +44,10 @@ Project/PMAC Script Language/PLC Programs
 ```
 
 ### EncoderTable.pmh
-This is all of the encoder conversion table.  It is NOT configured elsewhere.
+This is all of the encoder conversion table.  It is NOT configured elsewhere.  Currently this is done for a 26-bit linear encoder and careful modification should be done for different number of bits.
 
 ### Motor_[1-4].pmh
-This contains all of the motor setup for each motor.
+This contains all of the motor setup for each motor.  There is some definition of Motor[9] at the bottom of Motor_1.pmh which is only for testing purposes and one can ignore or test with.
 
 ### gates.pmh
 All hardware gates (umac cards) are setup here.  This includes the motor controller cards, BiSS-C cards, MACRO card.
@@ -86,6 +92,8 @@ This PLC is generally meant to be used with a hardware input signal, but for now
 This PLC will home 1 axis at a time.  The corresponding axis will be set to following mode and follow this axis.  In this mode, the home position as read on the linear encoder is read at the position of the home switch.  Once this is found, the offset values for the encoders must be set by hand in the PPMAC code (e.g. "#define kM1OFFSET 123456" in global_definitions.pmh).
 
 During the homing process P_HomingInProgress is set to true and no other motion through PLC08 should be allowed.
+
+This homing program is not yet complete.  The idea is only to record the linear encoder position when the switch is activated.  This captured value will be written displayed in EPICS/CSS.  The expert will then need to interpret this number in terms of kM1OFFSET (or other offset).  The reason for this is we are either using the switch is a reference to place a scale, or we are using the scale to find the switch.  Either part may be replaced in case of damage of failure.
 
 ### PLC07 - Beacon
 This PLC monitors the AmpEnable status for each motor and trusts the CS and motor moving status calculated in PLC02.  Fault status are checked.  The beacon will illuminate in the following way:
