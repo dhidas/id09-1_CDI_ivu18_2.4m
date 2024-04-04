@@ -126,27 +126,10 @@ Encoder conversion table.  Linear absolute biss-c and rotary inputs defined here
 
 
 ## TODO
-* Modify pEnc and pEnc2 on all motors to allow biss-c linear for position and rotary for velocity.
-* Update motor following for actual system (change from IVFC system) in EncoderTable.pmh.
+* Change from PFM output settings to +/-10V DAC mode.
+* Update motor following for actual system in EncoderTable.pmh.
 * Remove Motor #9 from Motor_1 file
-* Consider changing enc loss from (in all motors):
-
-  Motor[1].EncLossBit=28
-  Motor[1].EncLossLevel=1
-  Motor[1].EncLossLimit=0
-  Motor[1].pEncLoss=Acc24E3[0].Chan[0].Status.a
-  to
-  Acc84E[0].Chan[0].SerialEncDataB.a
-  Motor[1].EncLossBit=31
-  Motor[1].EncLossLevel=1
-  Motor[1].EncLossLimit=4
-
-* Figure out evquivalent of "Motor[1].pEncCtrl=Acc24E3[0].Chan[0].InCtrl.a" for Acc84E (biss-c)
-* Check all parameter defaults in PLC01.  Reset for IVU from IVFS values.
-* Define somewhere P_InterlockState, P_OpenGapExecuting.
+* Check all parameter defaults in PLC01.
+* Possibly define somewhere P_InterlockState.
 * Consider using SDIS on the motor records exposed to beamline to avoid them setting the .VAL field of a coordinate system, which may bypass the open PLC.
-* Check amp enables eg:
-```
-Motor[1].pAmpEnable=Acc24E3[0].Chan[0].OutCtrl.a
-Motor[1].pAmpFault=Acc24E3[0].Chan[0].OutCtrl.a
-```
+* Check amp enables and how they get in/out of EPICS.  I am not sure this is correct.
