@@ -31,15 +31,18 @@ PROD_IOC = IVU18
 # IVU18.dbd will be created and installed
 DBD += IVU18.dbd
 
+PPMAC=$(SUPPORT)/pmac-2-6-4b3/pmacApp/powerPmacAsynPortSrc
+
 # IVU18.dbd will include these files:
 IVU18_DBD += base.dbd
 #IVU18_DBD += $(TOP)/pmacApp/powerPmacAsynPortSrc/drvAsynPowerPMACPort.dbd
 IVU18_DBD += asyn.dbd
 IVU18_DBD += drvAsynIPPort.dbd
-IVU18_DBD += drvAsynPowerPMACPort.dbd
+#IVU18_DBD += drvAsynPowerPMACPort.dbd
+IVU18_DBD += $(PPMAC)/drvAsynPowerPMACPort.dbd
 IVU18_DBD += motorSupport.dbd
 IVU18_DBD += devSoftMotor.dbd
-IVU18_DBD += pmacAsynMotor.dbd
+#IVU18_DBD += pmacAsynMotor.dbd
 IVU18_DBD += pmacAsynMotorPort.dbd
 IVU18_DBD += pmacAsynIPPort.dbd
 IVU18_DBD += asSupport.dbd
@@ -64,7 +67,7 @@ IVU18_LIBS += pmacAsynMotorPort
 IVU18_LIBS += pmacAsynIPPort
 IVU18_LIBS += softMotor
 IVU18_LIBS += motor
-IVU18_LIBS += pmacAsynMotor
+#IVU18_LIBS += pmacAsynMotor
 IVU18_LIBS += powerPmacAsynPort
 IVU18_LIBS += asyn
 IVU18_LIBS += autosave

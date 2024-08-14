@@ -1,2 +1,2 @@
-PMAC=/home/dhidas/pmac/pmac-2-5-20
-EPICS_BASE=/usr/lib/epics
+PMAC=/home/dhidas/epics/support/pmac-2-6-4b3
+EPICS_BASE=/home/dhidas/epics/base-7.0.8.1

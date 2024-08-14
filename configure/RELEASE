@@ -30,6 +30,7 @@
 
 # EPICS_BASE should appear last so earlier modules can override stuff:
 #EPICS_BASE = /usr/lib/epics
+EPICS_BASE=/home/dhidas/epics/base-7.0.8.1
 
 # Set RULES here if you want to use build rules from somewhere
 # other than EPICS_BASE:
@@ -41,9 +42,24 @@
 -include $(TOP)/../RELEASE.$(EPICS_HOST_ARCH).local
 -include $(TOP)/configure/RELEASE.local
 
+SUPPORT=/home/dhidas/epics/support
+CALC=$(SUPPORT)/calc-R3-7-5
+ASYN=$(SUPPORT)/asyn-R4-44-2
+STREAM=$(SUPPORT)/StreamDevice
+
+BUSY=$(SUPPORT)/busy-R1-7-4
+RECSYNC=$(SUPPORT)/recsync-1.6
+SEQ=$(SUPPORT)/sequencer-R2-2-9
+MOTOR=$(SUPPORT)/motor-R7-3-1
+PMAC=$(SUPPORT)/pmac-2-6-4b3
+IOCSTATS=$(SUPPORT)/iocStats-3.2.0
+CAPUTLOG=$(SUPPORT)/caPutLog-R4.1
+ETHERIP=$(SUPPORT)/ether_ip-ether_ip-3-3
+
 # automatic save with restore on boot
-AUTOSAVE=$(EPICS_BASE)
+#AUTOSAVE=$(EPICS_BASE)
+AUTOSAVE=$(SUPPORT)/autosave-R5-11
 
 
 # RecSync support
-RECCASTER=$(EPICS_BASE)
+RECCASTER=$(SUPPORT)/recsync-1.6/client
