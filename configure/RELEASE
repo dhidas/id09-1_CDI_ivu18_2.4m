@@ -30,7 +30,7 @@
 
 # EPICS_BASE should appear last so earlier modules can override stuff:
 #EPICS_BASE = /usr/lib/epics
-EPICS_BASE=/home/dhidas/epics/base-7.0.8.1
+EPICS_BASE=/Users/dhidas/epics/base-7.0.8.1
 
 # Set RULES here if you want to use build rules from somewhere
 # other than EPICS_BASE:
@@ -42,7 +42,7 @@ EPICS_BASE=/home/dhidas/epics/base-7.0.8.1
 -include $(TOP)/../RELEASE.$(EPICS_HOST_ARCH).local
 -include $(TOP)/configure/RELEASE.local
 
-SUPPORT=/home/dhidas/epics/support
+SUPPORT=/Users/dhidas/epics/support
 CALC=$(SUPPORT)/calc-R3-7-5
 ASYN=$(SUPPORT)/asyn-R4-44-2
 STREAM=$(SUPPORT)/StreamDevice

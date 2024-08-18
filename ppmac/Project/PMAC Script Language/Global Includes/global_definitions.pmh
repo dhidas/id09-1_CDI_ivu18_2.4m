@@ -8,6 +8,8 @@
 #define kFALSE 0
 #define kON    1
 #define kOFF   0
+#define kONE   1
+#define kZERO  0
 
 // Everyone has to have their slice of the pie
 #define kPI 3.141592653589793
@@ -23,6 +25,9 @@
 #define kM4OFFSET 50048
 #define kM5OFFSET     0
 #define kM6OFFSET     0
+
+// Speed for final home search move
+#define kHOMESPEED 0.5
 
 // Encoder count conversions
 #define kEncCtsPerMm        4098.361
@@ -104,12 +109,13 @@
 #define P_OpenGapExecutingTimeout P402
 
 // PLC 06 - Homing
-#define P_HomeRequest         P600
-#define P_HomingInProgress    P601
-#define P_MotorHomingNumber   P602
-#define P_HomingThisMotor     P603
-#define P_HomingAmpError      P698
-#define P_HomingTimeout       P699
+#define P_HomeRequest           P600
+#define P_HomingInProgress      P601
+#define P_MotorHomingNumber     P602
+#define P_HomingThisMotor       P603
+#define P_HomingSwitchNotFound  P697
+#define P_HomingAmpError        P698
+#define P_HomingTimeout         P699
 
 // PLC 08 - Move Request
 #define P_InterlockState      P801

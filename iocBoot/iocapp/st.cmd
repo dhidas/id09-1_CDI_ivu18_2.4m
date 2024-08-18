@@ -1,4 +1,4 @@
-#!../../bin/linux-x86_64/IVU18
+#!../../bin/darwin-aarch64/IVU18
 
 #- You may have to change IVU18 to something else
 #- everywhere it appears in this file

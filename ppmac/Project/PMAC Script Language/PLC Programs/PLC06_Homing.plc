@@ -4,6 +4,8 @@ Open PLC 6
 
 local lMotorHoming
 local lMotorFollowing
+local lMotorHomingOriginalSpeed
+local lJogToPosition
 
 // Check for true bit for homing request.  Do nothing if no request
 if (P_HomeRequest != kTRUE) {
@@ -20,15 +22,22 @@ if (P_MotorHomingNumber == 0 || P_MotorHomingNumber < 0 || P_MotorHomingNumber >
   GOTO 666
 }
 
+
 // If we are here then a homing request has been made.  Set the homing in progress
 // bit, kill all motors, record the motor to be homed, and set the request back to zero.
 P_HomingTimeout = kFALSE
 P_HomingAmpError = kFALSE
 P_HomingInProgress = kTRUE
+P_HomingSwitchNotFound = kFALSE
 lMotorHoming = P_MotorHomingNumber
 P_MotorHomingNumber = 0
 P_HomingThisMotor = lMotorHoming
 CMD"#*k"
+
+
+// Copy original jog speed for restoring later
+lMotorHomingOriginalSpeed = Motor[lMotorHoming].JogSpeed
+
 
 // Stop any/all motor following
 Motor[1].MasterCtrl=kFALSE
@@ -54,57 +63,70 @@ switch (lMotorHoming) {
     break
 }
 
+
 // Set following
 Motor[lMotorFollowing].MasterCtrl = kTRUE
 
 // Enable homer and following
 Ldata.motor = lMotorHoming
 CMD"j/"
+call Timer(0.020)
 Ldata.motor = lMotorFollowing
 CMD"j/"
-call Timer(0.0200)
+call Timer(0.020)
+
 
 // Check that these motors enabled properly.  If not, exit with an error
 if (Motor[lMotorHoming].AmpEna + Motor[lMotorFollowing].AmpEna != 2) {
-  CMD"#*k"
   P_HomingAmpError = kTRUE
   GOTO 666
 }
 
 
-// Check if this motor is on the home flag or limit, if so move away a bit.  If the motor
-// does not back off the switch in a reasonable time we timeout and report an error.
-if (pHomeFlag(lMotorHoming) == kTRUE || Motor[lMotorHoming].PlusLimit == kTRUE) {
+// First get this motor touching the home switch.  If the limit switch is seen and not
+// the home switch exit with an error
+if (pHomeFlag(lMotorHoming) == kONE && Motor[lMotorHoming].PlusLimit == kFALSE) {
   Ldata.motor = lMotorHoming
-  CMD"j-"
+  CMD"j+"
   call Timer(0.200)
+
+  TIMER060HOMING = 300000
+  while (pHomeFlag(lMotorHoming) == kONE && Motor[lMotorHoming].PlusLimit == kFALSE && TIMER060HOMING > 0) {}
+  if (TIMER060HOMING <= 0) {
+    // Timeout in homing, report and abort
+    P_HomingTimeout = kTRUE
+    GOTO 666
+  }
 }
-TIMER060HOMING = 3000
-while (pHomeFlag(lMotorHoming) + Motor[lMotorHoming].PlusLimit != 0 && TIMER060HOMING > 0) {}
-if (TIMER060HOMING <= 0) {
-  // Timeout in homing, report and abort
-  P_HomingTimeout = kTRUE
-  CMD"#*k"
-  GOTO 666
+if (Motor[lMotorHoming].PlusLimit == kTRUE && pHomeFlag(lMotorHoming) == kONE) {
+  P_HomingSwitchNotFound = kTRUE
+    GOTO 666
 }
-call Timer(0.200)
 Ldata.motor = lMotorHoming
 CMD"j/"
 call Timer(0.200)
 
-// Home the motor.  Use a timeout as a backup.
-Ldata.motor = lMotorHoming
-Motor[lMotorHoming].CapturePos = kTRUE
-CMD"home"
+// At this point we should touching the home switch
+
+// Now set the jog speed to very slow
+Motor[lMotorHoming].JogSpeed = kHOMESPEED
+
+// Home the motor using the move until trigger with a small post move.  Use a timeout as a backup.
 TIMER060HOMING = 60000
-while (Motor[lMotorHoming].HomeInProgress == kFALSE && TIMER060HOMING > 0) {}  // Wait for start
-while (Motor[lMotorHoming].DesVelZero == 0 && TIMER060HOMING > 0) {}           // Wait for end
+Motor[lMotorHoming].ProgJogPos = Motor[lMotorHoming].Pos - 50000
+Ldata.motor = lMotorHoming
+CMD"j=*^0"
+while (Motor[lMotorHoming].DesVelZero == kTRUE && TIMER060HOMING > 0) {}  // Wait for start
+while (Motor[lMotorHoming].DesVelZero == kFALSE && TIMER060HOMING > 0) {}           // Wait for end
 if (TIMER060HOMING <= 0) {
   // Timeout in homing, report and abort
   P_HomingTimeout = kTRUE
-  CMD"#*k"
   GOTO 666
 }
+if (Motor[lMotorHoming].MinusLimit == kTRUE) {
+  P_HomingSwitchNotFound = kTRUE
+}
+
 
 
 
@@ -112,6 +134,7 @@ if (TIMER060HOMING <= 0) {
 
 // Cleanup and exit
 N666:
+  CMD"#*k"
 
 // Stop any/all motor following
 Motor[1].MasterCtrl=kFALSE
@@ -122,5 +145,9 @@ Motor[4].MasterCtrl=kFALSE
 P_MotorHomingNumber = 0
 P_HomingInProgress = kFALSE
 P_HomingThisMotor = 0
+
+// Reset jog speed
+Motor[lMotorHoming].JogSpeed = lMotorHomingOriginalSpeed 
+
 Close
 
