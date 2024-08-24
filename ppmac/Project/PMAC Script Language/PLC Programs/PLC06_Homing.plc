@@ -134,7 +134,8 @@ if (Motor[lMotorHoming].MinusLimit == kTRUE) {
 
 // Cleanup and exit
 N666:
-  CMD"#*k"
+
+CMD"#*k"
 
 // Stop any/all motor following
 Motor[1].MasterCtrl=kFALSE
