@@ -66,6 +66,15 @@ record(bi, "$(SYS){$(DEV)}HomeInProgress-Sts") {
   field(ZNAM, "Idle")
   field(ONAM, "Homing")
 }
+record(bi, "$(SYS){$(DEV)}HomeLimitError-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Did not see home")
+  field(SCAN, "1 second")
+  field(INP, "@pmac.proto getIntVar(P697) $(PORT)")
+  field(ZNAM, "No Error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
+}
 record(bi, "$(SYS){$(DEV)}HomeAmpError-Sts") {
   field(DTYP, "stream")
   field(DESC, "Amp enable error")
