@@ -19,11 +19,12 @@ Motor[1].BrakeOffDelay=0
 Motor[1].BrakeOnDelay=0
 Motor[1].BrakeOutBit=9
 Motor[1].CaptControl=$14080801
-Motor[1].CaptFlagBit=20
+Motor[1].CaptFlagBit=8            // Home
+Motor[1].CaptFlagInvert=0         // 0 to 1 transition
 Motor[1].CaptPosLeftShift=8
 Motor[1].CaptPosRightShift=8
 Motor[1].CaptPosRound=1
-Motor[1].CaptureMode=3
+Motor[1].CaptureMode=3            // Hardware trigger, timer-assisted software capture
 Motor[1].CascadeMode=0
 Motor[1].CmdMotor=0
 Motor[1].Control[0]=$10000000
@@ -216,10 +217,6 @@ Motor[9].AbsPosSf = 1
 Motor[9].HomeOffset = 0 // 3789454
 
 
-//Gate3[i].Chan[j].CaptCtrl
-//Gate3[i].Chan[j].CaptFlagChan
-//Gate3[i].Chan[j].CaptFlagSel
-//Motor[x].HomeVel
 
 Motor[9].CaptureMode = 1  // Should be switched to 0 later?  not sure.
 Motor[9].pCaptFlag = Acc24E3[0].Chan[0].Status.a
@@ -227,10 +224,6 @@ Motor[9].CaptFlagBit = 8
 Gate3[0].Chan[0].CaptCtrl = 0  //2       // Capt on Flag High
 Gate3[0].Chan[0].CaptFlagChan = 0     // Which channel to capt flag from
 Gate3[0].Chan[0].CaptFlagSel = 0      // Use Home Flag
-//Motor[9].pCaptEna
-//Motor[9].CaptEnaBit
-//Motor[9].CaptEnaInvert
-//Motor[9].pCaptPos=Acc24E3[0].Chan[0].HomeCapt.a
 
 Motor[9].CaptPosLeftShift=0
 Motor[9].CaptPosRightShift=0
