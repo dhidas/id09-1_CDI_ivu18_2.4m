@@ -1,0 +1,92 @@
+
+Motor[11].Ctrl=sys.ServoCtrl
+Motor[11].servoCtrl=1
+Motor[11].posSf=1
+Motor[11].Pos2SF=1
+Motor[11].pLimits=0
+Motor[11].pEnc = EncTable[9].a
+Motor[11].pEnc2 = EncTable[9].a
+
+Motor[12].Ctrl=sys.ServoCtrl
+Motor[12].servoCtrl=1
+Motor[12].posSf=1
+Motor[12].Pos2SF=1
+Motor[12].pLimits=0
+Motor[12].pEnc = EncTable[10].a
+Motor[12].pEnc2 = EncTable[10].a
+
+Motor[13].Ctrl=sys.ServoCtrl
+Motor[13].servoCtrl=1
+Motor[13].posSf=1
+Motor[13].Pos2SF=1
+Motor[13].pLimits=0
+Motor[13].pEnc = EncTable[11].a
+Motor[13].pEnc2 = EncTable[11].a
+
+Motor[14].Ctrl=sys.ServoCtrl
+Motor[14].servoCtrl=1
+Motor[14].posSf=1
+Motor[14].Pos2SF=1
+Motor[14].pLimits=0
+Motor[14].pEnc = EncTable[12].a
+Motor[14].pEnc2 = EncTable[12].a
+
+Motor[15].Ctrl=sys.ServoCtrl
+Motor[15].servoCtrl=1
+Motor[15].posSf=1
+Motor[15].Pos2SF=1
+Motor[15].pLimits=0
+Motor[15].pEnc = EncTable[5].a
+Motor[15].pEnc2 = EncTable[5].a
+
+Motor[16].Ctrl=sys.ServoCtrl
+Motor[16].servoCtrl=1
+Motor[16].posSf=1
+Motor[16].Pos2SF=1
+Motor[16].pLimits=0
+Motor[16].pEnc = EncTable[6].a
+Motor[16].pEnc2 = EncTable[6].a
+
+Motor[17].Ctrl=sys.ServoCtrl
+Motor[17].servoCtrl=1
+Motor[17].posSf=1
+Motor[17].Pos2SF=1
+Motor[17].pLimits=0
+Motor[17].pEnc = EncTable[7].a
+Motor[17].pEnc2 = EncTable[7].a
+
+Motor[18].Ctrl=sys.ServoCtrl
+Motor[18].servoCtrl=1
+Motor[18].posSf=1
+Motor[18].Pos2SF=1
+Motor[18].pLimits=0
+Motor[18].pEnc = EncTable[8].a
+Motor[18].pEnc2 = EncTable[8].a
+
+
+
+
+
+EncTable[9].index1=0
+EncTable[9].pEnc=Acc84E[0].chan[0].SerialEncDataA.a	//default  Acc24E3[0].Chan[0].ServoCapt.a
+EncTable[9].pEnc1=Acc84E[0].chan[0].SerialEncDataB.a	//default Sys.pushm
+EncTable[9].ScaleFactor=1
+EncTable[9].type=2	//default 1(single word, 32bit), 2(double word ,24 + 8 = 32bit)
+
+EncTable[10].index1=0
+EncTable[10].pEnc=Acc84E[0].chan[1].SerialEncDataA.a	//default  Acc24E3[0].Chan[0].ServoCapt.a
+EncTable[10].pEnc1=Acc84E[0].chan[1].SerialEncDataB.a	//default Sys.pushm
+EncTable[10].ScaleFactor=1
+EncTable[10].type=2	//default 1(single word, 32bit), 2(double word ,24 + 8 = 32bit)
+
+EncTable[11].index1=0
+EncTable[11].pEnc=Acc84E[0].chan[2].SerialEncDataA.a	//default  Acc24E3[0].Chan[0].ServoCapt.a
+EncTable[11].pEnc1=Acc84E[0].chan[2].SerialEncDataB.a	//default Sys.pushm
+EncTable[11].ScaleFactor=1
+EncTable[11].type=2	//default 1(single word, 32bit), 2(double word ,24 + 8 = 32bit)
+
+EncTable[12].index1=0
+EncTable[12].pEnc=Acc84E[0].chan[3].SerialEncDataA.a	//default  Acc24E3[0].Chan[0].ServoCapt.a
+EncTable[12].pEnc1=Acc84E[0].chan[3].SerialEncDataB.a	//default Sys.pushm
+EncTable[12].ScaleFactor=1
+EncTable[12].type=2	//default 1(single word, 32bit), 2(double word ,24 + 8 = 32bit)
