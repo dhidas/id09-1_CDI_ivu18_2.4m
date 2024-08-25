@@ -1,0 +1,133 @@
+Check:
+//Motor[1].AmpFaultLevel
+Motor[1].Control[0]=$10000000, try changing this to $0 (as HITZ did).  Overwritten partly by later elements anyways so not sure that this matters.
+
+needs to be determined by testing with full system:
+Motor[1].InPosBand=20
+Motor[1].InPosTime=10
+
+Motor[1].JogSpeed=0.03 (from HITZ), will use for now, but change if we change scal factor units
+Motor[1].MaxDac=2200 HITS suggested 28000, start with low value for safety
+
+I switched to Motor[1].MaxSpeed=0.250 per HITZ suggestion, but test this
+
+I think HITZ caught a mistake of mine here.  I changed:
+  Motor[1].pAmpFault=Acc24E3[0].Chan[0].OutCtrl.a
+to:
+  Motor[1].pAmpFault=Acc24E3[0].Chan[0].Status.a
+
+using HITZ change for going to torque/servo
+changed:
+  Motor[1].pDac=Acc24E3[0].Chan[0].Pwm[3].a
+to:
+  Motor[1].pDac=Acc24E3[0].Chan[0].Dac[0].a
+
+Did not implement HITZ suggestion of commenting out Motor[x].pMasterEnc.  The default is ect[0].  they are defined after the motor definitions in EncoderTable.pmh
+
+Switched to using HITZ values for PID.  These we will look at more:
+  (gap motors)
+  Motor[1].Servo.Ki=0.00004
+  Motor[1].Servo.Kp=1000
+  Motor[1].Servo.Kvfb=4000
+  Motor[1].Servo.Kvff=3000
+  Motor[1].Servo.Kaff=2000
+
+  (elevation motors)
+  Motor[3].Servo.Ki=0.00005
+  Motor[3].Servo.Kp=2000
+  Motor[3].Servo.Kvfb=3000
+  Motor[3].Servo.Kvff=5000
+  Motor[3].Servo.Kaff=3000
+
+I'll assume HITZ is correct with the amp fault level and use their change, but we should check this:
+Motor[1].AmpFaultLevel=0 changed to Motor[1].AmpFaultLevel=1
+
+To me it looks like the have Motor[x].PosSf=1 and Motor[x].AbsPosSf=1/1000.  I'm not sure why these shouldn't be the same.  I'll leave this for now (because it affects PID parameters in the inner loop), but we should try to make these all 1.  I usually use counts for the pmac motor (which I think it more typical) and convert to user units in the kinematics (just like all of the examples).
+
+Modified pAbsPos as we did for the teststand:
+  Motor[1].pAbsPos = Acc84E[0].Chan[0].SerialEncDataA.a
+  Motor[1].pAbsPos2 = Acc84E[0].Chan[0].SerialEncDataB.a
+  Motor[1].PowerOnMode=4
+  Motor[1].AbsPosFormat=$00082008  // dd=start at bit 8, cc=read 32 bits, bb=start at bit 8, cc=unsigned binary
+
+HITZ modified the following, I believe because they tried to change motor units by a factor of 1000.  I will use them for now, but we should try to change back if we use scale factors of 1:
+  Motor[1].InvAmax=0.010
+  Motor[1].InvDmax=0.010
+  Motor[1].InvJmax=0.050
+
+HITZ has for directions the following.  I used, but we should check this and how it relates to panasonic amp settings:
+  Gate3[0].Chan[0].EncCtrl=3
+  Gate3[0].Chan[1].EncCtrl=7
+  Gate3[0].Chan[2].EncCtrl=3
+  Gate3[0].Chan[3].EncCtrl=3
+
+Now I see that in the encoder table they have scaled the counts by 1/1000 to get to um, which is why they didn't use the PosSf.  Typically this is 1/exp(32-n) in order to get the LSB back to the first bit.  I think this should be changed to be 1 when we go back to nm for motor units.  I'll use it for now, but let's change this:
+  EncTable[1].ScaleFactor=1/1000
+
+I think the index1 and index2 should both be 0 for 32-bit encoder.  I use as HITZ did:
+  EncTable[1].index1=0
+  EncTable[1].index2=0
+
+Extra motor and encoder for debugging I put in ExtraMotorsAndECT.pmh
+
+HITZ used the following where we originally had $63030b (I will use $63230b for now):
+  Acc84E[0].SerialEncCtrl = $63230b
+  I think this cuts the frequency to 250 kHz.  TC and TE could be looked at.
+
+HITZ correctly changed to 32-bits and I will use:
+  Acc84E[0].Chan[0].SerialEncCmd = $2114A0
+
+Correctly changed to PWM with:
+  Gate3[0].Chan[0].OutputMode=7
+
+HITZ added this to io_setput.pmh, but I don't see it used.  We should add them once we know what it is:
+  M29->outAMP1_2EDM
+  M30->outAMP3_4EDM
+
+
+global_definitions:
+In the code the home offsets rely on the following, but I notice that HITZ did not change these, so how are they getting the positions correct?  We have to understand how this home offset works with a few tests I think...
+  #define kM1OFFSET 87275
+  #define kM2OFFSET 49410
+  #define kM3OFFSET 87387
+  #define kM4OFFSET 50048
+
+HITZ changed the defs for conversion, but we will need to change them when we go back to nm motor units.  Rotary numbers need to be checked.
+  #define kEncCtsPerMm        1000
+  #define kEncCtsPerUm        1.0
+  #define kRotEncCtsPerRad    180
+  #define kRotEncCtsPerURad   0.180
+
+HITZ added these but they are not used so I will ignore for now until we may want them:
+  #define kJogSpeed             0.100  //m.u./ms
+  #define kHomeSpeed            0.005  //m.u./ms
+
+HITZ added this, but I rewrote homing PLC so I will ignore it:
+  #define kGAPHOMESWITCHPOS  10000
+  #define kELVHOMESWITCHPOS  0
+
+HITZ added this.  I will leave it out until we understand why.  I see it in PLC and what it's doing is clear, I just don't know why yet.
+  #define P_NotFirstScan        P201  //ignore DesVelZero at first scan
+
+
+
+PLCs
+PLC02 is using a if(P_NotFirstScan == kTRUE) clause.  We can add this once we understand why.
+
+PLC03 was changed to use simple coordinate systems instead of kinematics.  I have implemented this, but want to try to move back to the kinematics.
+
+PLC07 was modified by HITZ to account for more things.  I've copied this for now and we can adjust as needed.
+
+PLC08 was modified by HITZ to account for hardware interlocks.  I've added this.  We can consider adding software interlocks to this flag..
+
+PLC09 HITZ is suggesting that the switch polarity is opposite what I expect with this.  Let's look at this and flag settings before changing (there may be another way to change it):
+  inLIMITDISABLE == kFALSE && (inTAPERPLIM == kFALSE
+
+PLCs 10, 13, 15, 18 were unchanged by HITZ.
+
+PROGs
+PROG02 HITZ added pmatch, but perhaps it is not needed.  I will leave this out for now.
+
+Other PROGs were not changed by HITZ.
+
+All kinematics were commented out.  I will leave them in unless they cause some issue.
