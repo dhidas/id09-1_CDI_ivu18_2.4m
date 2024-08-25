@@ -5,6 +5,25 @@
 
 Open PLC 8
 
+// Check all interlocks
+P_InterlockState = 0
+P_InterlockState += inUESTOP
+P_InterlockState += inDESTOP
+if (inKILLDISABLE == kOFF) {
+  P_InterlockState += inGUPKILL
+  P_InterlockState += inGUMKILL
+  P_InterlockState += inGDPKILL
+  P_InterlockState += inGDMKILL
+  P_InterlockState += inEUPKILL
+  P_InterlockState += inEUMKILL
+  P_InterlockState += inEDPKILL
+  P_InterlockState += inEDMKILL
+  P_InterlockState += inTAPERPKILL
+  P_InterlockState += inTAPERMKILL
+}
+
+
+
 switch (P_MoveMode) {
   case kMoveModeGapEleSep:
 

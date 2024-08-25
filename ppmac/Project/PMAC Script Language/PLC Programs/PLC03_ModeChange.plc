@@ -24,13 +24,21 @@ if (P_MovementInProgress == kFALSE && P_OpenGapExecuting == kFALSE && P_MoveMode
   // MoveMode change
   switch (P_MoveModeReq) {
     case kMoveModeGapEleSep:
-      CMD"&2 #1->I #2->I"
-      CMD"&3 #3->I #4->I"
+      //CMD"&2 #1->I #2->I"
+      //CMD"&3 #3->I #4->I"
+      CMD"&2 #1->A - 0.5B"
+      CMD"&2 #2->A + 0.5B"
+      CMD"&3 #3->C - 0.5U"
+      CMD"&3 #4->C + 0.5U"
       CMD"#*K"
       break;
 
     case kMoveModeGapEleComb:
-      CMD"&4 #1->I #2->I #3->I #4->I"   // Put motors in proper CS
+      //CMD"&4 #1->I #2->I #3->I #4->I"   // Put motors in proper CS
+      CMD"&4 #1->A - 0.5B"
+      CMD"&4 #2->A + 0.5B"
+      CMD"&4 #3->C - 0.5U"
+      CMD"&4 #4->C + 0.5U"
       CMD"#*K"
       break;
 
@@ -49,8 +57,12 @@ if (P_MovementInProgress == kFALSE && P_OpenGapExecuting == kFALSE && P_MoveMode
     case kMoveModeOpenGapExecuting:
       // This mode is only used by the open gap PLC.
       // It is also configured there and probably should not be called here at all.
-      CMD"&5 #1->I #2->I"
-      CMD"&3 #3->I #4->I"
+      //CMD"&5 #1->I #2->I"
+      //CMD"&3 #3->I #4->I"
+      CMD"&5 #1->A - 0.5B"
+      CMD"&5 #2->A + 0.5B"
+      CMD"&3 #3->C - 0.5U"
+      CMD"&3 #4->C + 0.5U"
       CMD"#*K"
       break;
     case kMoveModeFlyScan:

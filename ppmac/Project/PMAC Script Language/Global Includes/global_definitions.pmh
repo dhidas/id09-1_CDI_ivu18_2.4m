@@ -23,15 +23,13 @@
 #define kM3OFFSET 87387
 #define kM4OFFSET 50048
 #define kM4OFFSET 50048
-#define kM5OFFSET     0
-#define kM6OFFSET     0
 
 // Speed for final home search move
 #define kHOMESPEED 0.5
 
 // Encoder count conversions
-#define kEncCtsPerMm        4098.361
-#define kEncCtsPerUm        4.098361
+#define kEncCtsPerMm        1000
+#define kEncCtsPerUm        1.0
 #define kRotEncCtsPerRad    180
 #define kRotEncCtsPerURad   0.180
 
@@ -39,24 +37,15 @@
 // kBUFFERUM is used to buffer soft-limit interlocks
 #define kOpenGapSpeed         500
 #define kGapOpeningTimeout  60000
-//#define kMAXGAP             40200
-//#define kMINGAP              4530
-//#define kMINELEV            -5000
-//#define kMAXELEV             5000
-//#define kMINTILT             -500
-//#define kMAXTILT              500
-//#define kMINTAPER            -500
-//#define kMAXTAPER             500
-//#define kBUFFERUM              50
-#define kMAXGAP   10000
-#define kMINGAP  -10000
-#define kMINELEV  -5000
-#define kMAXELEV   5000
-#define kMINTILT  -1000
-#define kMAXTILT   1000
-#define kMINTAPER -1000
-#define kMAXTAPER  1000
-#define kBUFFERUM    50
+#define kMAXGAP             40200
+#define kMINGAP              4530
+#define kMINELEV            -5000
+#define kMAXELEV             5000
+#define kMINTILT             -500
+#define kMAXTILT              500
+#define kMINTAPER            -500
+#define kMAXTAPER             500
+#define kBUFFERUM              50
 
 // Unbelievable, but I cannot put comments after define statements in ppmac
 // even if I use a terminator which is very very stupid.  So here we are
@@ -116,6 +105,9 @@
 #define P_HomingSwitchNotFound  P697
 #define P_HomingAmpError        P698
 #define P_HomingTimeout         P699
+
+// PLC 07 - Beacon
+#define P_AnyError              P701
 
 // PLC 08 - Move Request
 #define P_InterlockState      P801
