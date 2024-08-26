@@ -1264,3 +1264,53 @@ record(bi, "$(SYS){$(DEV)}OpenGapTimeout-RB") {
 }
 
 
+# dhidas adding for testing only
+record(ai, "$(SYS){$(DEV)}M1Linear") {
+  field(DTYP, "stream")
+  field(SCAN, ".1 second")
+  field(EGU,  "cts")
+  field(INP, "@pmac.proto getVar(#11p) $(PORT)")
+}
+record(ai, "$(SYS){$(DEV)}M2Linear") {
+  field(DTYP, "stream")
+  field(SCAN, ".1 second")
+  field(EGU,  "cts")
+  field(INP, "@pmac.proto getVar(#12p) $(PORT)")
+}
+record(ai, "$(SYS){$(DEV)}M3Linear") {
+  field(DTYP, "stream")
+  field(SCAN, ".1 second")
+  field(EGU,  "cts")
+  field(INP, "@pmac.proto getVar(#13p) $(PORT)")
+}
+record(ai, "$(SYS){$(DEV)}M4Linear") {
+  field(DTYP, "stream")
+  field(SCAN, ".1 second")
+  field(EGU,  "cts")
+  field(INP, "@pmac.proto getVar(#14p) $(PORT)")
+}
+record(ai, "$(SYS){$(DEV)}M1Rotary") {
+  field(DTYP, "stream")
+  field(SCAN, ".1 second")
+  field(EGU,  "cts")
+  field(INP, "@pmac.proto getVar(#15p) $(PORT)")
+}
+record(ai, "$(SYS){$(DEV)}M2Rotary") {
+  field(DTYP, "stream")
+  field(SCAN, ".1 second")
+  field(EGU,  "cts")
+  field(INP, "@pmac.proto getVar(#16p) $(PORT)")
+}
+record(ai, "$(SYS){$(DEV)}M3Rotary") {
+  field(DTYP, "stream")
+  field(SCAN, ".1 second")
+  field(EGU,  "cts")
+  field(INP, "@pmac.proto getVar(#17p) $(PORT)")
+}
+record(ai, "$(SYS){$(DEV)}M4Rotary") {
+  field(DTYP, "stream")
+  field(SCAN, ".1 second")
+  field(EGU,  "cts")
+  field(INP, "@pmac.proto getVar(#18p) $(PORT)")
+}
+

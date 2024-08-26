@@ -18,11 +18,11 @@
 
 // Home offsets (possible use other method for bissc abs)
 #define kNMOTORS      4
-#define kM1OFFSET 87275
-#define kM2OFFSET 49410
-#define kM3OFFSET 87387
-#define kM4OFFSET 50048
-#define kM4OFFSET 50048
+//#define kM1OFFSET 87275
+#define kM1OFFSET (13600.063-5000)
+#define kM2OFFSET (12594.363-5000)
+#define kM3OFFSET (52204.435)
+#define kM4OFFSET (52771.196)
 
 // Speed for final home search move
 #define kHOMESPEED 0.5

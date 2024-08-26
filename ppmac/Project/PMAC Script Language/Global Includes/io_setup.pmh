@@ -12,8 +12,8 @@
                               
 #define inTAPERPKILL          Acc65E[2].DataReg[1].0.1
 #define inTAPERMKILL          Acc65E[2].DataReg[1].1.1
-#define inUESTOP              Acc65E[2].DataReg[1].2.1
-#define inDESTOP              Acc65E[2].DataReg[1].3.1
+#define inDESTOP              Acc65E[2].DataReg[1].2.1
+#define inUESTOP              Acc65E[2].DataReg[1].3.1
 #define inTAPERPLIM           Acc65E[2].DataReg[1].4.1
 #define IO1In14               Acc65E[2].DataReg[1].5.1
 #define inTAPERMLIM           Acc65E[2].DataReg[1].6.1
