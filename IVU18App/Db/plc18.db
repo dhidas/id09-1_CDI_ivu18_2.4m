@@ -1,0 +1,596 @@
+# This db file is defined RTD and vacuume records for 2.4m IVU.
+# Created at 2024/05/24
+# Last edit at ---------
+
+record (ai, "$(SYS){$(DEV)}-RTD:1-Temp")
+{
+    field (DESC, "temperature of RTD No1" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_1")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:2-Temp")
+{
+    field (DESC, "temperature of RTD No2" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_2")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:3-Temp")
+{
+    field (DESC, "temperature of RTD No3" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_3")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:4-Temp")
+{
+    field (DESC, "temperature of RTD No4" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_4")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:5-Temp")
+{
+    field (DESC, "temperature of RTD No5" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_5")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:6-Temp")
+{
+    field (DESC, "temperature of RTD No6" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_6")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:7-Temp")
+{
+    field (DESC, "temperature of RTD No7" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_7")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:8-Temp")
+{
+    field (DESC, "temperature of RTD No8" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_8")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:9-Temp")
+{
+    field (DESC, "temperature of RTD No9" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_9")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:10-Temp")
+{
+    field (DESC, "temperature of RTD No10" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_10")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:11-Temp")
+{
+    field (DESC, "temperature of RTD No11" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_11")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:12-Temp")
+{
+    field (DESC, "temperature of RTD No12" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_12")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:13-Temp")
+{
+    field (DESC, "temperature of RTD No13" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_13")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:14-Temp")
+{
+    field (DESC, "temperature of RTD No14" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_14")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:15-Temp")
+{
+    field (DESC, "temperature of RTD No15" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_15")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:16-Temp")
+{
+    field (DESC, "temperature of RTD No16" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (ASLO,"0.1")
+    field (INP, "@PLC1 temp_16")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:17-Temp")
+{
+    field (DESC, "temperature of RTD No17" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_17")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:18-Temp")
+{
+    field (DESC, "temperature of RTD No18" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_18")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:19-Temp")
+{
+    field (DESC, "temperature of RTD No19" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_19")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:20-Temp")
+{
+    field (DESC, "temperature of RTD No20" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_20")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:21-Temp")
+{
+    field (DESC, "temperature of RTD No21" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_21")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:22-Temp")
+{
+    field (DESC, "temperature of RTD No22" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_22")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:23-Temp")
+{
+    field (DESC, "temperature of RTD No23" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_23")
+}
+record (ai, "$(SYS){$(DEV)}-RTD:24-Temp")
+{
+    field (DESC, "temperature of RTD No24" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 temp_24")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:1-Offset")
+{
+    field (DESC, "Offset value of RTD No1" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_1")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:2-Offset")
+{
+    field (DESC, "Offset value of RTD No2" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_2")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:3-Offset")
+{
+    field (DESC, "Offset value of RTD No3" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_3")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:4-Offset")
+{
+    field (DESC, "Offset value of RTD No4" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_4")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:5-Offset")
+{
+    field (DESC, "Offset value of RTD No5" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_5")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:6-Offset")
+{
+    field (DESC, "Offset value of RTD No6" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_6")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:7-Offset")
+{
+    field (DESC, "Offset value of RTD No7" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_7")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:8-Offset")
+{
+    field (DESC, "Offset value of RTD No8" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_8")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:9-Offset")
+{
+    field (DESC, "Offset value of RTD No9" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_9")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:10-Offset")
+{
+    field (DESC, "Offset value of RTD No10" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_10")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:11-Offset")
+{
+    field (DESC, "Offset value of RTD No11" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_11")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:12-Offset")
+{
+    field (DESC, "Offset value of RTD No12" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_12")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:13-Offset")
+{
+    field (DESC, "Offset value of RTD No13" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_13")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:14-Offset")
+{
+    field (DESC, "Offset value of RTD No14" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_14")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:15-Offset")
+{
+    field (DESC, "Offset value of RTD No15" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_15")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:16-Offset")
+{
+    field (DESC, "Offset value of RTD No16" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_16")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:17-Offset")
+{
+    field (DESC, "Offset value of RTD No17" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_17")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:18-Offset")
+{
+    field (DESC, "Offset value of RTD No18" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_18")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:19-Offset")
+{
+    field (DESC, "Offset value of RTD No19" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_19")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:20-Offset")
+{
+    field (DESC, "Offset value of RTD No20" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_20")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:21-Offset")
+{
+    field (DESC, "Offset value of RTD No21" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_21")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:22-Offset")
+{
+    field (DESC, "Offset value of RTD No22" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_22")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:23-Offset")
+{
+    field (DESC, "Offset value of RTD No23" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_23")
+}
+record (ao, "$(SYS){$(DEV)}-RTD:24-Offset")
+{
+    field (DESC, "Offset value of RTD No24" )
+    field (EGU, "°C")
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (OUT, "@PLC1 tempoff_24")
+}
+record (ai, "$(SYS){$(DEV)}-VG:1-Man")
+{
+    field (DESC, "mantissa part of VG No1 " )
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 vcg1_man")
+}
+record (ai, "$(SYS){$(DEV)}-VG:1-Exp")
+{
+    field (DESC, "expoment part of VG No1" )
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 vcg1_exp")
+}
+record (ai, "$(SYS){$(DEV)}-VG:2-Man")
+{
+    field (DESC, "mantissa part of VG No2" )
+    field (PREC, 2)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 vcg2_man")
+}
+record (ai, "$(SYS){$(DEV)}-VG:2-Exp")
+{
+    field (DESC, "expoment part of VG No2" )
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (INP, "@PLC1 vcg2_exp")
+}
+record (mbbiDirect, "$(SYS){$(DEV)}-VG:1-SP")
+{
+    field (DESC, "vacuum gaugeNo1 set point" )
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (NOBT, "6")
+    field (INP, "@PLC1 vcg1_status B 0")
+}
+record (mbbiDirect, "$(SYS){$(DEV)}-VG:2-SP")
+{
+    field (DESC, "vacuum gaugeNo2 set point" )
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (NOBT, "6")
+    field (INP, "@PLC1 vcg2_status B 0")
+}
+record (ao, "$(SYS){$(DEV)}-VG:1-convA")
+{
+    field (DESC, "Conv. factorA of VG1" )
+    field (PREC, 1)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (ASLO,"0.01")
+    field (OUT, "@PLC1 vcg1_conv_A")
+}
+record (ao, "$(SYS){$(DEV)}-VG:1-convB")
+{
+    field (DESC, "Conv. factorB of VG1" )
+    field (PREC, 1)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (ASLO,"0.01")
+    field (OUT, "@PLC1 vcg1_conv_B")
+}
+record (ao, "$(SYS){$(DEV)}-VG:2-convA")
+{
+    field (DESC, "Conv. factorA of VG2" )
+    field (PREC, 1)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (ASLO,"0.01")
+    field (OUT, "@PLC1 vcg2_conv_A")
+}
+record (ao, "$(SYS){$(DEV)}-VG:2-convB")
+{
+    field (DESC, "Conv. factorB of VG2" )
+    field (PREC, 1)
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (LINR,"LINEAR")
+    field (ASLO,"0.01")
+    field (OUT, "@PLC1 vcg2_conv_B")
+}
+record (mbbiDirect, "$(SYS){$(DEV)}-PLC-Err:RTD1")
+{
+    field (DESC, "RTD fault bit 0-15")
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (NOBT, "16")
+    field (INP, "@PLC1 RTD_fault B 0")
+}
+record (mbbiDirect, "$(SYS){$(DEV)}-PLC-Err:RTD2")
+{
+    field (DESC, "RTD fault bit 16-31")
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (NOBT, "16")
+    field (INP, "@PLC1 RTD_fault B 16")
+}
+record (mbbiDirect, "$(SYS){$(DEV)}-PLC-Err:AI1")
+{
+    field (DESC, "AI fault bit 0-15")
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (NOBT, "16")
+    field (INP, "@PLC1 AI_fault B 0")
+}
+record (mbbiDirect, "$(SYS){$(DEV)}-PLC-Err:AI2")
+{
+    field (DESC, "AI fault bit 16-31")
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (NOBT, "16")
+    field (INP, "@PLC1 AI_fault B 16")
+}
+record (mbbiDirect, "$(SYS){$(DEV)}-PLC-Err:DI1")
+{
+    field (DESC, "DI fault bit 0-15")
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (NOBT, "16")
+    field (INP, "@PLC1 DI_fault B 0")
+}
+record (mbbiDirect, "$(SYS){$(DEV)}-PLC-Err:DI2")
+{
+    field (DESC, "DI fault bit 16-31")
+    field (DTYP, "EtherIP")
+    field (SCAN,"$(SCAN) second")
+    field (NOBT, "16")
+    field (INP, "@PLC1 DI_fault B 16")
+}
+

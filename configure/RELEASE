@@ -41,9 +41,10 @@
 -include $(TOP)/../RELEASE.$(EPICS_HOST_ARCH).local
 -include $(TOP)/configure/RELEASE.local
 
-# automatic save with restore on boot
-AUTOSAVE=$(EPICS_BASE)
 
+# Below will need to be modified for installation
+# automatic save with restore on boot
+#AUTOSAVE=$(EPICS_BASE)
 
 # RecSync support
-RECCASTER=$(EPICS_BASE)
+#RECCASTER=$(EPICS_BASE)

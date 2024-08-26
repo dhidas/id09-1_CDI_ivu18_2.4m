@@ -1,2 +1,20 @@
-PMAC=/home/dhidas/pmac/pmac-2-5-20
-EPICS_BASE=/usr/lib/epics
+# Will need to modify this for installation
+#PMAC=/home/dhidas/pmac/pmac-2-5-20
+#EPICS_BASE=/usr/lib/epics
+
+
+PMAC=/home/epicsuser/epics/support/pmac-2-5-20
+EPICS_BASE=/home/epicsuser/epics/epics-base
+
+SUPPORT=/home/epicsuser/epics/support
+ASYN=$(SUPPORT)/asyn-master
+CALC=$(SUPPORT)/calc-master
+MOTOR=$(SUPPORT)/motor-master
+AUTOSAVE=$(SUPPORT)/autosave-master
+BUSY=$(SUPPORT)/busy-master
+IOCSTATUS=$(SUPPORT)/iocStats-master
+CAPUTLOG=$(SUPPORT)/caPutLog-master
+ETHER_IP=$(SUPPORT)/ether_ip-master
+STREAM=$(SUPPORT)/StreamDevice-master
+RECCASTER=$(SUPPORT)/recsync-master/client
+TPMAC=$(SUPPORT)/tpmac-master

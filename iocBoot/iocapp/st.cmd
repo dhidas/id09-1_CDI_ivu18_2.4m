@@ -7,8 +7,8 @@
 
 epicsEnvSet("ENGINEER", "Dean Andrew Hidas is not an engineer. <dhidas@bnl.gov>")
 #epicsEnvSet("PMACUTIL", "/usr/share/epics-pmacutil-dev")
-epicsEnvSet("PMAC1_IP", "192.168.0.200")
-#epicsEnvSet("PLC_IP","10.0.160.137")
+epicsEnvSet("PMAC1_IP", "192.168.1.20")
+epicsEnvSet("PLC_IP","192.168.1.30")
 epicsEnvSet("sys", "SR:C09-ID:G1")
 epicsEnvSet("dev", "IVU18:1")
 epicsEnvSet("LOCATION",$(HOSTNAME))
@@ -62,6 +62,11 @@ pmacSetCoordStepsPerUnit("BrickCS2", 2, 1000)
 pmacSetCoordStepsPerUnit("BrickCS3", 3, 1000)
 pmacSetCoordStepsPerUnit("BrickCS3", 4, 1000)
 
+# EthernetIP conection for PLC
+drvEtherIP_init
+#drvEtherIP_default_rate = 0.5
+drvEtherIP_define_PLC("PLC1", "$(PLC_IP)", 0)
+
 ## Load record instances
 #dbLoadTemplate "db/user.substitutions"
 dbLoadRecords("db/IVU18.db", "SYS=$(sys),DEV=$(dev),PORT=BRICK1port")
@@ -88,6 +93,8 @@ dbLoadRecords("db/ppmac_motorstatus.db", "SYS=$(sys),DEV={$(dev)-Ax:GU},MOTOR=Br
 dbLoadRecords("db/ppmac_motorstatus.db", "SYS=$(sys),DEV={$(dev)-Ax:GD},MOTOR=Brick,PORT=BRICK1port,AXIS=2,DESC=Gap Downstream")
 dbLoadRecords("db/ppmac_motorstatus.db", "SYS=$(sys),DEV={$(dev)-Ax:EU},MOTOR=Brick,PORT=BRICK1port,AXIS=3,DESC=Elevation Upstream")
 dbLoadRecords("db/ppmac_motorstatus.db", "SYS=$(sys),DEV={$(dev)-Ax:ED},MOTOR=Brick,PORT=BRICK1port,AXIS=4,DESC=Elevation Downstream")
+
+dbLoadRecords("db/plc18.db","SYS=$(sys),DEV=$(dev),SCAN=1")
 
 dbLoadRecords("db/asynRecord.db","P=$(sys),R={$(dev)}Asyn,ADDR=1,PORT=BRICK1port,IMAX=128,OMAX=128")
 dbLoadRecords("db/save_restoreStatus.db", "P=SR:CT{IOC:IVU:C09}")
