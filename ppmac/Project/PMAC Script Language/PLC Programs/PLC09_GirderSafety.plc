@@ -55,8 +55,9 @@ if (P_GapError == kTRUE) {
     P_GapError = kTRUE
   }
 
-  // Check Taper limit switches if limit disable is not true
-  if (inLIMITDISABLE == kFALSE && (inTAPERPLIM == kTRUE || inTAPERMLIM == kTRUE)) {
+  // Check Taper limit switches if limit disable is not true.
+  // NOTE: here inTAPERPLIM has inverted polarity from what one might expect.
+  if (inLIMITDISABLE == kFALSE && (inTAPERPLIM == kZERO || inTAPERMLIM == kZERO)) {
     CMD"#*k"
     P_GapError = kTRUE
   }
