@@ -113,10 +113,11 @@ Motor[lMotorHoming].JogSpeed = kHOMESPEED
 
 // Home the motor using the move until trigger with a small post move.  Use a timeout as a backup.
 TIMER060HOMING = 60000
-Motor[lMotorHoming].ProgJogPos = Motor[lMotorHoming].Pos - 50000
+Motor[lMotorHoming].ProgJogPos = Motor[lMotorHoming].Pos - 500
 Ldata.motor = lMotorHoming
-CMD"j=*^0"
-while (Motor[lMotorHoming].DesVelZero == kTRUE && TIMER060HOMING > 0) {}  // Wait for start
+CMD"j=15000^0"
+Timer(0.1)
+//while (Motor[lMotorHoming].DesVelZero == kTRUE && TIMER060HOMING > 0) {}  // Wait for start
 while (Motor[lMotorHoming].DesVelZero == kFALSE && TIMER060HOMING > 0) {}           // Wait for end
 if (TIMER060HOMING <= 0) {
   // Timeout in homing, report and abort
