@@ -1,0 +1,61 @@
+// This PLC is to test the beacon lights
+
+Open PLC 30
+
+local lColor
+local lCount
+local lOverlap
+local lDelay1
+local lDelay2
+
+lCount = 10
+lOverlap = 0.1
+lDelay1 = 0.4
+lDelay2 = 0.25
+
+
+outBEACONGREEN = kOFF
+outBEACONYELLOW = kOFF
+outBEACONRED - kOFF
+
+while (lCount > 0) {
+
+  lColor = 4
+  while (lColor > 0) {
+    switch (lColor) {
+      case 4:
+        outBEACONGREEN = kON
+        call Timer(lOverlap)
+        outBEACONYELLOW = kOFF
+      case 3:
+        outBEACONYELLOW = kON
+        call Timer(lOverlap)
+        outBEACONGREEN = kOFF
+      case 2:
+        outBEACONRED = kON
+        call Timer(lOverlap)
+        outBEACONYELLOW = kOFF
+      case 1:
+        outBEACONYELLOW = kON
+        call Timer(lOverlap)
+        outBEACONRED = kON
+    }
+    call Timer(lDelay1)
+    lColor--
+  }
+  lCount--
+}
+
+while (lCount > 0) {
+  outBEACONGREEN = lCount % 2
+  outBEACONYELLOW = lCount % 2
+  outBEACONRED = lCount % 2
+  lCount++
+  call Timer(lDelay2)
+}
+
+outBEACONGREEN = kOFF
+outBEACONYELLOW = kOFF
+outBEACONRED - kOFF
+
+Close
