@@ -466,12 +466,12 @@ record(ao, "$(SYS){$(DEV)-CS2:Gap}MinGap-SP") {
 record(transform, "$(SYS){$(DEV)-CS2:Gap}MinGap-Pass") {
   field(SCAN, "Passive")
   field(INPA, "$(SYS){$(DEV)-CS2:Gap}MinGap-RB")
-  field(OUTA, "$(SYS){$(DEV)-CS2:Gap}-Mtr-SP.DRVH")
+  field(OUTA, "$(SYS){$(DEV)-CS2:Gap}-Mtr-SP.DRVL")
   field(CLCA, "A")
   field(CLCB, "A")
   field(CLCC, "A")
-  field(OUTB, "$(SYS){$(DEV)-CS2:Gap}-Mtr-SP-Go.DRVH")
-  field(OUTC, "$(SYS){$(DEV)-CS2:Gap}-Mtr.HLM")
+  field(OUTB, "$(SYS){$(DEV)-CS2:Gap}-Mtr-SP-Go.DRVL")
+  field(OUTC, "$(SYS){$(DEV)-CS2:Gap}-Mtr.LLM")
 }
 record(ai, "$(SYS){$(DEV)-CS2:Gap}MaxGap-RB") {
   field(DTYP, "stream")
@@ -531,12 +531,12 @@ record(ao, "$(SYS){$(DEV)-CS2:Taper}MinTaper-SP") {
 record(transform, "$(SYS){$(DEV)-CS2:Taper}MinTaper-Pass") {
   field(SCAN, "Passive")
   field(INPA, "$(SYS){$(DEV)-CS2:Taper}MinTaper-RB")
-  field(OUTA, "$(SYS){$(DEV)-CS2:Taper}-Mtr-SP.DRVH")
+  field(OUTA, "$(SYS){$(DEV)-CS2:Taper}-Mtr-SP.DRVL")
   field(CLCA, "A")
   field(CLCB, "A")
   field(CLCC, "A")
-  field(OUTB, "$(SYS){$(DEV)-CS2:Taper}-Mtr-SP-Go.DRVH")
-  field(OUTC, "$(SYS){$(DEV)-CS2:Taper}-Mtr.HLM")
+  field(OUTB, "$(SYS){$(DEV)-CS2:Taper}-Mtr-SP-Go.DRVL")
+  field(OUTC, "$(SYS){$(DEV)-CS2:Taper}-Mtr.LLM")
 }
 record(ai, "$(SYS){$(DEV)-CS2:Taper}MaxTaper-RB") {
   field(DTYP, "stream")
@@ -596,12 +596,12 @@ record(ao, "$(SYS){$(DEV)-CS3:Elev}MinElev-SP") {
 record(transform, "$(SYS){$(DEV)-CS3:Elev}MinElev-Pass") {
   field(SCAN, "Passive")
   field(INPA, "$(SYS){$(DEV)-CS3:Elev}MinElev-RB")
-  field(OUTA, "$(SYS){$(DEV)-CS3:Elev}-Mtr-SP.DRVH")
+  field(OUTA, "$(SYS){$(DEV)-CS3:Elev}-Mtr-SP.DRVL")
   field(CLCA, "A")
   field(CLCB, "A")
   field(CLCC, "A")
-  field(OUTB, "$(SYS){$(DEV)-CS3:Elev}-Mtr-SP-Go.DRVH")
-  field(OUTC, "$(SYS){$(DEV)-CS3:Elev}-Mtr.HLM")
+  field(OUTB, "$(SYS){$(DEV)-CS3:Elev}-Mtr-SP-Go.DRVL")
+  field(OUTC, "$(SYS){$(DEV)-CS3:Elev}-Mtr.LLM")
 }
 record(ai, "$(SYS){$(DEV)-CS3:Elev}MaxElev-RB") {
   field(DTYP, "stream")
@@ -661,12 +661,12 @@ record(ao, "$(SYS){$(DEV)-CS3:Tilt}MinTilt-SP") {
 record(transform, "$(SYS){$(DEV)-CS3:Tilt}MinTilt-Pass") {
   field(SCAN, "Passive")
   field(INPA, "$(SYS){$(DEV)-CS3:Tilt}MinTilt-RB")
-  field(OUTA, "$(SYS){$(DEV)-CS3:Tilt}-Mtr-SP.DRVH")
+  field(OUTA, "$(SYS){$(DEV)-CS3:Tilt}-Mtr-SP.DRVL")
   field(CLCA, "A")
   field(CLCB, "A")
   field(CLCC, "A")
-  field(OUTB, "$(SYS){$(DEV)-CS3:Tilt}-Mtr-SP-Go.DRVH")
-  field(OUTC, "$(SYS){$(DEV)-CS3:Tilt}-Mtr.HLM")
+  field(OUTB, "$(SYS){$(DEV)-CS3:Tilt}-Mtr-SP-Go.DRVL")
+  field(OUTC, "$(SYS){$(DEV)-CS3:Tilt}-Mtr.LLM")
 }
 record(ai, "$(SYS){$(DEV)-CS3:Tilt}MaxTilt-RB") {
   field(DTYP, "stream")

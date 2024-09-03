@@ -85,20 +85,20 @@ if (Motor[lMotorHoming].AmpEna + Motor[lMotorFollowing].AmpEna != 2) {
 
 // First get this motor touching the home switch.  If the limit switch is seen and not
 // the home switch exit with an error
-if (pHomeFlag(lMotorHoming) == kONE && Motor[lMotorHoming].PlusLimit == kFALSE) {
+if (pHomeFlag(lMotorHoming) == kZERO && Motor[lMotorHoming].PlusLimit == kFALSE) {
   Ldata.motor = lMotorHoming
   CMD"j+"
   call Timer(0.200)
 
   TIMER060HOMING = 300000
-  while (pHomeFlag(lMotorHoming) == kONE && Motor[lMotorHoming].PlusLimit == kFALSE && TIMER060HOMING > 0) {}
+  while (pHomeFlag(lMotorHoming) == kZERO && Motor[lMotorHoming].PlusLimit == kFALSE && TIMER060HOMING > 0) {}
   if (TIMER060HOMING <= 0) {
     // Timeout in homing, report and abort
     P_HomingTimeout = kTRUE
     GOTO 666
   }
 }
-if (Motor[lMotorHoming].PlusLimit == kTRUE && pHomeFlag(lMotorHoming) == kONE) {
+if (Motor[lMotorHoming].PlusLimit == kTRUE && pHomeFlag(lMotorHoming) == kZERO) {
   P_HomingSwitchNotFound = kTRUE
     GOTO 666
 }
@@ -113,7 +113,7 @@ Motor[lMotorHoming].JogSpeed = kHOMESPEED
 
 // Home the motor using the move until trigger with a small post move.  Use a timeout as a backup.
 TIMER060HOMING = 60000
-Motor[lMotorHoming].ProgJogPos = Motor[lMotorHoming].Pos - 3000
+Motor[lMotorHoming].ProgJogPos = Motor[lMotorHoming].Pos - Motor[lMotorHoming].HomePos - 3000
 Ldata.motor = lMotorHoming
 CMD"j=*^-100"
 while (pHomeFlag(lMotorHoming) == kONE && TIMER060HOMING > 0) {}           // Wait for end
