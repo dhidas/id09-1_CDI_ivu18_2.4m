@@ -407,8 +407,6 @@ record(mbbi, "$(SYS){$(DEV)}GirderMode-RB") {
   field(TWVL, "2")
   field(THVL, "3")
   field(FRVL, "4")
-  field(FRVL, "4")
-  field(FVVL, "5")
   field(SXVL, "5")
   field(ZRST, "Gap Elevation Separate")
   field(ONST, "All Together")
@@ -741,7 +739,7 @@ record(bo, "$(SYS){$(DEV)}ElevError-Reset") {
 
 
 
-
+t 
 
 
 

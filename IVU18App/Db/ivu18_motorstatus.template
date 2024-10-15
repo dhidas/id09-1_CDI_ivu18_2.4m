@@ -8,14 +8,24 @@ record(bi, "$(SYS){$(DEV)-Ax:$(AXISNAME)}Sw:AmpEna-Sts") {
   field(ONAM, "Amp Enabled")
 }
 
-record(bo, "$(SYS){$(DEV)-Ax:$(AXISNAME)}Sw:AmpEna-SP") {
+record(bo, "$(SYS){$(DEV)-Ax:$(AXISNAME)}Brake-SP") {
   field(DTYP, "stream")
-  field(DESC, "Amp Enable Output $(AXISNAME)")
+  field(DESC, "Brake setpoint $(AXISNAME)")
   field(SCAN, "Passive")
   field(OUT, "@pmac.proto setIntVar(pAmpEnaOut($(AXIS))) $(PORT)")
-  field(ZNAM, "Amp Disabled")
-  field(ONAM, "Amp Enabled")
+  field(ZNAM, "Engage Brake")
+  field(ONAM, "Disengage Brake")
 }
+
+record(bi, "$(SYS){$(DEV)-Ax:$(AXISNAME)}Brake-Sts") {
+  field(DTYP, "stream")
+  field(DESC, "Brake status $(AXISNAME)")
+  field(SCAN, "1 second")
+  field(OUT, "@pmac.proto getIntVar(pAmpEnaOut($(AXIS))) $(PORT)")
+  field(ZNAM, "Brake Engaged")
+  field(ONAM, "Brake Disengaged")
+}
+
 
 record(bi, "$(SYS){$(DEV)-Ax:$(AXISNAME)}Sw:AmpFlt-Sts") {
   field(DTYP, "stream")
