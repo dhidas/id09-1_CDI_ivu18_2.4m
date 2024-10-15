@@ -414,7 +414,8 @@ record(mbbi, "$(SYS){$(DEV)}GirderMode-RB") {
   field(TWVL, "2")
   field(THVL, "3")
   field(FRVL, "4")
-  field(SXVL, "5")
+  field(FVVL, "5")
+  field(SXVL, "6")
   field(ZRST, "Gap Elevation Separate")
   field(ONST, "All Together")
   field(TWST, "Following US")
@@ -426,7 +427,6 @@ record(mbbi, "$(SYS){$(DEV)}GirderMode-RB") {
 
 record(mbbo, "$(SYS){$(DEV)}GirderMode-SP") {
   field(DESC, "Girder axis requested state")
-  field(SCAN, "Passive")
   field(ZRVL, "0")
   field(ONVL, "1")
   field(TWVL, "2")

@@ -1,6 +1,6 @@
 // Global variable definitions.  Things which need to be known by 
-// epics should be in the form of #define statements, otherwise
-// use of global is best.
+// epics should be global, things which should not be changed externally
+// should be defines
 
 // Global CONSTANTS, of the form kXXXX
 
@@ -18,7 +18,6 @@
 
 // Home offsets (possible use other method for bissc abs)
 #define kNMOTORS      4
-//#define kM1OFFSET 87275
 #define kM1OFFSET (13600.063-5000)
 #define kM2OFFSET (12594.363-5000)
 #define kM3OFFSET (52204.435)
