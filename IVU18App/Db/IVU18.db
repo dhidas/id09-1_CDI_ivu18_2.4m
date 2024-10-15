@@ -6,6 +6,13 @@ record(ai, "Test") {
   #info(autosaveFields, "VAL")
 }
 
+record(stringout, "$(SYS){$(DEV)}BeaconTest") {
+  field(DESC, "Reset MACRO link")
+  field(DTYP, "stream")
+  field(PROC, 1)
+  field(VAL, "enableplc30")
+  field(OUT, "@pmac.proto sendString() $(PORT)")
+}
 
 record(ai, "$(SYS){$(DEV)}P8197") {
   field(DTYP, "stream")
