@@ -127,26 +127,30 @@ record(bi, "$(SYS){$(DEV)-Ax:ED}Sw:HomeFlag-Sts") {
 }
 record(ai, "$(SYS){$(DEV)-Ax:GU}HomeCapturedPos") {
   field(DTYP, "stream")
+  field(PREC, "2")
   field(DESC, "Home Switch Position")
-  field(SCAN, "5 second")
+  field(SCAN, "2 second")
   field(INP, "@pmac.proto getVar(Motor[1].CapturedPos) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GD}HomeCapturedPos") {
   field(DTYP, "stream")
+  field(PREC, "2")
   field(DESC, "Home Switch Position")
-  field(SCAN, "5 second")
+  field(SCAN, "2 second")
   field(INP, "@pmac.proto getVar(Motor[2].CapturedPos) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)-Ax:EU}HomeCapturedPos") {
   field(DTYP, "stream")
+  field(PREC, "2")
   field(DESC, "Home Switch Position")
-  field(SCAN, "5 second")
+  field(SCAN, "2 second")
   field(INP, "@pmac.proto getVar(Motor[3].CapturedPos) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)-Ax:ED}HomeCapturedPos") {
   field(DTYP, "stream")
+  field(PREC, "2")
   field(DESC, "Home Switch Position")
-  field(SCAN, "5 second")
+  field(SCAN, "2 second")
   field(INP, "@pmac.proto getVar(Motor[4].CapturedPos) $(PORT)")
 }
 
@@ -1065,12 +1069,18 @@ record(ai, "$(SYS){$(DEV)-Ax:GU}LEnc-Errors") {
   field(DESC, "Linear encoder Errors")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1006) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GD}LEnc-Errors") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder Errors")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1007) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:EU}LEnc-Errors") {
   field(DTYP, "stream")
@@ -1086,6 +1096,9 @@ record(ai, "$(SYS){$(DEV)-Ax:ED}LEnc-Errors") {
   field(DESC, "Linear encoder Errors")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1009) $(PORT)")
+  field(ZNAM, "No error")
+  field(ONAM, "ERROR")
+  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GU}LEnc-CRCErrors") {
   field(DTYP, "stream")
@@ -1262,6 +1275,78 @@ record(bi, "$(SYS){$(DEV)}OpenGapTimeout-RB") {
   field(ONAM, "Gap Open Timeout")
   field(OSV, "MAJOR")
 }
+
+
+
+#######on-power on or reset PowerPMAC, SP values are initialized. Write those, before motion request.
+######record(seq , "$(SYS){$(DEV)-CS2}-Mtr-SP-Go") {
+######  field(DESC, "Write limit, speed, setpoint and go")
+######  field(DOL1  ,"$(SYS){$(DEV)-CS2:Gap}MinGap-SP" )
+######  field(DOL2  ,"$(SYS){$(DEV)-CS2:Gap}MaxGap-SP" )
+######  field(DOL3  ,"$(SYS){$(DEV)-CS2:Taper}MinTaper-SP" )
+######  field(DOL4  ,"$(SYS){$(DEV)-CS2:Taper}MaxTaper-SP" )
+######  field(DOL5  ,"$(SYS){$(DEV)}GapSpeed-SP" )
+######  field(DOL6  ,"$(SYS){$(DEV)-CS2:Gap}-Mtr-SP" )
+######  field(DOL7  ,"$(SYS){$(DEV)-CS2:Taper}-Mtr-SP" )
+######  field(DOL8  ,"$(SYS){$(DEV)-CS2:Gap}-MvReq-Cmd" )
+######  field(LNK1, "$(SYS){$(DEV)-CS2:Gap}MinGap-SP PP")
+######  field(LNK2, "$(SYS){$(DEV)-CS2:Gap}MaxGap-SP PP")
+######  field(LNK3, "$(SYS){$(DEV)-CS2:Taper}MinTaper-SP PP")
+######  field(LNK4, "$(SYS){$(DEV)-CS2:Taper}MaxTaper-SP PP")
+######  field(LNK5, "$(SYS){$(DEV)}GapSpeed-SP PP")
+######  field(LNK6, "$(SYS){$(DEV)-CS2:Gap}-Mtr-SP PP")
+######  field(LNK7, "$(SYS){$(DEV)-CS2:Taper}-Mtr-SP PP")
+######  field(LNK8, "$(SYS){$(DEV)-CS2:Gap}-MvReq-Cmd PP")
+######  field(DLY8, 1.0)
+######}
+######
+######
+######record(seq, "$(SYS){$(DEV)-CS3}-Mtr-SP-Go") {
+######  field(DESC, "Write limit, speed, setpoint and go")
+######  field(DOL1  ,"$(SYS){$(DEV)-CS3:Elev}MinElev-SP" )
+######  field(DOL2  ,"$(SYS){$(DEV)-CS3:Elev}MaxElev-SP" )
+######  field(DOL3  ,"$(SYS){$(DEV)-CS3:Tilt}MinTilt-SP" )
+######  field(DOL4  ,"$(SYS){$(DEV)-CS3:Tilt}MaxTilt-SP" )
+######  field(DOL5  ,"$(SYS){$(DEV)}ElevSpeed-SP" )
+######  field(DOL6  ,"$(SYS){$(DEV)-CS3:Elev}-Mtr-SP" )
+######  field(DOL7  ,"$(SYS){$(DEV)-CS3:Tilt}-Mtr-SP" )
+######  field(DOL8  ,"$(SYS){$(DEV)-CS3:Elev}-MvReq-Cmd" )
+######  field(LNK1, "$(SYS){$(DEV)-CS3:Elev}MinElev-SP PP")
+######  field(LNK2, "$(SYS){$(DEV)-CS3:Elev}MaxElev-SP PP")
+######  field(LNK3, "$(SYS){$(DEV)-CS3:Tilt}MinTilt-SP PP")
+######  field(LNK4, "$(SYS){$(DEV)-CS3:Tilt}MaxTilt-SP PP")
+######  field(LNK5, "$(SYS){$(DEV)}ElevSpeed-SP PP")
+######  field(LNK6, "$(SYS){$(DEV)-CS3:Elev}-Mtr-SP PP")
+######  field(LNK7, "$(SYS){$(DEV)-CS3:Tilt}-Mtr-SP PP")
+######  field(LNK8, "$(SYS){$(DEV)-CS3:Elev}-MvReq-Cmd PP")
+######  field(DLY8, 1.0)
+######}
+
+
+record(bo, "$(SYS){$(DEV)-SPlc:G}Sw:Clr-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Safety PLC Clear")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(HIGH, "0.5")
+  field(SCAN, "Passive")
+  field(OUT, "@pmac.proto setIntVar(M29) $(PORT)")
+}
+
+record(bo, "$(SYS){$(DEV)-SPlc:E}Sw:Clr-SP") {
+  field(DTYP, "stream")
+  field(DESC, "Safety PLC Clear")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(HIGH, "0.5")
+  field(SCAN, "Passive")
+  field(OUT, "@pmac.proto setIntVar(M30) $(PORT)")
+}
+
+
+
+
+
 
 
 # dhidas adding for testing only

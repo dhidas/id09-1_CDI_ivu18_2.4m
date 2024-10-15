@@ -12,7 +12,7 @@ record(bo, "$(SYS){$(DEV)-Ax:$(AXISNAME)}Sw:AmpEna-SP") {
   field(DTYP, "stream")
   field(DESC, "Amp Enable Output $(AXISNAME)")
   field(SCAN, "Passive")
-  field(OUT, "@pmac.proto setIntVar(M$(AXIS)14) $(PORT)")
+  field(OUT, "@pmac.proto setIntVar(pAmpEnaOut($(AXIS))) $(PORT)")
   field(ZNAM, "Amp Disabled")
   field(ONAM, "Amp Enabled")
 }

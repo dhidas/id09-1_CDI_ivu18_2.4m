@@ -2,21 +2,27 @@
 
 Open PLC 30
 
+disable plc 7
+
+P3000 = P3000 + 1
+
 local lColor
 local lCount
 local lOverlap
 local lDelay1
 local lDelay2
 
-lCount = 10
-lOverlap = 0.1
-lDelay1 = 0.4
-lDelay2 = 0.25
+lCount = 7
+lOverlap = 0.02
+lDelay1 = 0.1
+lDelay2 = 0.05
 
 
 outBEACONGREEN = kOFF
 outBEACONYELLOW = kOFF
-outBEACONRED - kOFF
+outBEACONRED = kOFF
+
+call Timer(0.5)
 
 while (lCount > 0) {
 
@@ -27,18 +33,22 @@ while (lCount > 0) {
         outBEACONGREEN = kON
         call Timer(lOverlap)
         outBEACONYELLOW = kOFF
+        break
       case 3:
         outBEACONYELLOW = kON
         call Timer(lOverlap)
         outBEACONGREEN = kOFF
+        break
       case 2:
         outBEACONRED = kON
         call Timer(lOverlap)
         outBEACONYELLOW = kOFF
+        break
       case 1:
         outBEACONYELLOW = kON
         call Timer(lOverlap)
-        outBEACONRED = kON
+        outBEACONRED = kOFF
+        break
     }
     call Timer(lDelay1)
     lColor--
@@ -46,16 +56,19 @@ while (lCount > 0) {
   lCount--
 }
 
+lCount = 20
 while (lCount > 0) {
   outBEACONGREEN = lCount % 2
   outBEACONYELLOW = lCount % 2
   outBEACONRED = lCount % 2
-  lCount++
+  lCount--
   call Timer(lDelay2)
 }
 
 outBEACONGREEN = kOFF
 outBEACONYELLOW = kOFF
-outBEACONRED - kOFF
+outBEACONRED = kOFF
 
+disable plc 30
+enable plc 7
 Close
