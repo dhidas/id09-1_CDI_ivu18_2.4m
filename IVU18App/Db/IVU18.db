@@ -745,11 +745,6 @@ record(bo, "$(SYS){$(DEV)}ElevError-Reset") {
 
 
 
-
-t 
-
-
-
 record(bi, "$(SYS){$(DEV)-Ax:GU}Sw:ServoReady-Sts") {
   field(DTYP, "stream")
   field(DESC, "Servo Ready")
@@ -1074,36 +1069,24 @@ record(ai, "$(SYS){$(DEV)-Ax:GU}LEnc-Errors") {
   field(DESC, "Linear encoder Errors")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1006) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GD}LEnc-Errors") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder Errors")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1007) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:EU}LEnc-Errors") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder Errors")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1008) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:ED}LEnc-Errors") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder Errors")
   field(SCAN, "1 second")
   field(INP, "@pmac.proto getIntVar(P1009) $(PORT)")
-  field(ZNAM, "No error")
-  field(ONAM, "ERROR")
-  field(OSV, "MAJOR")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GU}LEnc-CRCErrors") {
   field(DTYP, "stream")
