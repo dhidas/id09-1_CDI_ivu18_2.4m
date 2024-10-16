@@ -144,7 +144,6 @@ Gate3[0].Chan[3].TimerMode=0
 Gate3[0].Chan[3].CompA=0
 Gate3[0].Chan[3].CompB=0
 
-
 //////Gate3[0].ClockPol=0
 //////Gate3[0].DacClockDiv=5
 //////Gate3[0].DacStrobe=$ffff0000
@@ -514,6 +513,14 @@ Acc84E[0].Chan[0].SerialEncCmd = $2114A0
 Acc84E[0].Chan[1].SerialEncCmd = $2114A0
 Acc84E[0].Chan[2].SerialEncCmd = $2114A0
 Acc84E[0].Chan[3].SerialEncCmd = $2114A0
+sys.WpKey=$0
+
+
+sys.WpKey=$AAAAAAAA
+Gate3[0].Chan[0].OutputMode=7     // DAC
+Gate3[0].Chan[0].OutputMode=7     // DAC
+Gate3[0].Chan[0].OutputMode=7     // DAC
+Gate3[0].Chan[0].OutputMode=7     // DAC
 sys.WpKey=$0
 
 
