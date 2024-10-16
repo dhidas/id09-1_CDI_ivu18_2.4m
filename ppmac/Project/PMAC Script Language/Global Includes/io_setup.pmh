@@ -113,10 +113,3 @@ M46->IO1Out22
 M47->IO1Out23
 M48->IO1Out24
 
-
-// Amp enables (using old m var defs)
-M114->pAmpEnaOut(1)
-M214->pAmpEnaOut(2)
-M314->pAmpEnaOut(3)
-M414->pAmpEnaOut(4)
-
