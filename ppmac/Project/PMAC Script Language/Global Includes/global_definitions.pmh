@@ -205,6 +205,10 @@
 #define LENC4CRCERROR   INT((Acc84E[0].Chan[3].SerialEncDataB >> 22) & $1)
 
 
+// PLC 18
+global gMagEndGapUS
+global gMagEndGapUS
+
 ptr pAmpEnaOut(5)->*
 pAmpEnaOut(1)->Gate3[0].Chan[0].AmpEna
 pAmpEnaOut(2)->Gate3[0].Chan[1].AmpEna
@@ -219,4 +223,3 @@ pHomeFlag(3)->Gate3[0].Chan[2].HomeFlag
 pHomeFlag(4)->Gate3[0].Chan[3].HomeFlag
 
 
-global testme
