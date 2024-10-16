@@ -21,7 +21,7 @@ record(bi, "$(SYS){$(DEV)-Ax:$(AXISNAME)}Brake-Sts") {
   field(DTYP, "stream")
   field(DESC, "Brake status $(AXISNAME)")
   field(SCAN, "1 second")
-  field(OUT, "@pmac.proto getIntVar(pAmpEnaOut($(AXIS))) $(PORT)")
+  field(INP, "@pmac.proto getIntVar(pAmpEnaOut($(AXIS))) $(PORT)")
   field(ZNAM, "Brake Engaged")
   field(ONAM, "Brake Disengaged")
 }

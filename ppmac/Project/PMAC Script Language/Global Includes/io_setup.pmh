@@ -33,8 +33,8 @@
 #define outAMP2CLEAR          Acc65E[2].DataReg[3].1.1
 #define outAMP3CLEAR          Acc65E[2].DataReg[3].2.1
 #define outAMP4CLEAR          Acc65E[2].DataReg[3].3.1
-#define IO1Out05              Acc65E[2].DataReg[3].4.1
-#define IO1Out06              Acc65E[2].DataReg[3].5.1
+#define outAMP1_2EDM          Acc65E[2].DataReg[3].4.1
+#define outAMP3_4EDM          Acc65E[2].DataReg[3].5.1
 #define IO1Out07              Acc65E[2].DataReg[3].6.1
 #define IO1Out08              Acc65E[2].DataReg[3].7.1
                               
@@ -92,8 +92,8 @@ M25->outAMP1CLEAR
 M26->outAMP2CLEAR
 M27->outAMP3CLEAR
 M28->outAMP4CLEAR
-M29->IO1Out05
-M30->IO1Out06
+M29->outAMP1_2EDM
+M30->outAMP3_4EDM
 M31->IO1Out07
 M32->IO1Out08
 M33->IO1Out09
