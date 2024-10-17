@@ -31,8 +31,17 @@ P_HomingAmpError = kFALSE
 P_HomingTimeout = kFALSE
 
 // PLC08
+// Note: should set initial setpoints to current values on startup to avoid unintended move-tos
 P_InterlockState = kFALSE
-P_OpenGapExecuting = kFALSE
+P_GapSetpoint         = 25000
+P_ElevSetpoint        = 0
+P_TaperSetpoint       = 0
+P_TiltSetpoint        = 0
+P_GapMoveRequest      = kFALSE
+P_GapSpeed_um         = 250
+P_GapElevMoveRequest  = kFALSE
+P_ElevMoveRequest     = kFALSE
+P_ElevSpeed_um        = 100
 
 // PLC09
 P_StopAllRequest  = 0
