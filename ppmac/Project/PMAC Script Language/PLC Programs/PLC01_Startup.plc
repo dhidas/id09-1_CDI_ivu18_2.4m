@@ -1,5 +1,9 @@
 Open PLC 1
 
+// First things first, kill all motors
+CMD"#*k"
+call Timer(0.200)
+
 // REMOVE THIS BEFORE actually using elevation
 Motor[3].HomePos = Motor[3].ActPos
 Motor[4].HomePos = Motor[4].ActPos
@@ -72,5 +76,10 @@ enable PLC 13
 enable PLC 15
 enable PLC 18
 
+// Wait (for move mode config) and Kill all motors (hopefullt DesVelZero for all)
+call Timer(0.500)
+CMD"#*k"
+
 disable PLC 1
+
 Close
