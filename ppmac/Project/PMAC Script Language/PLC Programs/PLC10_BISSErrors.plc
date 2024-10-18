@@ -6,49 +6,49 @@ Open PLC 10
 
 // reset all counts to zero if requested (at startup or via epics)
 // and reset all latched errors
-if (P_PLC10ResetCounts == kTRUE) {
-  P_Enc1Warnings        = 0
-  P_Enc2Warnings        = 0
-  P_Enc3Warnings        = 0
-  P_Enc4Warnings        = 0
-  P_Enc1Errors          = 0
-  P_Enc2Errors          = 0
-  P_Enc3Errors          = 0
-  P_Enc4Errors          = 0
-  P_Enc1CRCErrors       = 0
-  P_Enc2CRCErrors       = 0
-  P_Enc3CRCErrors       = 0
-  P_Enc4CRCErrors       = 0
-  P_Enc1Timeouts        = 0
-  P_Enc2Timeouts        = 0
-  P_Enc3Timeouts        = 0
-  P_Enc4Timeouts        = 0
-  P_PLC10Count          = 0
-  P_Enc1ErrorLatch      = kFALSE
-  P_Enc2ErrorLatch      = kFALSE
-  P_Enc3ErrorLatch      = kFALSE
-  P_Enc4ErrorLatch      = kFALSE
-  P_PLC10ResetCounts    = kFALSE
+if (gPLC10ResetCounts == kTRUE) {
+  gEnc1Warnings        = 0
+  gEnc2Warnings        = 0
+  gEnc3Warnings        = 0
+  gEnc4Warnings        = 0
+  gEnc1Errors          = 0
+  gEnc2Errors          = 0
+  gEnc3Errors          = 0
+  gEnc4Errors          = 0
+  gEnc1CRCErrors       = 0
+  gEnc2CRCErrors       = 0
+  gEnc3CRCErrors       = 0
+  gEnc4CRCErrors       = 0
+  gEnc1Timeouts        = 0
+  gEnc2Timeouts        = 0
+  gEnc3Timeouts        = 0
+  gEnc4Timeouts        = 0
+  gPLC10Count          = 0
+  gEnc1ErrorLatch      = kFALSE
+  gEnc2ErrorLatch      = kFALSE
+  gEnc3ErrorLatch      = kFALSE
+  gEnc4ErrorLatch      = kFALSE
+  gPLC10ResetCounts    = kFALSE
 }
 
 // Add to all counts (for seeing in epics)
-P_Enc1Warnings        += LENC1WARNING
-P_Enc2Warnings        += LENC2WARNING
-P_Enc3Warnings        += LENC3WARNING
-P_Enc4Warnings        += LENC4WARNING
-P_Enc1Errors          += LENC1ERROR
-P_Enc2Errors          += LENC2ERROR
-P_Enc3Errors          += LENC3ERROR
-P_Enc4Errors          += LENC4ERROR
-P_Enc1CRCErrors       += LENC1CRCERROR
-P_Enc2CRCErrors       += LENC2CRCERROR
-P_Enc3CRCErrors       += LENC3CRCERROR
-P_Enc4CRCErrors       += LENC4CRCERROR
-P_Enc1Timeouts        += LENC1TIMEOUT
-P_Enc2Timeouts        += LENC2TIMEOUT
-P_Enc3Timeouts        += LENC3TIMEOUT
-P_Enc4Timeouts        += LENC4TIMEOUT
-P_PLC10Count          += 1
+gEnc1Warnings        += LENC1WARNING
+gEnc2Warnings        += LENC2WARNING
+gEnc3Warnings        += LENC3WARNING
+gEnc4Warnings        += LENC4WARNING
+gEnc1Errors          += LENC1ERROR
+gEnc2Errors          += LENC2ERROR
+gEnc3Errors          += LENC3ERROR
+gEnc4Errors          += LENC4ERROR
+gEnc1CRCErrors       += LENC1CRCERROR
+gEnc2CRCErrors       += LENC2CRCERROR
+gEnc3CRCErrors       += LENC3CRCERROR
+gEnc4CRCErrors       += LENC4CRCERROR
+gEnc1Timeouts        += LENC1TIMEOUT
+gEnc2Timeouts        += LENC2TIMEOUT
+gEnc3Timeouts        += LENC3TIMEOUT
+gEnc4Timeouts        += LENC4TIMEOUT
+gPLC10Count          += 1
 
 
 
@@ -60,36 +60,36 @@ lErrorSums(3) = LENC3TIMEOUT + LENC3CRCERROR + LENC3ERROR
 lErrorSums(4) = LENC4TIMEOUT + LENC4CRCERROR + LENC4ERROR
 
 
-if (P_Enc1ErrorLatch == kTRUE) {
+if (gEnc1ErrorLatch == kTRUE) {
   CMD"#1k"
 } else {
   if (lErrorSums(1) >= 1) {
     CMD"#*k"
-    P_Enc1ErrorLatch = kTRUE
+    gEnc1ErrorLatch = kTRUE
   }
 }
-if (P_Enc2ErrorLatch == kTRUE) {
+if (gEnc2ErrorLatch == kTRUE) {
   CMD"#2k"
 } else {
   if (lErrorSums(2) >= 1) {
     CMD"#*k"
-    P_Enc2ErrorLatch = kTRUE
+    gEnc2ErrorLatch = kTRUE
   }
 }
-if (P_Enc3ErrorLatch == kTRUE) {
+if (gEnc3ErrorLatch == kTRUE) {
   CMD"#3k"
 } else {
   if (lErrorSums(3) >= 1) {
     CMD"#*k"
-    P_Enc3ErrorLatch = kTRUE
+    gEnc3ErrorLatch = kTRUE
   }
 }
-if (P_Enc4ErrorLatch == kTRUE) {
+if (gEnc4ErrorLatch == kTRUE) {
   CMD"#4k"
 } else {
   if (lErrorSums(4) >= 1) {
     CMD"#*k"
-    P_Enc4ErrorLatch = kTRUE
+    gEnc4ErrorLatch = kTRUE
   }
 }
 

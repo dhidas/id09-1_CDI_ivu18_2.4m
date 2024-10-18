@@ -14,61 +14,61 @@ Motor[4].HomePos = Motor[4].ActPos
 Sys.ZeroVelSetPoint = 10   // For using Motor[x].DesVelZero
 
 // PLC03
-P_MoveMode = -1
-P_MoveModeReq = kMoveModeGapEleSep
+gMoveMode = -1
+gMoveModeReq = kMoveModeGapEleSep
 
 // PLC04
-P_OpenGapRequested = kFALSE
-P_OpenGapExecuting = kFALSE
-P_OpenGapExecutingTimeout = kFALSE
+gOpenGapRequested = kFALSE
+gOpenGapExecuting = kFALSE
+gOpenGapExecutingTimeout = kFALSE
 
 // PLC06
-P_HomingInProgress = kFALSE
-P_HomeRequest = 0
-P_MotorHomingNumber = 0
-P_HomingThisMotor = 0
-P_HomingAmpError = kFALSE
-P_HomingTimeout = kFALSE
+gHomingInProgress = kFALSE
+gHomeRequest = 0
+gMotorHomingNumber = 0
+gHomingThisMotor = 0
+gHomingAmpError = kFALSE
+gHomingTimeout = kFALSE
 
 // PLC08
 // Note: should set initial setpoints to current values on startup to avoid unintended move-tos
-P_InterlockState = kFALSE
-P_GapSetpoint         = 25000
-P_ElevSetpoint        = 0
-P_TaperSetpoint       = 0
-P_TiltSetpoint        = 0
-P_GapMoveRequest      = kFALSE
-P_GapSpeed_um         = 250
-P_GapElevMoveRequest  = kFALSE
-P_ElevMoveRequest     = kFALSE
-P_ElevSpeed_um        = 100
+gInterlockState = kFALSE
+gGapSetpoint         = 25000
+gElevSetpoint        = 0
+gTaperSetpoint       = 0
+gTiltSetpoint        = 0
+gGapMoveRequest      = kFALSE
+gGapSpeed_um         = 250
+gGapElevMoveRequest  = kFALSE
+gElevMoveRequest     = kFALSE
+gElevSpeed_um        = 100
 
 // PLC09
-P_StopAllRequest  = 0
-P_StopAllStatus   = 0
+gStopAllRequest  = 0
+gStopAllStatus   = 0
 // These are only default settings and will be overwritten by EPICS auto-save
-P_MinGap          =  4500
-P_MaxGap          = 25000
-P_MinTaper        =   -50
-P_MaxTaper        =   500
-P_MinElev         =  -500
-P_MaxElev         =   500
-P_MinTilt         =  -500
-P_MaxTilt         =   500
-P_GapError = kFALSE
-P_ElevError = kFALSE
+gMinGap          =  4500
+gMaxGap          = 25000
+gMinTaper        =   -50
+gMaxTaper        =   500
+gMinElev         =  -500
+gMaxElev         =   500
+gMinTilt         =  -500
+gMaxTilt         =   500
+gGapError = kFALSE
+gElevError = kFALSE
 
 // PLC 10
-P_PLC10ResetCounts = kTRUE
+gPLC10ResetCounts = kTRUE
 
 // PLC 13
-P_BrakeTimerArmed = kFALSE
-P_BrakeTimeout = 2
+gBrakeTimerArmed = kFALSE
+gBrakeTimeout = 2
 
 // PLC 15 - Enable Motors and Brakes
-P_AllBrakesReleased  = kFALSE
-P_GapBrakesReleased  = kFALSE
-P_ElevBrakesReleased = kFALSE
+gAllBrakesReleased  = kFALSE
+gGapBrakesReleased  = kFALSE
+gElevBrakesReleased = kFALSE
 
 
 

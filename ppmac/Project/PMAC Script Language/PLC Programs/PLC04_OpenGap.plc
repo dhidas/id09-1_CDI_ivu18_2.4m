@@ -21,14 +21,14 @@ if (Motor[1].PlusLimit == kTRUE || Motor[2].PlusLimit == kTRUE) {
   lGapOpenLimitSwitchOr = kFALSE
 }
 
-if (P_OpenGapRequested == kTRUE && P_OpenGapExecuting != kTRUE) {
-  // Reset software request (we latch with P_OpenGapExecuting)
-  P_OpenGapRequested = kFALSE
+if (gOpenGapRequested == kTRUE && gOpenGapExecuting != kTRUE) {
+  // Reset software request (we latch with gOpenGapExecuting)
+  gOpenGapRequested = kFALSE
 
-  // Abort all motion, set the P_OpenGapExecuting and reset timeout/timer
+  // Abort all motion, set the gOpenGapExecuting and reset timeout/timer
   CMD"&*a"
-  P_OpenGapExecuting = kTRUE
-  P_OpenGapExecutingTimeout = kFALSE
+  gOpenGapExecuting = kTRUE
+  gOpenGapExecutingTimeout = kFALSE
   TIMER040OPENGAP = kGapOpeningTimeout
   call AbortDelay()
 
@@ -52,11 +52,11 @@ if (P_OpenGapRequested == kTRUE && P_OpenGapExecuting != kTRUE) {
   CMD"#*K"
 
   // Record the correct mode for consistency
-  P_MoveMode = kMoveModeOpenGapExecuting
+  gMoveMode = kMoveModeOpenGapExecuting
 
 }
 
-if (P_OpenGapExecuting == kTRUE) {
+if (gOpenGapExecuting == kTRUE) {
   if (lGapOpenLimitSwitchOr == kFALSE || M1Pos < kMAXGAP || M2Pos < kMAXGAP) {
 
     // If motors are not enabled enable them
@@ -73,15 +73,15 @@ if (P_OpenGapExecuting == kTRUE) {
 
     // If we go beyond the timeout flag it here
     if (TIMER040OPENGAP <= 0) {
-      P_OpenGapExecutingTimeout = kTRUE
+      gOpenGapExecutingTimeout = kTRUE
     }
   }
 }
 
 
 // Reset timeout if needed (probably someone issued a reset)
-if (P_OpenGapExecutingTimeout == kTRUE && P_OpenGapExecuting == kFALSE) {
-  P_OpenGapExecutingTimeout = kFALSE
+if (gOpenGapExecutingTimeout == kTRUE && gOpenGapExecuting == kFALSE) {
+  gOpenGapExecutingTimeout = kFALSE
 }
 
 

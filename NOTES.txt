@@ -1,3 +1,25 @@
+
+p2g.sh:
+#!/bin/zsh
+
+# grep "define P_" ppmac/Project/PMAC\ Script\ Language/Global\ Includes/global_definitions.pmh | awk '{print $2}' | awk '{print length(), $1}' | sort -nr | awk '{print "~/test.sh", $2}' > run.sh
+
+PNAME=$1
+GNAME=g${PNAME#*_}
+
+PDEFLINE=$(grep -m 1 "#define $PNAME" ppmac/Project/PMAC\ Script\ Language/Global\ Includes/global_definitions.pmh)
+
+SPLITLINE=( $=PDEFLINE )
+echo "${SPLITLINE[1]}"
+PVAR=${SPLITLINE[3]}
+echo $PNAME $GNAME $PVAR
+
+LC_CTYPE=C find ppmac/Project/PMAC\ Script\ Language/ -type f -exec sed -i '' "s/$PNAME/$GNAME/g" {} \;
+LC_CTYPE=C find IVU18App/Db/  -type f -exec sed -i '' "s/\($PVAR\)/\($GNAME\)/g" {} \;
+
+
+
+
 Check:
 //Motor[1].AmpFaultLevel
 Motor[1].Control[0]=$10000000, try changing this to $0 (as HITZ did).  Overwritten partly by later elements anyways so not sure that this matters.

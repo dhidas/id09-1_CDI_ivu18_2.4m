@@ -14,20 +14,11 @@ record(stringout, "$(SYS){$(DEV)}BeaconTest") {
   field(OUT, "@pmac.proto sendString() $(PORT)")
 }
 
-record(ai, "$(SYS){$(DEV)}P8197") {
-  field(DTYP, "stream")
-  field(DESC, "Motor1 Pos")
-  field(SCAN, "1 second")
-  field(EGU, "um")
-  field(INP, "@pmac.proto getVar(P8197) $(PORT)")
-  field(PREC, "3")
-}
-
 
 record(ao, "$(SYS){$(DEV)}MotorHomeRequest-SP") {
   field(DTYP, "stream")
   field(VAL,  "1")
-  field(OUT, "@pmac.proto setVar(P600) $(PORT)")
+  field(OUT, "@pmac.proto setVar((gHomeRequest)) $(PORT)")
   field(PINI, "NO")
 }
 record(mbbo, "$(SYS){$(DEV)}MotorToHome-SP") {
@@ -46,7 +37,7 @@ record(mbbo, "$(SYS){$(DEV)}MotorToHome-SP") {
   field(DTYP, "stream")
   field(VAL,  "0")
   field(PINI, "NO")
-  field(OUT,  "@pmac.proto setIntVar(P602) $(PORT)")
+  field(OUT,  "@pmac.proto setIntVar((gMotorHomingNumber)) $(PORT)")
 }
 record(mbbi, "$(SYS){$(DEV)}MotorHomingNow-RB") {
   field(DESC, "Which motor is homing")
@@ -63,13 +54,13 @@ record(mbbi, "$(SYS){$(DEV)}MotorHomingNow-RB") {
   field(THST, "EU: Elevation Upstream")
   field(FRST, "ED: Elevation Downstream")
   field(DTYP, "stream")
-  field(INP,  "@pmac.proto getIntVar(P603) $(PORT)")
+  field(INP,  "@pmac.proto getIntVar((gHomingThisMotor)) $(PORT)")
 }
 record(bi, "$(SYS){$(DEV)}HomeInProgress-Sts") {
   field(DTYP, "stream")
   field(DESC, "Home in progress")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P601) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gHomingInProgress)) $(PORT)")
   field(ZNAM, "Idle")
   field(ONAM, "Homing")
 }
@@ -77,7 +68,7 @@ record(bi, "$(SYS){$(DEV)}HomeLimitError-Sts") {
   field(DTYP, "stream")
   field(DESC, "Did not see home")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P697) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gHomingSwitchNotFound)) $(PORT)")
   field(ZNAM, "No Error")
   field(ONAM, "ERROR")
   field(OSV, "MAJOR")
@@ -86,7 +77,7 @@ record(bi, "$(SYS){$(DEV)}HomeAmpError-Sts") {
   field(DTYP, "stream")
   field(DESC, "Amp enable error")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P698) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gHomingAmpError)) $(PORT)")
   field(ZNAM, "No Error")
   field(ONAM, "ERROR")
   field(OSV, "MAJOR")
@@ -95,7 +86,7 @@ record(bi, "$(SYS){$(DEV)}HomeTimeout-Sts") {
   field(DTYP, "stream")
   field(DESC, "Homeing Timeout")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P699) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gHomingTimeout)) $(PORT)")
   field(ZNAM, "No Error")
   field(ONAM, "Timeout ERROR")
   field(OSV, "MAJOR")
@@ -240,7 +231,7 @@ record(ai, "$(SYS){$(DEV)}GapSpeed-RB") {
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(EGU,  "um/s")
-  field(INP, "@pmac.proto getVar(P810) $(PORT)")
+  field(INP, "@pmac.proto getVar((gGapSpeed_um)) $(PORT)")
 }
 
 record(ao, "$(SYS){$(DEV)}GapSpeed-SP") {
@@ -249,7 +240,7 @@ record(ao, "$(SYS){$(DEV)}GapSpeed-SP") {
   field(VAL,  "500")
   field(DRVL, "1")
   field(DRVH, "500")
-  field(OUT, "@pmac.proto setVar(P810) $(PORT)")
+  field(OUT, "@pmac.proto setVar((gGapSpeed_um)) $(PORT)")
   field(PINI, "YES")
   info(autosaveFields_pass0, "VAL")
   info(autosaveFields, "VAL")
@@ -259,7 +250,7 @@ record(ai, "$(SYS){$(DEV)}ElevSpeed-RB") {
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(EGU,  "um/s")
-  field(INP, "@pmac.proto getVar(P814) $(PORT)")
+  field(INP, "@pmac.proto getVar((gElevSpeed_um)) $(PORT)")
 }
 
 record(ao, "$(SYS){$(DEV)}ElevSpeed-SP") {
@@ -268,7 +259,7 @@ record(ao, "$(SYS){$(DEV)}ElevSpeed-SP") {
   field(VAL,  "500")
   field(DRVL, "1")
   field(DRVH, "500")
-  field(OUT, "@pmac.proto setVar(P814) $(PORT)")
+  field(OUT, "@pmac.proto setVar((gElevSpeed_um)) $(PORT)")
   field(PINI, "YES")
   info(autosaveFields_pass0, "VAL")
   info(autosaveFields, "VAL")
@@ -284,7 +275,7 @@ record(ao, "$(SYS){$(DEV)-CS2:Gap}-Mtr-SP") {
   field(PREC, "2")
   field(DRVL, "-500")
   field(DRVH, "500")
-  field(OUT, "@pmac.proto setVar(P805) $(PORT)")
+  field(OUT, "@pmac.proto setVar((gGapSetpoint)) $(PORT)")
   info(autosaveFields_pass0, "VAL")
   info(autosaveFields, "VAL")
 }
@@ -310,7 +301,7 @@ record(ao, "$(SYS){$(DEV)-CS2:Gap}-MvReq-Cmd") {
   field(SCAN, "Passive")
   field(DTYP, "stream")
   field(VAL, "1")
-  field(OUT, "@pmac.proto setVar(P809) $(PORT)")
+  field(OUT, "@pmac.proto setVar((gGapMoveRequest)) $(PORT)")
 }
 
 
@@ -321,7 +312,7 @@ record(ao, "$(SYS){$(DEV)-CS2:Taper}-Mtr-SP") {
   field(PREC, "2")
   field(DRVL, "-500")
   field(DRVH, "500")
-  field(OUT, "@pmac.proto setVar(P807) $(PORT)")
+  field(OUT, "@pmac.proto setVar((gTaperSetpoint)) $(PORT)")
   info(autosaveFields_pass0, "VAL")
   info(autosaveFields, "VAL")
 }
@@ -347,7 +338,7 @@ record(ao, "$(SYS){$(DEV)-CS3:Elev}-Mtr-SP") {
   field(PREC, "2")
   field(DRVL, "-500")
   field(DRVH, "500")
-  field(OUT, "@pmac.proto setVar(P806) $(PORT)")
+  field(OUT, "@pmac.proto setVar((gElevSetpoint)) $(PORT)")
   info(autosaveFields_pass0, "VAL")
   info(autosaveFields, "VAL")
 }
@@ -373,7 +364,7 @@ record(ao, "$(SYS){$(DEV)-CS3:Elev}-MvReq-Cmd") {
   field(SCAN, "Passive")
   field(DTYP, "stream")
   field(VAL, "1")
-  field(OUT, "@pmac.proto setVar(P812) $(PORT)")
+  field(OUT, "@pmac.proto setVar((gElevMoveRequest)) $(PORT)")
 }
 
 
@@ -384,7 +375,7 @@ record(ao, "$(SYS){$(DEV)-CS3:Tilt}-Mtr-SP") {
   field(PREC, "2")
   field(DRVL, "-500")
   field(DRVH, "500")
-  field(OUT, "@pmac.proto setVar(P808) $(PORT)")
+  field(OUT, "@pmac.proto setVar((gTiltSetpoint)) $(PORT)")
   info(autosaveFields_pass0, "VAL")
   info(autosaveFields, "VAL")
 }
@@ -408,7 +399,7 @@ record(mbbi, "$(SYS){$(DEV)}GirderMode-RB") {
   field(DESC, "Girder axis state")
   field(SCAN, "2 second")
   field(DTYP, "stream")
-  field(INP, "@pmac.proto getIntVar(P300) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gMoveMode)) $(PORT)")
   field(ZRVL, "0")
   field(ONVL, "1")
   field(TWVL, "2")
@@ -440,7 +431,7 @@ record(mbbo, "$(SYS){$(DEV)}GirderMode-SP") {
   field(FRST, "Individual")
   field(FVST, "FlyScan")
   field(DTYP, "stream")
-  field(OUT,  "@pmac.proto setIntVar(P301) $(PORT)")
+  field(OUT,  "@pmac.proto setIntVar((gMoveModeReq)) $(PORT)")
   field(FLNK, "$(SYS){$(DEV)}GirderMode-RB")
   field(PINI, "YES")
   info(autosaveFields_pass0, "VAL")
@@ -455,7 +446,7 @@ record(ai, "$(SYS){$(DEV)-CS2:Gap}MinGap-RB") {
   field(DESC, "Maximum Gap")
   field(SCAN, "5 second")
   field(EGU, "um")
-  field(INP, "@pmac.proto getVar(P902) $(PORT)")
+  field(INP, "@pmac.proto getVar((gMinGap)) $(PORT)")
   field(FLNK, "$(SYS){$(DEV)-CS2:Gap}MinGap-Pass")
   field(PINI, "RUNNING")
   field(PREC, "0")
@@ -466,7 +457,7 @@ record(ao, "$(SYS){$(DEV)-CS2:Gap}MinGap-SP") {
   field(SCAN, "Passive")
   field(FLNK, "$(SYS){$(DEV)-CS2:Gap}MinGap-RB")
   field(EGU, "um")
-  field(OUT, "@pmac.proto setVar(P902) $(PORT)")
+  field(OUT, "@pmac.proto setVar((gMinGap)) $(PORT)")
   field(PREC, "0")
   field(PINI, "YES")
   info(autosaveFields_pass0, "VAL")
@@ -487,7 +478,7 @@ record(ai, "$(SYS){$(DEV)-CS2:Gap}MaxGap-RB") {
   field(DESC, "Maximum Gap")
   field(SCAN, "5 second")
   field(EGU, "um")
-  field(INP, "@pmac.proto getVar(P903) $(PORT)")
+  field(INP, "@pmac.proto getVar((gMaxGap)) $(PORT)")
   field(FLNK, "$(SYS){$(DEV)-CS2:Gap}MaxGap-Pass")
   field(PINI, "RUNNING")
   field(PREC, "0")
@@ -498,7 +489,7 @@ record(ao, "$(SYS){$(DEV)-CS2:Gap}MaxGap-SP") {
   field(SCAN, "Passive")
   field(FLNK, "$(SYS){$(DEV)-CS2:Gap}MaxGap-RB")
   field(EGU, "um")
-  field(OUT, "@pmac.proto setVar(P903) $(PORT)")
+  field(OUT, "@pmac.proto setVar((gMaxGap)) $(PORT)")
   field(PREC, "0")
   field(PINI, "YES")
   info(autosaveFields_pass0, "VAL")
@@ -520,7 +511,7 @@ record(ai, "$(SYS){$(DEV)-CS2:Taper}MinTaper-RB") {
   field(DESC, "Maximum Taper")
   field(SCAN, "5 second")
   field(EGU, "um")
-  field(INP, "@pmac.proto getVar(P904) $(PORT)")
+  field(INP, "@pmac.proto getVar((gMinTaper)) $(PORT)")
   field(FLNK, "$(SYS){$(DEV)-CS2:Taper}MinTaper-Pass")
   field(PINI, "RUNNING")
   field(PREC, "0")
@@ -531,7 +522,7 @@ record(ao, "$(SYS){$(DEV)-CS2:Taper}MinTaper-SP") {
   field(SCAN, "Passive")
   field(FLNK, "$(SYS){$(DEV)-CS2:Taper}MinTaper-RB")
   field(EGU, "um")
-  field(OUT, "@pmac.proto setVar(P904) $(PORT)")
+  field(OUT, "@pmac.proto setVar((gMinTaper)) $(PORT)")
   field(PREC, "0")
   field(PINI, "YES")
   info(autosaveFields_pass0, "VAL")
@@ -552,7 +543,7 @@ record(ai, "$(SYS){$(DEV)-CS2:Taper}MaxTaper-RB") {
   field(DESC, "Maximum Taper")
   field(SCAN, "5 second")
   field(EGU, "um")
-  field(INP, "@pmac.proto getVar(P905) $(PORT)")
+  field(INP, "@pmac.proto getVar((gMaxTaper)) $(PORT)")
   field(FLNK, "$(SYS){$(DEV)-CS2:Taper}MaxTaper-Pass")
   field(PINI, "RUNNING")
   field(PREC, "0")
@@ -563,7 +554,7 @@ record(ao, "$(SYS){$(DEV)-CS2:Taper}MaxTaper-SP") {
   field(SCAN, "Passive")
   field(FLNK, "$(SYS){$(DEV)-CS2:Taper}MaxTaper-RB")
   field(EGU, "um")
-  field(OUT, "@pmac.proto setVar(P905) $(PORT)")
+  field(OUT, "@pmac.proto setVar((gMaxTaper)) $(PORT)")
   field(PREC, "0")
   field(PINI, "YES")
   info(autosaveFields_pass0, "VAL")
@@ -585,7 +576,7 @@ record(ai, "$(SYS){$(DEV)-CS3:Elev}MinElev-RB") {
   field(DESC, "Minimum Elev")
   field(SCAN, "5 second")
   field(EGU, "um")
-  field(INP, "@pmac.proto getVar(P906) $(PORT)")
+  field(INP, "@pmac.proto getVar((gMinElev)) $(PORT)")
   field(FLNK, "$(SYS){$(DEV)-CS3:Elev}MinElev-Pass")
   field(PINI, "RUNNING")
   field(PREC, "0")
@@ -596,7 +587,7 @@ record(ao, "$(SYS){$(DEV)-CS3:Elev}MinElev-SP") {
   field(SCAN, "Passive")
   field(FLNK, "$(SYS){$(DEV)-CS3:Elev}MinElev-RB")
   field(EGU, "um")
-  field(OUT, "@pmac.proto setVar(P906) $(PORT)")
+  field(OUT, "@pmac.proto setVar((gMinElev)) $(PORT)")
   field(PREC, "0")
   field(PINI, "YES")
   info(autosaveFields_pass0, "VAL")
@@ -617,7 +608,7 @@ record(ai, "$(SYS){$(DEV)-CS3:Elev}MaxElev-RB") {
   field(DESC, "Maximum Elev")
   field(SCAN, "5 second")
   field(EGU, "um")
-  field(INP, "@pmac.proto getVar(P907) $(PORT)")
+  field(INP, "@pmac.proto getVar((gMaxElev)) $(PORT)")
   field(FLNK, "$(SYS){$(DEV)-CS3:Elev}MaxElev-Pass")
   field(PINI, "RUNNING")
   field(PREC, "0")
@@ -628,7 +619,7 @@ record(ao, "$(SYS){$(DEV)-CS3:Elev}MaxElev-SP") {
   field(SCAN, "Passive")
   field(FLNK, "$(SYS){$(DEV)-CS3:Elev}MaxElev-RB")
   field(EGU, "um")
-  field(OUT, "@pmac.proto setVar(P907) $(PORT)")
+  field(OUT, "@pmac.proto setVar((gMaxElev)) $(PORT)")
   field(PREC, "0")
   field(PINI, "YES")
   info(autosaveFields_pass0, "VAL")
@@ -650,7 +641,7 @@ record(ai, "$(SYS){$(DEV)-CS3:Tilt}MinTilt-RB") {
   field(DESC, "Minimum Tilt")
   field(SCAN, "5 second")
   field(EGU, "um")
-  field(INP, "@pmac.proto getVar(P908) $(PORT)")
+  field(INP, "@pmac.proto getVar((gMinTilt)) $(PORT)")
   field(FLNK, "$(SYS){$(DEV)-CS3:Tilt}MinTilt-Pass")
   field(PINI, "RUNNING")
   field(PREC, "0")
@@ -661,7 +652,7 @@ record(ao, "$(SYS){$(DEV)-CS3:Tilt}MinTilt-SP") {
   field(SCAN, "Passive")
   field(FLNK, "$(SYS){$(DEV)-CS3:Tilt}MinTilt-RB")
   field(EGU, "um")
-  field(OUT, "@pmac.proto setVar(P908) $(PORT)")
+  field(OUT, "@pmac.proto setVar((gMinTilt)) $(PORT)")
   field(PREC, "0")
   field(PINI, "YES")
   info(autosaveFields_pass0, "VAL")
@@ -682,7 +673,7 @@ record(ai, "$(SYS){$(DEV)-CS3:Tilt}MaxTilt-RB") {
   field(DESC, "Maximum Tilt")
   field(SCAN, "5 second")
   field(EGU, "um")
-  field(INP, "@pmac.proto getVar(P909) $(PORT)")
+  field(INP, "@pmac.proto getVar((gMaxTilt)) $(PORT)")
   field(FLNK, "$(SYS){$(DEV)-CS3:Tilt}MaxTilt-Pass")
   field(PINI, "RUNNING")
   field(PREC, "0")
@@ -693,7 +684,7 @@ record(ao, "$(SYS){$(DEV)-CS3:Tilt}MaxTilt-SP") {
   field(SCAN, "Passive")
   field(FLNK, "$(SYS){$(DEV)-CS3:Tilt}MaxTilt-RB")
   field(EGU, "um")
-  field(OUT, "@pmac.proto setVar(P909) $(PORT)")
+  field(OUT, "@pmac.proto setVar((gMaxTilt)) $(PORT)")
   field(PREC, "0")
   field(PINI, "YES")
   info(autosaveFields_pass0, "VAL")
@@ -715,7 +706,7 @@ record(bi, "$(SYS){$(DEV)}GapError-Sts") {
   field(DTYP, "stream")
   field(DESC, "Gap Error status")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P998) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gGapError)) $(PORT)")
   field(ZNAM, "No Eror")
   field(ONAM, "Gap error")
   field(OSV, "MAJOR")
@@ -724,14 +715,14 @@ record(bo, "$(SYS){$(DEV)}GapError-Reset") {
   field(DTYP, "stream")
   field(VAL, "0")
   field(DESC, "Reset gap error")
-  field(OUT, "@pmac.proto setIntVar(P998) $(PORT)")
+  field(OUT, "@pmac.proto setIntVar((gGapError)) $(PORT)")
 }
 
 record(bi, "$(SYS){$(DEV)}ElevError-Sts") {
   field(DTYP, "stream")
   field(DESC, "Elevation Error status")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P999) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gElevError)) $(PORT)")
   field(ZNAM, "No Eror")
   field(ONAM, "Elevation error")
   field(OSV, "MAJOR")
@@ -740,7 +731,7 @@ record(bo, "$(SYS){$(DEV)}ElevError-Reset") {
   field(DTYP, "stream")
   field(VAL, "0")
   field(DESC, "Reset elevation error")
-  field(OUT, "@pmac.proto setIntVar(P999) $(PORT)")
+  field(OUT, "@pmac.proto setIntVar((gElevError)) $(PORT)")
 }
 
 
@@ -987,19 +978,19 @@ record(bo, "$(SYS){$(DEV)}LEncError-Reset") {
   field(DTYP, "stream")
   field(VAL, "1")
   field(DESC, "Reset LEnc errors")
-  field(OUT, "@pmac.proto setIntVar(P1001) $(PORT)")
+  field(OUT, "@pmac.proto setIntVar((gPLC10ResetCounts)) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)}LEncPLCCounts") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder warnings")
   field(SCAN, "1 second")
-  field(INP,  "@pmac.proto getIntVar(P1000) $(PORT)")
+  field(INP,  "@pmac.proto getIntVar((gPLC10Count)) $(PORT)")
 }
 record(bi, "$(SYS){$(DEV)-Ax:GU}LEnc-Sts") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder error status")
   field(SCAN, "1 second")
-  field(INP,  "@pmac.proto getIntVar(P1018) $(PORT)")
+  field(INP,  "@pmac.proto getIntVar((gEnc1ErrorLatch)) $(PORT)")
   field(ZNAM, "No error")
   field(ONAM, "ERROR")
   field(OSV,  "MAJOR")
@@ -1008,7 +999,7 @@ record(bi, "$(SYS){$(DEV)-Ax:GD}LEnc-Sts") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder error status")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1019) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc2ErrorLatch)) $(PORT)")
   field(ZNAM, "No error")
   field(ONAM, "ERROR")
   field(OSV, "MAJOR")
@@ -1017,7 +1008,7 @@ record(bi, "$(SYS){$(DEV)-Ax:EU}LEnc-Sts") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder error status")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1020) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc3ErrorLatch)) $(PORT)")
   field(ZNAM, "No error")
   field(ONAM, "ERROR")
   field(OSV, "MAJOR")
@@ -1026,7 +1017,7 @@ record(bi, "$(SYS){$(DEV)-Ax:ED}LEnc-Sts") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder error status")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1021) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc4ErrorLatch)) $(PORT)")
   field(ZNAM, "No error")
   field(ONAM, "ERROR")
   field(OSV, "MAJOR")
@@ -1044,97 +1035,97 @@ record(ai, "$(SYS){$(DEV)-Ax:GU}LEnc-Warnings") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder warnings")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1002) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc1Warnings)) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GD}LEnc-Warnings") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder warnings")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1003) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc2Warnings)) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)-Ax:EU}LEnc-Warnings") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder warnings")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1004) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc3Warnings)) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)-Ax:ED}LEnc-Warnings") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder warnings")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1005) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc4Warnings)) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GU}LEnc-Errors") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder Errors")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1006) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc1Errors)) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GD}LEnc-Errors") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder Errors")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1007) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc2Errors)) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)-Ax:EU}LEnc-Errors") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder Errors")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1008) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc3Errors)) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)-Ax:ED}LEnc-Errors") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder Errors")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1009) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc4Errors)) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GU}LEnc-CRCErrors") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder CRCErrors")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1010) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc1CRCErrors)) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GD}LEnc-CRCErrors") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder CRCErrors")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1011) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc2CRCErrors)) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)-Ax:EU}LEnc-CRCErrors") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder CRCErrors")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1012) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc3CRCErrors)) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)-Ax:ED}LEnc-CRCErrors") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder CRCErrors")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1013) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc4CRCErrors)) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GU}LEnc-Timeouts") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder Timeouts")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1014) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc1Timeouts)) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)-Ax:GD}LEnc-Timeouts") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder Timeouts")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1015) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc2Timeouts)) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)-Ax:EU}LEnc-Timeouts") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder Timeouts")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1016) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc3Timeouts)) $(PORT)")
 }
 record(ai, "$(SYS){$(DEV)-Ax:ED}LEnc-Timeouts") {
   field(DTYP, "stream")
   field(DESC, "Linear encoder Timeouts")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P1017) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gEnc4Timeouts)) $(PORT)")
 }
 
 
@@ -1146,7 +1137,7 @@ record(bi, "$(SYS){$(DEV)}StopAll-Sts") {
   field(DTYP, "stream")
   field(DESC, "StopAll status")
   field(SCAN, "1 second")
-  field(INP, "@pmac.proto getIntVar(P900) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gStopAllStatus)) $(PORT)")
   field(ZNAM, "No Eror")
   field(ONAM, "All Motion Stopped")
   field(OSV, "MAJOR")
@@ -1157,7 +1148,7 @@ record(bo, "$(SYS){$(DEV)}StopAll-Req") {
   field(DESC, "Stop all or request reset")
   field(ZNAM, "Request Reset")
   field(ONAM, "Request StopAll")
-  field(OUT, "@pmac.proto setIntVar(P901) $(PORT)")
+  field(OUT, "@pmac.proto setIntVar((gStopAllRequest)) $(PORT)")
 }
 
 
@@ -1172,7 +1163,7 @@ record(ai, "$(SYS){$(DEV)}BrakeTimeout-RB") {
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(EGU,  "s")
-  field(INP, "@pmac.proto getVar(P1301) $(PORT)")
+  field(INP, "@pmac.proto getVar((gBrakeTimeout)) $(PORT)")
 }
 
 
@@ -1182,7 +1173,7 @@ record(ao, "$(SYS){$(DEV)}BrakeTimeout-SP") {
   field(DRVL, "1")
   field(DRVH, "300")
   field(PINI, "YES")
-  field(OUT, "@pmac.proto setVar(P1301) $(PORT)")
+  field(OUT, "@pmac.proto setVar((gBrakeTimeout)) $(PORT)")
   info(autosaveFields_pass0, "VAL")
   info(autosaveFields, "VAL")
 }
@@ -1191,39 +1182,39 @@ record(ao, "$(SYS){$(DEV)}BrakeTimeout-SP") {
 record(ao, "$(SYS){$(DEV)}AllBrakesDisengaged-SP") {
   field(DTYP, "stream")
   field(DESC, "disengage all brakes")
-  field(OUT,  "@pmac.proto setIntVar(P1500) $(PORT)")
+  field(OUT,  "@pmac.proto setIntVar((gAllBrakeReleaseReq)) $(PORT)")
 }
 record(bi, "$(SYS){$(DEV)}AllBrakesDisengaged-Sts") {
   field(DTYP, "stream")
   field(DESC, "All Brakes Disabled sts")
   field(SCAN, ".5 second")
-  field(INP, "@pmac.proto getIntVar(P1501) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gAllBrakesReleased)) $(PORT)")
   field(ZNAM, "Some brakes engaged")
   field(ONAM, "Brakes disengaged")
 }
 record(ao, "$(SYS){$(DEV)}GapBrakesDisengaged-SP") {
   field(DTYP, "stream")
   field(DESC, "disengage gap brakes")
-  field(OUT,  "@pmac.proto setIntVar(P1502) $(PORT)")
+  field(OUT,  "@pmac.proto setIntVar((gGapBrakeReleaseReq)) $(PORT)")
 }
 record(bi, "$(SYS){$(DEV)}GapBrakesDisengaged-Sts") {
   field(DTYP, "stream")
   field(DESC, "Brakes Disabled sts")
   field(SCAN, ".5 second")
-  field(INP, "@pmac.proto getIntVar(P1503) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gGapBrakesReleased)) $(PORT)")
   field(ZNAM, "Some brakes engaged")
   field(ONAM, "Brakes disengaged")
 }
 record(ao, "$(SYS){$(DEV)}ElevBrakesDisengaged-SP") {
   field(DTYP, "stream")
   field(DESC, "disengage elev brakes")
-  field(OUT,  "@pmac.proto setIntVar(P1504) $(PORT)")
+  field(OUT,  "@pmac.proto setIntVar((gElevBrakeReleaseReq)) $(PORT)")
 }
 record(bi, "$(SYS){$(DEV)}ElevBrakesDisengaged-Sts") {
   field(DTYP, "stream")
   field(DESC, "Brakes Disabled sts")
   field(SCAN, ".5 second")
-  field(INP, "@pmac.proto getIntVar(P1505) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gElevBrakesReleased)) $(PORT)")
   field(ZNAM, "Some brakes engaged")
   field(ONAM, "Brakes disengaged")
 }
@@ -1237,13 +1228,13 @@ record(bo, "$(SYS){$(DEV)}OpenGap-Request") {
   field(VAL, "1")
   field(DESC, "Emergency open gap")
   field(PINI, "NO")
-  field(OUT, "@pmac.proto setIntVar(P400) $(PORT)")
+  field(OUT, "@pmac.proto setIntVar((gOpenGapRequested)) $(PORT)")
 }
 record(bi, "$(SYS){$(DEV)}OpenGapExecuting-RB") {
   field(DTYP, "stream")
   field(DESC, "Open Gap Executing")
   field(SCAN, "2 second")
-  field(INP, "@pmac.proto getIntVar(P401) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gOpenGapExecuting)) $(PORT)")
   field(ZNAM, "Normal")
   field(ONAM, "Open Executing")
   field(OSV, "MAJOR")
@@ -1252,13 +1243,13 @@ record(bo, "$(SYS){$(DEV)}OpenGapExecuting-Reset") {
   field(DTYP, "stream")
   field(VAL, "0")
   field(DESC, "Reset open gap")
-  field(OUT, "@pmac.proto setIntVar(P401) $(PORT)")
+  field(OUT, "@pmac.proto setIntVar((gOpenGapExecuting)) $(PORT)")
 }
 record(bi, "$(SYS){$(DEV)}OpenGapTimeout-RB") {
   field(DTYP, "stream")
   field(DESC, "Open Gap Executing Timeout")
   field(SCAN, "5 second")
-  field(INP, "@pmac.proto getIntVar(P402) $(PORT)")
+  field(INP, "@pmac.proto getIntVar((gOpenGapExecutingTimeout)) $(PORT)")
   field(ZNAM, "No timeout")
   field(ONAM, "Gap Open Timeout")
   field(OSV, "MAJOR")

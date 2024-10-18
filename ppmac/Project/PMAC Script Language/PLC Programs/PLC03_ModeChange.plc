@@ -3,11 +3,11 @@
 Open PLC 3
 
 // Ignore change request while moving
-if (P_MovementInProgress == kFALSE && P_OpenGapExecuting == kFALSE && P_MoveModeReq != P_MoveMode) {
+if (gMovementInProgress == kFALSE && gOpenGapExecuting == kFALSE && gMoveModeReq != gMoveMode) {
 
-  P_GapElevMoveRequest = 0          // Cancel any move request
-  P_GapMoveRequest = 0              // Cancel any move request
-  P_ElevMoveRequest = 0              // Cancel any move request
+  gGapElevMoveRequest = 0          // Cancel any move request
+  gGapMoveRequest = 0              // Cancel any move request
+  gElevMoveRequest = 0              // Cancel any move request
 
   CMD"#*K"                          // Kill all motors for good measure
 
@@ -22,7 +22,7 @@ if (P_MovementInProgress == kFALSE && P_OpenGapExecuting == kFALSE && P_MoveMode
   Motor[4].MasterCtrl=0
 
   // MoveMode change
-  switch (P_MoveModeReq) {
+  switch (gMoveModeReq) {
     case kMoveModeGapEleSep:
       //CMD"&2 #1->I #2->I"
       //CMD"&3 #3->I #4->I"
@@ -77,10 +77,10 @@ if (P_MovementInProgress == kFALSE && P_OpenGapExecuting == kFALSE && P_MoveMode
       break;
   }
 
-  P_MoveMode = P_MoveModeReq
+  gMoveMode = gMoveModeReq
 }
 
 
 N333:
-P_MoveModeReq = P_MoveMode
+gMoveModeReq = gMoveMode
 Close

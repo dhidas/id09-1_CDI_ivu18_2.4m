@@ -3,7 +3,7 @@
 //
 // Checks if there is movement on any of the motors / or coordinate systems
 // and sets:
-//  P_MovementInProgress (P200)
+//  gMovementInProgress (P200)
 //
 
 Open PLC 2
@@ -24,9 +24,9 @@ L_MotorMoving += 1 - Motor[4].DesVelZero
 
 // If a coordinate system is running/active or a motor is moving set MIP
 if (L_CSRunning != 0 || L_MotorMoving != 0) {
-  P_MovementInProgress = kTRUE
+  gMovementInProgress = kTRUE
 } else {
-  P_MovementInProgress = kFALSE
+  gMovementInProgress = kFALSE
 }
 
 

@@ -9,7 +9,7 @@ TA300
 TS100
 
 FRAX(C,U)
-F(P_ElevSpeed_um)
+F(gElevSpeed_um)
 
 C(Q73)U(Q74)
 dwell 0

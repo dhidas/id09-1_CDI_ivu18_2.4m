@@ -1,8 +1,8 @@
 // Global variable definitions.  Things which need to be known by 
 // epics should be global, things which should not be changed externally
-// should be defines
+// should be defines.  Global variables are listed here by their "main" PLC.
 
-// Global CONSTANTS, of the form kXXXX
+// Global CONSTANTS using "#define", of the form kXXXX
 
 #define kTRUE  1
 #define kFALSE 0
@@ -85,85 +85,85 @@
 // PLC 01 - Startup
 
 // PLC 02 - Movement in progress monitor
-#define P_MovementInProgress  P200
+global gMovementInProgress
 
 // PLC 03 - Mode Change
-#define P_MoveMode          P300
-#define P_MoveModeReq       P301
+global gMoveMode
+global gMoveModeReq
 
 // PLC 04 - Open Gap
-#define P_OpenGapRequested        P400
-#define P_OpenGapExecuting        P401
-#define P_OpenGapExecutingTimeout P402
+global gOpenGapRequested
+global gOpenGapExecuting
+global gOpenGapExecutingTimeout
 
 // PLC 06 - Homing
-#define P_HomeRequest           P600
-#define P_HomingInProgress      P601
-#define P_MotorHomingNumber     P602
-#define P_HomingThisMotor       P603
-#define P_HomingSwitchNotFound  P697
-#define P_HomingAmpError        P698
-#define P_HomingTimeout         P699
+global gHomeRequest
+global gHomingInProgress
+global gMotorHomingNumber
+global gHomingThisMotor
+global gHomingSwitchNotFound
+global gHomingAmpError
+global gHomingTimeout
 
 // PLC 07 - Beacon
-#define P_AnyError              P701
+global gAnyError
 
 // PLC 08 - Move Request
-#define P_InterlockState      P801
-//#define P_MoveAborted         P804
-#define P_GapSetpoint         P805
-#define P_ElevSetpoint        P806
-#define P_TaperSetpoint       P807
-#define P_TiltSetpoint        P808
-#define P_GapMoveRequest      P809
-#define P_GapSpeed_um         P810
-#define P_GapElevMoveRequest  P811
-#define P_ElevMoveRequest     P812
-#define P_ElevSpeed_um        P814
+global gInterlockState
+//global gMoveAborted
+global gGapSetpoint
+global gElevSetpoint
+global gTaperSetpoint
+global gTiltSetpoint
+global gGapMoveRequest
+global gGapSpeed_um
+global gGapElevMoveRequest
+global gElevMoveRequest
+global gElevSpeed_um
 
 // PLC 09 - Girder Safety
-#define P_StopAllStatus       P900
-#define P_StopAllRequest      P901
-#define P_MinGap              P902
-#define P_MaxGap              P903
-#define P_MinTaper            P904
-#define P_MaxTaper            P905
-#define P_MinElev             P906
-#define P_MaxElev             P907
-#define P_MinTilt             P908
-#define P_MaxTilt             P909
-#define P_GapError            P998
-#define P_ElevError           P999
+global gStopAllStatus
+global gStopAllRequest
+global gMinGap
+global gMaxGap
+global gMinTaper
+global gMaxTaper
+global gMinElev
+global gMaxElev
+global gMinTilt
+global gMaxTilt
+global gGapError
+global gElevError
 
 
 // PLC 10 - BISS encoder errors
-#define P_PLC10Count          P1000
-#define P_PLC10ResetCounts    P1001
+global gPLC10Count
+global gPLC10ResetCounts
 
-#define P_Enc1Warnings        P1002
-#define P_Enc2Warnings        P1003
-#define P_Enc3Warnings        P1004
-#define P_Enc4Warnings        P1005
+global gEnc1Warnings
+global gEnc2Warnings
+global gEnc3Warnings
+global gEnc4Warnings
 
-#define P_Enc1Errors          P1006
-#define P_Enc2Errors          P1007
-#define P_Enc3Errors          P1008
-#define P_Enc4Errors          P1009
+global gEnc1Errors
+global gEnc2Errors
+global gEnc3Errors
+global gEnc4Errors
 
-#define P_Enc1CRCErrors       P1010
-#define P_Enc2CRCErrors       P1011
-#define P_Enc3CRCErrors       P1012
-#define P_Enc4CRCErrors       P1013
+global gEnc1CRCErrors
+global gEnc2CRCErrors
+global gEnc3CRCErrors
+global gEnc4CRCErrors
 
-#define P_Enc1Timeouts        P1014
-#define P_Enc2Timeouts        P1015
-#define P_Enc3Timeouts        P1016
-#define P_Enc4Timeouts        P1017
+global gEnc1Timeouts
+global gEnc2Timeouts
+global gEnc3Timeouts
+global gEnc4Timeouts
 
-#define P_Enc1ErrorLatch      P1018
-#define P_Enc2ErrorLatch      P1019
-#define P_Enc3ErrorLatch      P1020
-#define P_Enc4ErrorLatch      P1021
+global gEnc1ErrorLatch
+global gEnc2ErrorLatch
+global gEnc3ErrorLatch
+global gEnc4ErrorLatch
 
 
 
@@ -171,17 +171,17 @@
 
 
 // PLC 13 - Brake/AmpEna Timer
-#define P_BrakeTimerArmed     P1300
-#define P_BrakeTimeout        P1301
+global gBrakeTimerArmed
+global gBrakeTimeout
 
 
 // PLC 15
-#define P_AllBrakeReleaseReq  P1500
-#define P_AllBrakesReleased   P1501
-#define P_GapBrakeReleaseReq  P1502
-#define P_GapBrakesReleased   P1503
-#define P_ElevBrakeReleaseReq P1504
-#define P_ElevBrakesReleased  P1505
+global gAllBrakeReleaseReq
+global gAllBrakesReleased
+global gGapBrakeReleaseReq
+global gGapBrakesReleased
+global gElevBrakeReleaseReq
+global gElevBrakesReleased
 
 
 // PLC 10

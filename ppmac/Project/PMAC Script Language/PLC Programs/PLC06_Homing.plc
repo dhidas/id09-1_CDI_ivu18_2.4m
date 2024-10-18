@@ -8,30 +8,30 @@ local lMotorHomingOriginalSpeed
 local lJogToPosition
 
 // Check for true bit for homing request.  Do nothing if no request
-if (P_HomeRequest != kTRUE) {
+if (gHomeRequest != kTRUE) {
   // Only check this once a second
   call Timer(1.00)
   return
 }
 
 // Got the request and processing it so now set it back to false
-P_HomeRequest = kFALSE
+gHomeRequest = kFALSE
 
 // Check if a homing request has been made for a legit motor number (1-4)
-if (P_MotorHomingNumber == 0 || P_MotorHomingNumber < 0 || P_MotorHomingNumber > 4) {
+if (gMotorHomingNumber == 0 || gMotorHomingNumber < 0 || gMotorHomingNumber > 4) {
   GOTO 666
 }
 
 
 // If we are here then a homing request has been made.  Set the homing in progress
 // bit, kill all motors, record the motor to be homed, and set the request back to zero.
-P_HomingTimeout = kFALSE
-P_HomingAmpError = kFALSE
-P_HomingInProgress = kTRUE
-P_HomingSwitchNotFound = kFALSE
-lMotorHoming = P_MotorHomingNumber
-P_MotorHomingNumber = 0
-P_HomingThisMotor = lMotorHoming
+gHomingTimeout = kFALSE
+gHomingAmpError = kFALSE
+gHomingInProgress = kTRUE
+gHomingSwitchNotFound = kFALSE
+lMotorHoming = gMotorHomingNumber
+gMotorHomingNumber = 0
+gHomingThisMotor = lMotorHoming
 CMD"#*k"
 
 
@@ -78,7 +78,7 @@ call Timer(0.020)
 
 // Check that these motors enabled properly.  If not, exit with an error
 if (Motor[lMotorHoming].AmpEna + Motor[lMotorFollowing].AmpEna != 2) {
-  P_HomingAmpError = kTRUE
+  gHomingAmpError = kTRUE
   GOTO 666
 }
 
@@ -94,12 +94,12 @@ if (pHomeFlag(lMotorHoming) == kZERO && Motor[lMotorHoming].PlusLimit == kFALSE)
   while (pHomeFlag(lMotorHoming) == kZERO && Motor[lMotorHoming].PlusLimit == kFALSE && TIMER060HOMING > 0) {}
   if (TIMER060HOMING <= 0) {
     // Timeout in homing, report and abort
-    P_HomingTimeout = kTRUE
+    gHomingTimeout = kTRUE
     GOTO 666
   }
 }
 if (Motor[lMotorHoming].PlusLimit == kTRUE && pHomeFlag(lMotorHoming) == kZERO) {
-  P_HomingSwitchNotFound = kTRUE
+  gHomingSwitchNotFound = kTRUE
     GOTO 666
 }
 Ldata.motor = lMotorHoming
@@ -119,11 +119,11 @@ CMD"j=*^-100"
 while (pHomeFlag(lMotorHoming) == kONE && TIMER060HOMING > 0) {}           // Wait for end
 if (TIMER060HOMING <= 0) {
   // Timeout in homing, report and abort
-  P_HomingTimeout = kTRUE
+  gHomingTimeout = kTRUE
   GOTO 666
 }
 if (Motor[lMotorHoming].MinusLimit == kTRUE) {
-  P_HomingSwitchNotFound = kTRUE
+  gHomingSwitchNotFound = kTRUE
 }
 
 
@@ -138,9 +138,9 @@ Motor[2].MasterCtrl=kFALSE
 Motor[3].MasterCtrl=kFALSE
 Motor[4].MasterCtrl=kFALSE
 
-P_MotorHomingNumber = 0
-P_HomingInProgress = kFALSE
-P_HomingThisMotor = 0
+gMotorHomingNumber = 0
+gHomingInProgress = kFALSE
+gHomingThisMotor = 0
 
 // Reset jog speed
 Motor[lMotorHoming].JogSpeed = lMotorHomingOriginalSpeed 

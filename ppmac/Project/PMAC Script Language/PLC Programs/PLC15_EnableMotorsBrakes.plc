@@ -6,17 +6,17 @@
 Open PLC 15
 
 // Check if all is requested
-if (P_AllBrakeReleaseReq == kTRUE) {
-  P_AllBrakeReleaseReq = kFALSE
-  P_GapBrakeReleaseReq = kTRUE
-  P_ElevBrakeReleaseReq = kTRUE
+if (gAllBrakeReleaseReq == kTRUE) {
+  gAllBrakeReleaseReq = kFALSE
+  gGapBrakeReleaseReq = kTRUE
+  gElevBrakeReleaseReq = kTRUE
 }
 
 // Gap brakes
-if (P_GapBrakeReleaseReq == kTRUE) {
-  P_GapBrakeReleaseReq = kFALSE
+if (gGapBrakeReleaseReq == kTRUE) {
+  gGapBrakeReleaseReq = kFALSE
 
-  if (P_StopAllStatus == kFALSE && P_InterlockState == kFALSE && P_OpenGapExecuting == kFALSE && P_HomingInProgress == kFALSE) {
+  if (gStopAllStatus == kFALSE && gInterlockState == kFALSE && gOpenGapExecuting == kFALSE && gHomingInProgress == kFALSE) {
 
     pAmpEnaOut(1) = kON
     pAmpEnaOut(2) = kON
@@ -25,17 +25,17 @@ if (P_GapBrakeReleaseReq == kTRUE) {
 
     jog/1..2
 
-    TIMER130BRAKES = P_BrakeTimeout * 1000
-    P_BrakeTimerArmed = kTRUE
+    TIMER130BRAKES = gBrakeTimeout * 1000
+    gBrakeTimerArmed = kTRUE
 
   }
 }
 
 // Elevation brakes
-if (P_ElevBrakeReleaseReq == kTRUE) {
-  P_ElevBrakeReleaseReq = kFALSE
+if (gElevBrakeReleaseReq == kTRUE) {
+  gElevBrakeReleaseReq = kFALSE
 
-  if (P_StopAllStatus == kFALSE && P_InterlockState == kFALSE && P_OpenGapExecuting == kFALSE && P_HomingInProgress == kFALSE) {
+  if (gStopAllStatus == kFALSE && gInterlockState == kFALSE && gOpenGapExecuting == kFALSE && gHomingInProgress == kFALSE) {
 
     pAmpEnaOut(3) = kON
     pAmpEnaOut(4) = kON
@@ -44,8 +44,8 @@ if (P_ElevBrakeReleaseReq == kTRUE) {
 
     jog/3..4
 
-    TIMER130BRAKES = P_BrakeTimeout * 1000
-    P_BrakeTimerArmed = kTRUE
+    TIMER130BRAKES = gBrakeTimeout * 1000
+    gBrakeTimerArmed = kTRUE
 
   }
 }
@@ -53,19 +53,19 @@ if (P_ElevBrakeReleaseReq == kTRUE) {
 
 // Check status of brakes
 if (pAmpEnaOut(1) == kON && pAmpEnaOut(2) == kON) {
-  P_GapBrakesReleased = kTRUE
+  gGapBrakesReleased = kTRUE
 } else {
-  P_GapBrakesReleased = kFALSE
+  gGapBrakesReleased = kFALSE
 }
 if (pAmpEnaOut(3) == kON && pAmpEnaOut(4) == kON) {
-  P_ElevBrakesReleased = kTRUE
+  gElevBrakesReleased = kTRUE
 } else {
-  P_ElevBrakesReleased = kFALSE
+  gElevBrakesReleased = kFALSE
 }
-if (P_GapBrakesReleased == kTRUE && P_ElevBrakesReleased == kTRUE) {
-  P_AllBrakesReleased = kTRUE
+if (gGapBrakesReleased == kTRUE && gElevBrakesReleased == kTRUE) {
+  gAllBrakesReleased = kTRUE
 } else {
-  P_AllBrakesReleased = kFALSE
+  gAllBrakesReleased = kFALSE
 }
 
 

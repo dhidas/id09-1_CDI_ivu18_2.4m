@@ -38,7 +38,7 @@ if (L_AmpEna != 0) {
 }
 
 
-if (P_MovementInProgress == kTRUE) {
+if (gMovementInProgress == kTRUE) {
   // toggle orange light
   outBEACONYELLOW = (outBEACONYELLOW + 1) % 2
 } else {
@@ -49,30 +49,30 @@ if (P_MovementInProgress == kTRUE) {
 
 // Check for fault here and turn red light on if needed
 //kashima add
-P_AnyError=0
-P_AnyError+=P_InterlockState
-P_AnyError+=P_HomingAmpError
-P_AnyError+=P_HomingTimeout
-P_AnyError+=P_GapError
-P_AnyError+=P_ElevError
-P_AnyError+=P_Enc1ErrorLatch
-P_AnyError+=P_Enc2ErrorLatch
-P_AnyError+=P_Enc3ErrorLatch
-P_AnyError+=P_Enc4ErrorLatch
-P_AnyError+=Motor[1].AmpFault
-P_AnyError+=Motor[2].AmpFault
-P_AnyError+=Motor[3].AmpFault
-P_AnyError+=Motor[4].AmpFault
-P_AnyError+=Motor[1].FeFatal
-P_AnyError+=Motor[2].FeFatal
-P_AnyError+=Motor[3].FeFatal
-P_AnyError+=Motor[4].FeFatal
+gAnyError=0
+gAnyError+=gInterlockState
+gAnyError+=gHomingAmpError
+gAnyError+=gHomingTimeout
+gAnyError+=gGapError
+gAnyError+=gElevError
+gAnyError+=gEnc1ErrorLatch
+gAnyError+=gEnc2ErrorLatch
+gAnyError+=gEnc3ErrorLatch
+gAnyError+=gEnc4ErrorLatch
+gAnyError+=Motor[1].AmpFault
+gAnyError+=Motor[2].AmpFault
+gAnyError+=Motor[3].AmpFault
+gAnyError+=Motor[4].AmpFault
+gAnyError+=Motor[1].FeFatal
+gAnyError+=Motor[2].FeFatal
+gAnyError+=Motor[3].FeFatal
+gAnyError+=Motor[4].FeFatal
 if(inSERVO1READY==kOFF || inSERVO2READY==kOFF || inSERVO3READY==kOFF || inSERVO4READY==kOFF)
 {
-	P_AnyError+=1
+	gAnyError+=1
 }
 
-if (P_AnyError != kOFF) {
+if (gAnyError != kOFF) {
   outBEACONRED = kON
 } else {
   outBEACONRED = kOFF
