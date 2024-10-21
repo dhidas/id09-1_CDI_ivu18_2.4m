@@ -12,6 +12,7 @@ Motor[4].HomePos = Motor[4].ActPos
 
 // PLC02
 Sys.ZeroVelSetPoint = 10   // For using Motor[x].DesVelZero
+gMovementInProgress = kFALSE
 
 // PLC03
 gMoveMode = -1
