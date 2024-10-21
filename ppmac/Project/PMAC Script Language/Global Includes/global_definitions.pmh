@@ -27,8 +27,8 @@
 #define kHOMESPEED 0.5
 
 // Encoder count conversions
-#define kEncCtsPerMm        1000
-#define kEncCtsPerUm        1.0
+#define kEncCtsPerMm        1000000
+#define kEncCtsPerUm        1000
 #define kRotEncCtsPerRad    180
 #define kRotEncCtsPerURad   0.180
 
