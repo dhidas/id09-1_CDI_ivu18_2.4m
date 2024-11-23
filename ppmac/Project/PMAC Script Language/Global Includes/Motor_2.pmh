@@ -59,7 +59,7 @@ Motor[2].IpbGain=0
 Motor[2].IpfGain=1
 Motor[2].IxCoupleGain=0
 Motor[2].JogOffset=0
-Motor[2].JogSpeed=0.03
+Motor[2].JogSpeed=50
 Motor[2].JogTa=100
 Motor[2].JogTs=100
 Motor[2].LimitBits=9
@@ -163,7 +163,7 @@ Motor[2].Servo.Ke1=0
 Motor[2].Servo.Ke2=0
 Motor[2].Servo.Kf1=0
 Motor[2].Servo.Kf2=0
-Motor[2].Servo.Kfff=0
+Motor[2].Servo.Kfff0
 Motor[2].Servo.Ki=0.0001
 Motor[2].Servo.Kp=2500
 Motor[2].Servo.Kvfb=20
