@@ -26,10 +26,10 @@ if (gMovementInProgress == kFALSE && gOpenGapExecuting == kFALSE && gMoveModeReq
     case kMoveModeGapEleSep:
       //CMD"&2 #1->I #2->I"
       //CMD"&3 #3->I #4->I"
-      CMD"&2 #1->kEncCtsPerUm*A - 0.5*kEncCtsPerUm*B"
-      CMD"&2 #2->kEncCtsPerUm*A + 0.5*kEncCtsPerUm*B"
-      CMD"&3 #3->kEncCtsPerUm*C - 0.5*kEncCtsPerUm*U"
-      CMD"&3 #4->kEncCtsPerUm*C + 0.5*kEncCtsPerUm*U"
+      CMD"&2 #1-> 1000 *A - 0.5* 1000 *B"
+      CMD"&2 #2-> 1000 *A + 0.5* 1000 *B"
+      CMD"&3 #3-> 1000 *C - 0.5* 1000 *U"
+      CMD"&3 #4-> 1000 *C + 0.5* 1000 *U"
       CMD"#*K"
       break;
 
