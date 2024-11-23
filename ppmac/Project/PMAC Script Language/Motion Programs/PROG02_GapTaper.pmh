@@ -5,8 +5,8 @@ Open PROG 2
 LINEAR
 ABS
 
-TA3000
-TS1000
+TA300
+TS100
 
 FRAX(A,B)
 F(gGapSpeed_um)
