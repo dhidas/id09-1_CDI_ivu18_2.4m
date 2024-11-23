@@ -4,10 +4,6 @@ Open PLC 1
 CMD"#*k"
 call Timer(0.200)
 
-// REMOVE THIS BEFORE actually using elevation
-Motor[3].HomePos = Motor[3].ActPos
-Motor[4].HomePos = Motor[4].ActPos
-
 // Startup P-Variable settings
 
 // PLC02
