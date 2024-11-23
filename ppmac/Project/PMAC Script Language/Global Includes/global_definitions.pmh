@@ -42,8 +42,8 @@
 #define kMAXELEV             5000
 #define kMINTILT             -500
 #define kMAXTILT              500
-#define kMINTAPER            -520
-#define kMAXTAPER             520
+#define kMINTAPER            -620
+#define kMAXTAPER             620
 #define kBUFFERUM              50
 
 // Unbelievable, but I cannot put comments after define statements in ppmac
