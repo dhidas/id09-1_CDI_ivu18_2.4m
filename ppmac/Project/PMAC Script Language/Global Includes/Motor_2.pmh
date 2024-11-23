@@ -163,7 +163,7 @@ Motor[2].Servo.Ke1=0
 Motor[2].Servo.Ke2=0
 Motor[2].Servo.Kf1=0
 Motor[2].Servo.Kf2=0
-Motor[2].Servo.Kfff0
+Motor[2].Servo.Kfff=0
 Motor[2].Servo.Ki=0.0001
 Motor[2].Servo.Kp=2500
 Motor[2].Servo.Kvfb=20
