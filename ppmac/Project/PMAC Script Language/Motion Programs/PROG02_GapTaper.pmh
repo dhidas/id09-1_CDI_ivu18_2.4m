@@ -9,7 +9,7 @@ TA300
 TS100
 
 FRAX(A,B)
-F(gGapSpeed_um)
+F(gGapSpeed_um*kEncCtsPerUm)
 
 A(Q71)B(Q72)
 dwell 0
