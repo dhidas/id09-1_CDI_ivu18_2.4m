@@ -19,7 +19,7 @@
 // Home offsets (possible use other method for bissc abs)
 #define kNMOTORS      4
 #define kM1OFFSET ((13600.063-5000)*1000)
-#define kM2OFFSET (12594.363-5000)*1000)
+#define kM2OFFSET ((12594.363-5000)*1000)
 #define kM3OFFSET ((49243.6089999999967)*1000)
 #define kM4OFFSET ((61492.1699999999983)*1000)
 
