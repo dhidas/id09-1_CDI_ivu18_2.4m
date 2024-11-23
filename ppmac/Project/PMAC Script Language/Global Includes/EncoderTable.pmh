@@ -63,7 +63,7 @@ EncTable[3].index6=0
 EncTable[3].MaxDelta=0
 EncTable[3].pEnc=Acc84E[0].chan[2].SerialEncDataA.a
 EncTable[3].pEnc1=Acc84E[0].chan[2].SerialEncDataB.a
-EncTable[3].ScaleFactor=1
+EncTable[3].ScaleFactor=-1
 EncTable[3].SinBias=0
 EncTable[3].TanHalfPhi=0
 EncTable[3].type=2
@@ -160,7 +160,7 @@ EncTable[8].type=1
 
 
 // Set default motor following (GU/GD and EU/ED)
-Motor[1].pMasterEnc=Motor[3].pEnc
-Motor[3].pMasterEnc=Motor[1].pEnc
-Motor[2].pMasterEnc=Motor[4].pEnc
-Motor[4].pMasterEnc=Motor[2].pEnc
+Motor[1].pMasterEnc=Motor[2].pEnc
+Motor[2].pMasterEnc=Motor[1].pEnc
+Motor[3].pMasterEnc=Motor[4].pEnc
+Motor[4].pMasterEnc=Motor[3].pEnc
