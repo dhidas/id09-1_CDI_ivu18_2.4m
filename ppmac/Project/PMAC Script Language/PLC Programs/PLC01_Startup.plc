@@ -88,4 +88,7 @@ CMD"#*k"
 
 disable PLC 1
 
+// Signal beacon to confirm done
+enable plc 30
+
 Close
