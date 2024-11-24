@@ -1387,6 +1387,6 @@ record(ai, "SP") {
 record(ai, "Q71") {
   field(DTYP, "stream")
   field(SCAN, ".2 second")
-  field(INP, "@pmac.proto getVar(Coodr[2].Q[71]) $(PORT)")
+  field(INP, "@pmac.proto getVar(Coord[2].Q[71]) $(PORT)")
   field(PREC, "2")
 }
