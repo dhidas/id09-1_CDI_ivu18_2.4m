@@ -1,12 +1,6 @@
 // This PLC is for position reporting to EPICS.  It covers CS2, 3, 4
 
-global aaa,bbb;
-
 open PLC 18
-
-local Gap
-local Tilt
-
 
 // The Q variables here are to align with pmacAsynCoord
 // This is done for CS 2, 3, 4 all the same
@@ -32,17 +26,7 @@ Coord[4].Q[82] = D1
 Coord[4].Q[83] = D2
 Coord[4].Q[84] = D3
 
-Gap = D0
-Tilt = D1
-
 call MagEndGapUSDS(D0, D1, &gMagEndGapUS, &gMagEndGapDS)
-
 
 close
 
-
-Open PLC 19
-
-P1900 = Motor[9].ActPos - Motor[9].HomePos
-
-Close

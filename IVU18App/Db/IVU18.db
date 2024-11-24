@@ -1379,18 +1379,18 @@ record(ai, "$(SYS){$(DEV)}M4Rotary") {
 }
 
 
-
-
-
-record(ai, "SP") {
+record(ai, "$(SYS){$(DEV)}EndGapUS-RB") {
   field(DTYP, "stream")
-  field(SCAN, ".2 second")
-  field(INP, "@pmac.proto getVar(gGapSetpoint) $(PORT)")
-  field(PREC, "2")
+  field(DESC, "Magnet array end gap US")
+  field(SCAN, "1 second")
+  field(EGU,  "um")
+  field(INP, "@pmac.proto getVar(gMagEndGapUS) $(PORT)")
 }
-record(ai, "Q71") {
+record(ai, "$(SYS){$(DEV)}EndGapDS-RB") {
   field(DTYP, "stream")
-  field(SCAN, ".2 second")
-  field(INP, "@pmac.proto getVar(Coord[2].Q[71]) $(PORT)")
-  field(PREC, "2")
+  field(DESC, "Magnet array end gap DS")
+  field(SCAN, "1 second")
+  field(EGU,  "um")
+  field(INP, "@pmac.proto getVar(gMagEndGapDS) $(PORT)")
 }
+
