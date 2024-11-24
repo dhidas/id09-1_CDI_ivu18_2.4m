@@ -13,11 +13,11 @@ print(fn, ofn)
 
 d = np.loadtxt(fn).T
 
-d[0] = d[0] - d[0][0]
+x = np.arange(0, len(d[0]))
 
 plt.figure()
-plt.plot(d[0], d[3], '#1 FE')
-plt.plot(d[0], d[6], '#1 FE')
+plt.plot(d[0], d[2], '#1 FE')
+plt.plot(d[0], d[5], '#1 FE')
 if ofn is not None:
     plt.savefig(ofn)
 plt.show()
