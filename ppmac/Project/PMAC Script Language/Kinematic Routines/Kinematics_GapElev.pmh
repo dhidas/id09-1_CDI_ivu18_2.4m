@@ -32,7 +32,6 @@ close
 KinPosMotor1 = (KinPosAxisA - KinPosAxisB / 2) * kEncCtsPerUm
 KinPosMotor2 = (KinPosAxisA + KinPosAxisB / 2) * kEncCtsPerUm
 if (KinVelEna) {
-  P3333 += 1
   KinPosMotor1 = (KinPosAxisA - KinPosAxisB / 2) * kEncCtsPerUm
   KinPosMotor2 = (KinPosAxisA + KinPosAxisB / 2) * kEncCtsPerUm
 }
