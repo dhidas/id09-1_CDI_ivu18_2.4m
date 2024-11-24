@@ -273,8 +273,6 @@ record(ao, "$(SYS){$(DEV)-CS2:Gap}-Mtr-SP") {
   field(DESC, "Motor position setpoint")
   field(EGU, "um")
   field(PREC, "2")
-  field(DRVL, "-500")
-  field(DRVH, "500")
   field(OUT, "@pmac.proto setVar(gGapSetpoint) $(PORT)")
   info(autosaveFields_pass0, "VAL")
   info(autosaveFields, "VAL")
@@ -288,8 +286,6 @@ record(ao, "$(SYS){$(DEV)-CS2:Gap}-Mtr-SP-Go") {
   field(DESC, "Motor position setpoint")
   field(EGU, "um")
   field(PREC, "2")
-  field(DRVL, "-500")
-  field(DRVH, "500")
   field(OUT, "$(SYS){$(DEV)-CS2:Gap}-Mtr-SP PP")
   field(FLNK, "$(SYS){$(DEV)-CS2:Gap}-MvReq-Cmd.PROC")
   info(autosaveFields_pass0, "VAL")
@@ -1378,3 +1374,19 @@ record(ai, "$(SYS){$(DEV)}M4Rotary") {
   field(INP, "@pmac.proto getVar(#18p) $(PORT)")
 }
 
+
+
+
+
+record(ai, "SP") {
+  field(DTYP, "stream")
+  field(SCAN, ".2 second")
+  field(INP, "@pmac.proto getVar(gGapSetpoint) $(PORT)")
+  field(PREC, "2")
+}
+record(ai, "Q71") {
+  field(DTYP, "stream")
+  field(SCAN, ".2 second")
+  field(INP, "@pmac.proto getVar(Coodr[2].Q[71]) $(PORT)")
+  field(PREC, "2")
+}
