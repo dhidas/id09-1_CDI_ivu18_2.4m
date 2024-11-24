@@ -24,17 +24,17 @@ if (gMovementInProgress == kFALSE && gOpenGapExecuting == kFALSE && gMoveModeReq
   // MoveMode change
   switch (gMoveModeReq) {
     case kMoveModeGapEleSep:
-      //CMD"&2 #1->I #2->I"
-      //CMD"&3 #3->I #4->I"
-      CMD"&2 #1->1000A - 500B"
-      CMD"&2 #2->1000A + 500B"
-      CMD"&3 #3->1000C - 500U"
-      CMD"&3 #4->1000C + 500U"
+      CMD"&2 #1->I #2->I"
+      CMD"&3 #3->I #4->I"
+      //CMD"&2 #1->1000A - 500B"
+      //CMD"&2 #2->1000A + 500B"
+      //CMD"&3 #3->1000C - 500U"
+      //CMD"&3 #4->1000C + 500U"
       CMD"#*K"
       break;
 
     case kMoveModeGapEleComb:
-      //CMD"&4 #1->I #2->I #3->I #4->I"   // Put motors in proper CS
+      CMD"&4 #1->I #2->I #3->I #4->I"   // Put motors in proper CS
 //      CMD"&4 #1->kEncCtsPerUm*A - 0.5*kEncCtsPerUm*B"
 //      CMD"&4 #2->kEncCtsPerUm*A + 0.5*kEncCtsPerUm*B"
 //      CMD"&4 #3->kEncCtsPerUm*C - 0.5*kEncCtsPerUm*U"
@@ -57,8 +57,8 @@ if (gMovementInProgress == kFALSE && gOpenGapExecuting == kFALSE && gMoveModeReq
     case kMoveModeOpenGapExecuting:
       // This mode is only used by the open gap PLC.
       // It is also configured there and probably should not be called here at all.
-      //CMD"&5 #1->I #2->I"
-      //CMD"&3 #3->I #4->I"
+      CMD"&5 #1->I #2->I"
+      CMD"&3 #3->I #4->I"
 //      CMD"&5 #1->kEncCtsPerUm*A - 0.5*kEncCtsPerUm*B"
 //      CMD"&5 #2->kEncCtsPerUm*A + 0.5*kEncCtsPerUm*B"
 //      CMD"&3 #3->kEncCtsPerUm*C - 0.5*kEncCtsPerUm*U"
