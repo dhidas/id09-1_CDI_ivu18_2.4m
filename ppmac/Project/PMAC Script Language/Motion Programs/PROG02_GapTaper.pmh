@@ -1,7 +1,7 @@
 // This program is intended to change the gap and taper only
 
 Open PROG 2
-
+Gaather.Enable = 2
 LINEAR
 ABS
 
@@ -14,5 +14,6 @@ F(gGapSpeed_um)
 A(Q71)B(Q72)
 dwell 0
 
+Gaather.Enable = 0
 close
 

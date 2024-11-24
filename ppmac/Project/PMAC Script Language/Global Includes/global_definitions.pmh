@@ -222,4 +222,10 @@ pHomeFlag(2)->Gate3[0].Chan[1].HomeFlag
 pHomeFlag(3)->Gate3[0].Chan[2].HomeFlag
 pHomeFlag(4)->Gate3[0].Chan[3].HomeFlag
 
-
+Gather.Items = 6
+Gather.Addr[0] = Motor[1].DesPos.a
+Gather.Addr[1] = Motor[1].ActPos.a
+Gather.Addr[2] = Motor[1].PosError.a
+Gather.Addr[3] = Motor[2].DesPos.a
+Gather.Addr[4] = Motor[2].ActPos.a
+Gather.Addr[5] = Motor[2].PosError.a
