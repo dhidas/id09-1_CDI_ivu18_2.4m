@@ -28,17 +28,39 @@ gHomingAmpError = kFALSE
 gHomingTimeout = kFALSE
 
 // PLC08
-// Note: should set initial setpoints to current values on startup to avoid unintended move-tos
+// Note: This is to set initial setpoints to current values on startup to avoid unintended move-tos, like zero
 gInterlockState = kFALSE
-gGapSetpoint         = 25000
-gElevSetpoint        = 0
-gTaperSetpoint       = 0
-gTiltSetpoint        = 0
+local M1Pos
+local M2Pos
+local M3Pos
+local M4Pos
+M1Pos = Motor[1].ActPos - Motor[1].HomePos
+M2Pos = Motor[2].ActPos - Motor[2].HomePos
+M3Pos = Motor[3].ActPos - Motor[3].HomePos
+M4Pos = Motor[4].ActPos - Motor[4].HomePos
+gGapSetpoint   = (M1Pos + M2Pos) / 2 / kEncCtsPerUm
+gElevSetpoint  = (M2Pos - M1Pos) / kEncCtsPerUm
+gTaperSetpoint = (M3Pos + M4Pos) / 2 / kEncCtsPerUm
+gTiltSetpoint  = (M4Pos - M3Pos) / kEncCtsPerUm
+Coord[2].Q[71] = (M1Pos + M2Pos) / 2 / kEncCtsPerUm
+Coord[2].Q[72] = (M2Pos - M1Pos) / kEncCtsPerUm
+Coord[2].Q[73] = (M3Pos + M4Pos) / 2 / kEncCtsPerUm
+Coord[2].Q[74] = (M4Pos - M3Pos) / kEncCtsPerUm
+Coord[3].Q[71] = Coord[2].Q[71]
+Coord[3].Q[72] = Coord[2].Q[72]
+Coord[3].Q[73] = Coord[2].Q[73]
+Coord[3].Q[74] = Coord[2].Q[74]
+Coord[4].Q[71] = Coord[2].Q[71]
+Coord[4].Q[72] = Coord[2].Q[72]
+Coord[4].Q[73] = Coord[2].Q[73]
+Coord[4].Q[74] = Coord[2].Q[74]
+
 gGapMoveRequest      = kFALSE
 gGapSpeed_um         = 250
 gGapElevMoveRequest  = kFALSE
 gElevMoveRequest     = kFALSE
 gElevSpeed_um        = 100
+
 
 // PLC09
 gStopAllRequest  = 0
