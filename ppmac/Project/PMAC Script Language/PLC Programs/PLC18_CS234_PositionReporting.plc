@@ -19,8 +19,13 @@ M4Pos = Motor[4].ActPos - Motor[4].HomePos
 // Q82 - Taper
 // Q83 - Elevation
 // Q84 - Tilt
-Coord[2].Q[81] = (M1Pos + M2Pos) / 2 / kEncCtsPerUm
-Coord[2].Q[82] = (M2Pos - M1Pos) / kEncCtsPerUm
+//Coord[2].Q[81] = (M1Pos + M2Pos) / 2 / kEncCtsPerUm
+//Coord[2].Q[82] = (M2Pos - M1Pos) / kEncCtsPerUm
+Ldata.coord = 2
+pread
+
+Coord[2].Q[81] = D0
+Coord[2].Q[82] = D1
 Coord[2].Q[83] = (M3Pos + M4Pos) / 2 / kEncCtsPerUm
 Coord[2].Q[84] = (M4Pos - M3Pos) / kEncCtsPerUm
 
@@ -33,6 +38,8 @@ Coord[4].Q[81] = Coord[2].Q[81]
 Coord[4].Q[82] = Coord[2].Q[82]
 Coord[4].Q[83] = Coord[2].Q[83]
 Coord[4].Q[84] = Coord[2].Q[84]
+
+
 
 call MagEndGapUSDS(M1Pos, M2Pos, &gMagEndGapUS, &gMagEndGapUS)
 
