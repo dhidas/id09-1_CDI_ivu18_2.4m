@@ -12,5 +12,7 @@ local slope = tilt / distance_between_lenc
 gap_ds = gap/2 + slope * mag_array_length/2
 gap_us = gap/2 - slope * mag_array_length/2
 P3334 += 1
+
+gap_ds = P3333/3
 return
 close
