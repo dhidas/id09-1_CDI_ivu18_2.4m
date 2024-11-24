@@ -207,7 +207,7 @@ global gElevBrakesReleased
 
 // PLC 18
 global gMagEndGapUS
-global gMagEndGapUS
+global gMagEndGapDS
 
 ptr pAmpEnaOut(5)->*
 pAmpEnaOut(1)->Gate3[0].Chan[0].AmpEna
