@@ -39,7 +39,7 @@ Motor[3].EncLossLevel=1
 Motor[3].EncLossLimit=0
 Motor[3].EncType=5
 Motor[3].ExtraMotors=0
-Motor[3].FatalFeLimit=10000
+Motor[3].FatalFeLimit=20000
 Motor[3].FaultMode=0
 Motor[3].GantrySlewRate=0
 Motor[3].HomePos=-kM3OFFSET
@@ -194,5 +194,5 @@ Motor[3].SlewMasterPosSf=0
 Motor[3].SlipGain=0
 Motor[3].SoftLimitOffset=0
 Motor[3].Stime=0
-Motor[3].WarnFeLimit=1000
+Motor[3].WarnFeLimit=10000
 
