@@ -21,6 +21,10 @@ Coord[4].SegMoveTime = 2
 
 &2 Open Forward
 
+if (KinVelEna) { callsub 100 }           // For double-pass calculations
+KinAxisUsed = KinEnaAxisA + KinEnaAxisB  // A and B computed
+
+N100:
 KinPosAxisA = ((KinPosMotor1 + KinPosMotor2) / 2) / kEncCtsPerUm
 KinPosAxisB =  (KinPosMotor2 - KinPosMotor1)      / kEncCtsPerUm
 
@@ -30,6 +34,11 @@ close
 
 KinPosMotor1 = (KinPosAxisA - KinPosAxisB / 2) * kEncCtsPerUm
 KinPosMotor2 = (KinPosAxisA + KinPosAxisB / 2) * kEncCtsPerUm
+
+if (KinVelEna) {
+  KinPosMotor1 = (KinPosAxisA - KinPosAxisB / 2) * kEncCtsPerUm
+  KinPosMotor2 = (KinPosAxisA + KinPosAxisB / 2) * kEncCtsPerUm
+}
 
 close
 
