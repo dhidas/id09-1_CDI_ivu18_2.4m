@@ -102,6 +102,7 @@ if (Motor[lMotorHoming].PlusLimit == kTRUE && pHomeFlag(lMotorHoming) == kZERO) 
   gHomingSwitchNotFound = kTRUE
     GOTO 666
 }
+call Timer(0.500)
 Ldata.motor = lMotorHoming
 CMD"j/"
 call Timer(0.200)
