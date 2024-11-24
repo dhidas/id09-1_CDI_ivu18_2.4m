@@ -5,8 +5,8 @@ Open PROG 3
 LINEAR
 ABS
 
-TA1000
-TS300
+TA100
+TS100
 
 FRAX(C,U)
 F(gElevSpeed_um)
