@@ -10,6 +10,7 @@ Open PLC 2
 
 local L_CSRunning = 0
 local L_MotorMoving = 0
+local L_AmpEna = 0
 
 // Check there is no program running or active
 L_CSRunning += Coord[2].ProgRunning + Coord[3].ProgRunning + Coord[4].ProgRunning
@@ -22,8 +23,14 @@ L_MotorMoving += 1 - Motor[2].DesVelZero
 L_MotorMoving += 1 - Motor[3].DesVelZero
 L_MotorMoving += 1 - Motor[4].DesVelZero
 
+// Check Amp enable bits
+L_AmpEna += Motor[1].AmpEna
+L_AmpEna += Motor[2].AmpEna
+L_AmpEna += Motor[3].AmpEna
+L_AmpEna += Motor[4].AmpEna
+
 // If a coordinate system is running/active or a motor is moving set MIP
-if (L_CSRunning != 0 || L_MotorMoving != 0) {
+if (L_AmpEna > 0 && (L_CSRunning != 0 || L_MotorMoving != 0)) {
   gMovementInProgress = kTRUE
 } else {
   gMovementInProgress = kFALSE
