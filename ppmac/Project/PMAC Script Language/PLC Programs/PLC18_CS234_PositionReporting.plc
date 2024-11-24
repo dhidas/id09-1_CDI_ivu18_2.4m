@@ -35,7 +35,7 @@ Coord[4].Q[84] = D3
 Gap = D0
 Tilt = D1
 
-call MagEndGapUSDS(Gap, Tilt, &gMagEndGapUS, &gMagEndGapDS)
+call MagEndGapUSDS(D0, D1, &gMagEndGapUS, &gMagEndGapDS)
 
 
 close
