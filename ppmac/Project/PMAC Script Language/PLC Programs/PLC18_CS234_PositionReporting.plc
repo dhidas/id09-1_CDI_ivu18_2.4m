@@ -4,16 +4,9 @@ global aaa,bbb;
 
 open PLC 18
 
-local M1Pos
-local M2Pos
-local M3Pos
-local M4Pos
+local Gap
+local Tilt
 
-
-M1Pos = Motor[1].ActPos - Motor[1].HomePos
-M2Pos = Motor[2].ActPos - Motor[2].HomePos
-M3Pos = Motor[3].ActPos - Motor[3].HomePos
-M4Pos = Motor[4].ActPos - Motor[4].HomePos
 
 // The Q variables here are to align with pmacAsynCoord
 // This is done for CS 2, 3, 4 all the same
@@ -39,25 +32,10 @@ Coord[4].Q[82] = D1
 Coord[4].Q[83] = D2
 Coord[4].Q[84] = D3
 
-aaa = D0
-bbb = D1
+Gap = D0
+Tilt = D1
 
-call MagEndGapUSDS(aaa, bbb, &gMagEndGapUS, &gMagEndGapDS)
-
-//Coord[2].Q[81] = (M1Pos + M2Pos) / 2 / kEncCtsPerUm
-//Coord[2].Q[82] = (M2Pos - M1Pos) / kEncCtsPerUm
-//Coord[2].Q[83] = (M3Pos + M4Pos) / 2 / kEncCtsPerUm
-//Coord[2].Q[84] = (M4Pos - M3Pos) / kEncCtsPerUm
-//
-//Coord[3].Q[81] = Coord[2].Q[81]
-//Coord[3].Q[82] = Coord[2].Q[82]
-//Coord[3].Q[83] = Coord[2].Q[83]
-//Coord[3].Q[84] = Coord[2].Q[84]
-//
-//Coord[4].Q[81] = Coord[2].Q[81]
-//Coord[4].Q[82] = Coord[2].Q[82]
-//Coord[4].Q[83] = Coord[2].Q[83]
-//Coord[4].Q[84] = Coord[2].Q[84]
+call MagEndGapUSDS(Gap, Tilt, &gMagEndGapUS, &gMagEndGapDS)
 
 
 close
