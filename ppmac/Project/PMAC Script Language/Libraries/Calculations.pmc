@@ -3,7 +3,7 @@
 // 
 //
 open subprog MagEndGapUSDS(gap, tilt, &gap_us, &gap_ds)
-
+P3333 += 1
 local mag_array_length = 2274*1000
 local end_to_encoder = 153.7*1000
 local distance_between_lenc = (mag_array_length - 2*end_to_encoder)
@@ -11,5 +11,6 @@ local slope = tilt / distance_between_lenc
 
 gap_ds = gap/2 + slope * mag_array_length/2
 gap_us = gap/2 - slope * mag_array_length/2
+P3334 += 1
 return
 close
