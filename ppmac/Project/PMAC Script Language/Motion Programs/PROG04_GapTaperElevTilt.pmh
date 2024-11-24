@@ -8,8 +8,12 @@ TS100
 FRAX(A, B, C, U)
 F(gGapSpeed_um)
 
+dwell 0 Gather.Enable = 3 dwell 0
+
 A(Q71)B(Q72)C(Q73)U(Q74)
-dwell 0
+
+dwell 0 Gather.Enable = 0 dwell 0
+
 close
 
 

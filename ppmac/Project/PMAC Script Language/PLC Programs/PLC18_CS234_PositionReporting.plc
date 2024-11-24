@@ -1,7 +1,6 @@
 // This PLC is for position reporting to EPICS.  It covers CS2, 3, 4
 
 open PLC 18
-
 // The Q variables here are to align with pmacAsynCoord
 // This is done for CS 2, 3, 4 all the same
 // Q81 - Gap
@@ -9,24 +8,49 @@ open PLC 18
 // Q83 - Elevation
 // Q84 - Tilt
 
-Ldata.coord = 2
-pread
-Coord[2].Q[81] = D0
-Coord[2].Q[82] = D1
+local M1Pos
+local M2Pos
+local M3Pos
+local M4Pos
 
-Ldata.coord = 3
-pread
-Coord[3].Q[83] = D2
-Coord[3].Q[84] = D3
+local Gap
+local Elevation
+local Taper
+local Tilt
 
-Ldata.coord = 4
-pread
-Coord[4].Q[81] = D0
-Coord[4].Q[82] = D1
-Coord[4].Q[83] = D2
-Coord[4].Q[84] = D3
+// Motor positions
+M1Pos = Motor[1].ActPos - Motor[1].HomePos
+M2Pos = Motor[2].ActPos - Motor[2].HomePos
+M3Pos = Motor[3].ActPos - Motor[3].HomePos
+M4Pos = Motor[4].ActPos - Motor[4].HomePos
 
-call MagEndGapUSDS(D0, D1, &gMagEndGapUS, &gMagEndGapDS)
+// Translation to normal coords
+Gap       = (M1Pos + M2Pos) / 2 / kEncCtsPerUm
+Elevation = (M2Pos - M1Pos) / kEncCtsPerUm
+Taper     = (M3Pos + M4Pos) / 2 / kEncCtsPerUm
+Tilt      = (M4Pos - M3Pos) / kEncCtsPerUm
+
+Coord[2].Q[81] = Gap
+Coord[2].Q[82] = Elevation
+Coord[2].Q[83] = Taper
+Coord[2].Q[84] = Tilt
+
+Coord[3].Q[81] = Gap
+Coord[3].Q[82] = Elevation
+Coord[3].Q[83] = Taper
+Coord[3].Q[84] = Tilt
+
+Coord[4].Q[81] = Gap
+Coord[4].Q[82] = Elevation
+Coord[4].Q[83] = Taper
+Coord[4].Q[84] = Tilt
+
+Coord[5].Q[81] = Gap
+Coord[5].Q[82] = Elevation
+Coord[5].Q[83] = Taper
+Coord[5].Q[84] = Tilt
+
+call MagEndGapUSDS(Gap, Tilt, &gMagEndGapUS, &gMagEndGapDS)
 
 close
 

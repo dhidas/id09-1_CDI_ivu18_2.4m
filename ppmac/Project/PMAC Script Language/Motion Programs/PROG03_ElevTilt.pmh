@@ -11,7 +11,9 @@ TS100
 FRAX(C,U)
 F(gElevSpeed_um)
 
+dwell 0 Gather.Enable = 3 dwell 0
+
 C(Q73)U(Q74)
-dwell 0
+dwell 0 Gather.Enable = 0 dwell 0
 
 close
