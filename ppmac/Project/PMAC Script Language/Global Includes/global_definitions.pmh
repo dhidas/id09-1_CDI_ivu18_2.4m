@@ -24,7 +24,7 @@
 #define kM4OFFSET ((61492.1699999999983)*1000)
 
 // Speed for final home search move
-#define kHOMESPEED 0.5
+#define kHOMESPEED 10
 
 // Encoder count conversions
 #define kEncCtsPerMm        1000000
