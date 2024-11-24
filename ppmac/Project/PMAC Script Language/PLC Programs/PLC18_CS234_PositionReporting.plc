@@ -42,7 +42,7 @@ Coord[4].Q[84] = D3
 aaa = D0
 bbb = D1
 
-call MagEndGapUSDS(D0, D1, &gMagEndGapUS, &gMagEndGapDS)
+call MagEndGapUSDS(aaa, bbb, &gMagEndGapUS, &gMagEndGapDS)
 
 //Coord[2].Q[81] = (M1Pos + M2Pos) / 2 / kEncCtsPerUm
 //Coord[2].Q[82] = (M2Pos - M1Pos) / kEncCtsPerUm
