@@ -117,6 +117,7 @@ TIMER060HOMING = 60000
 Motor[lMotorHoming].ProgJogPos = Motor[lMotorHoming].Pos - Motor[lMotorHoming].HomePos - 3000000
 Ldata.motor = lMotorHoming
 CMD"j=*^-100000"
+call Timer(2.000)
 while (pHomeFlag(lMotorHoming) == kONE && TIMER060HOMING > 0) {}           // Wait for end
 if (TIMER060HOMING <= 0) {
   // Timeout in homing, report and abort
