@@ -1,7 +1,6 @@
 // This program is intended to change the gap and taper only
 
 Open PROG 2
-Gaather.Enable = 2
 LINEAR
 ABS
 
@@ -11,9 +10,11 @@ TS100
 FRAX(A,B)
 F(gGapSpeed_um)
 
+dwell 0 Gather.Enable = 2 dwell 0
+
 A(Q71)B(Q72)
 dwell 0
 
-Gaather.Enable = 0
+dwell 0 Gather.Enable = 0 dwell 0
 close
 
