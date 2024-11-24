@@ -20,26 +20,22 @@ Coord[4].SegMoveTime = 2
 
 
 &2 Open Forward
-
-if (KinVelEna) { callsub 100 }           // For double-pass calculations
+if (KinVelEna) { callsub 200 }           // For double-pass calculations
 KinAxisUsed = KinEnaAxisA + KinEnaAxisB  // A and B computed
 
-N100:
+N200:
 KinPosAxisA = ((KinPosMotor1 + KinPosMotor2) / 2) / kEncCtsPerUm
 KinPosAxisB =  (KinPosMotor2 - KinPosMotor1)      / kEncCtsPerUm
-
 close
 
 &2 Open Inverse
-
 KinPosMotor1 = (KinPosAxisA - KinPosAxisB / 2) * kEncCtsPerUm
 KinPosMotor2 = (KinPosAxisA + KinPosAxisB / 2) * kEncCtsPerUm
-
 if (KinVelEna) {
+  P3333 += 1
   KinPosMotor1 = (KinPosAxisA - KinPosAxisB / 2) * kEncCtsPerUm
   KinPosMotor2 = (KinPosAxisA + KinPosAxisB / 2) * kEncCtsPerUm
 }
-
 close
 
 
@@ -47,6 +43,10 @@ close
 
 
 &3 open forward
+if (KinVelEna) { callsub 300 }           // For double-pass calculations
+KinAxisUsed = KinEnaAxisC + KinEnaAxisU  // C and U computed
+
+N300:
 KinPosAxisC = ((KinPosMotor3 + KinPosMotor4) / 2) / kEncCtsPerUm
 KinPosAxisU =  (KinPosMotor4 - KinPosMotor3)      / kEncCtsPerUm
 close
@@ -54,12 +54,20 @@ close
 &3 open inverse
 KinPosMotor3 = (KinPosAxisC - KinPosAxisU / 2) * kEncCtsPerUm
 KinPosMotor4 = (KinPosAxisC + KinPosAxisU / 2) * kEncCtsPerUm
+if (KinVelEna) {
+  KinPosMotor3 = (KinPosAxisC - KinPosAxisU / 2) * kEncCtsPerUm
+  KinPosMotor4 = (KinPosAxisC + KinPosAxisU / 2) * kEncCtsPerUm
+}
 close
 
 
 
 
 &4 open forward
+if (KinVelEna) { callsub 400 }                                      // For double-pass calculations
+KinAxisUsed = KinEnaAxisA + KinEnaAxisB + KinEnaAxisC + KinEnaAxisU // A,B,C,U computed
+
+N400:
 KinPosAxisA = ((KinPosMotor1 + KinPosMotor2) / 2) / kEncCtsPerUm
 KinPosAxisB =  (KinPosMotor2 - KinPosMotor1)      / kEncCtsPerUm
 KinPosAxisC = ((KinPosMotor3 + KinPosMotor4) / 2) / kEncCtsPerUm
@@ -71,5 +79,11 @@ KinPosMotor1 = (KinPosAxisA - KinPosAxisB / 2) * kEncCtsPerUm
 KinPosMotor2 = (KinPosAxisA + KinPosAxisB / 2) * kEncCtsPerUm
 KinPosMotor3 = (KinPosAxisC - KinPosAxisU / 2) * kEncCtsPerUm
 KinPosMotor4 = (KinPosAxisC + KinPosAxisU / 2) * kEncCtsPerUm
+if (KinVelEna) {
+  KinPosMotor1 = (KinPosAxisA - KinPosAxisB / 2) * kEncCtsPerUm
+  KinPosMotor2 = (KinPosAxisA + KinPosAxisB / 2) * kEncCtsPerUm
+  KinPosMotor3 = (KinPosAxisC - KinPosAxisU / 2) * kEncCtsPerUm
+  KinPosMotor4 = (KinPosAxisC + KinPosAxisU / 2) * kEncCtsPerUm
+}
 close
 
